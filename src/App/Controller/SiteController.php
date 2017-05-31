@@ -45,42 +45,181 @@ class SiteController implements SiteInterface
 
     public function createMultiple(array $sites)
     {
-        // TODO: Implement createMultiple() method.
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+
+            $stmt = $conn->prepare("INSERT INTO sites(url, category, description) VALUES (:url, :category, :description)");
+
+            foreach ($sites as $site) {
+                $stmt->bindParam(":url", $site['url']);
+                $stmt->bindParam(":category", $site['category']);
+                $stmt->bindParam(":description", $site['description']);
+                $stmt->execute();
+            }
+            $db->closeConnection();
+            return true;
+
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 
     public function updateSingle(Site $site, $id)
     {
-        // TODO: Implement updateSingle() method.
+        $url = $site->getUrl();
+        $category = $site->getCategory();
+        $description = $site->getDescription();
+
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+
+            $stmt = $conn->prepare("UPDATE sites SET url=:url, category=:category, description=:description WHERE id=:id");
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":url", $url);
+            $stmt->bindParam(":category", $category);
+            $stmt->bindParam(":description", $description);
+            $query = $stmt->execute();
+            if ($query) {
+                $db->closeConnection();
+                return true;
+            } else{
+                $db->closeConnection();
+                return false;
+            }
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 
     public function updateMultiple(array $sites)
     {
-        // TODO: Implement updateMultiple() method.
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+
+            $stmt = $conn->prepare("UPDATE sites SET url=:url, category=:category, description=:description WHERE id=:id");
+
+            foreach ($sites as $site) {
+                $stmt->bindParam(":id", $site['id']);
+                $stmt->bindParam(":url", $site['url']);
+                $stmt->bindParam(":category", $site['category']);
+                $stmt->bindParam(":description", $site['description']);
+                $stmt->execute();
+            }
+            $db->closeConnection();
+            return true;
+
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 
     public static function delete($id)
     {
-        // TODO: Implement delete() method.
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+            $stmt = $conn->prepare("DELETE FROM sites WHERE id=:id");
+            $stmt->bindParam(":id", $id);
+            $query = $stmt->execute();
+             if ($query) {
+                 $db->closeConnection();
+                 return true;
+             } else{
+                 $db->closeConnection();
+                 return false;
+             }
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 
     public static function destroy()
     {
-        // TODO: Implement destroy() method.
-    }
+        try {
+            $db = new DB();
+            $conn = $db->connect();
+            $stmt = $conn->prepare("DELETE FROM sites WHERE 1");
+            $query = $stmt->execute();
+            if ($query) {
+                $db->closeConnection();
+                return true;
+            } else {
+                $db->closeConnection();
+                return false;
+            }
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
 
+        }
+    }
     public static function getId($id)
     {
-        // TODO: Implement getId() method.
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+            $stmt = $conn->prepare("SELECT t.* FROM sites t WHERE t.id=:id");
+            $stmt->bindParam(":id", $id);
+            if($stmt->execute() and $stmt->rowCount()==1){
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $row;
+            } else{
+                $db->closeConnection();
+                return [];
+            }
+        }catch (\PDOException $e){
+            echo $e->getMessage();
+            return [];
+        }
     }
 
     public static function getObject($id)
     {
-        // TODO: Implement getObject() method.
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+            $stmt = $conn->prepare("SELECT t.* FROM sites t WHERE t.id=:id");
+            $stmt->bindParam(":id", $id);
+            $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, Site::class);
+            if($stmt->execute() and $stmt->rowCount()==1){
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $row;
+            } else{
+                $db->closeConnection();
+                return null;
+            }
+        }catch (\PDOException $e){
+            echo $e->getMessage();
+            return null;
+        }
     }
 
     public static function all()
     {
-        // TODO: Implement all() method.
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+            $stmt = $conn->prepare("SELECT t.* FROM sites t WHERE 1");
+            if($stmt->execute() and $stmt->rowCount() >0){
+                $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $rows;
+            } else{
+                $db->closeConnection();
+                return [];
+            }
+        }catch (\PDOException $e){
+            echo $e->getMessage();
+            return [];
+        }
     }
 
 
