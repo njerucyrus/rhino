@@ -85,34 +85,170 @@ class UserController implements UserInterface
         }
     }
 
-    public function update(User $user)
+    public function update(User $user, $id)
     {
-        // TODO: Implement update() method.
+        $userReferralCode = $user->getUserReferralCode();
+        $fullName = $user->getFullName();
+        $idNo = $user->getIdNo();
+        $phoneNumber = $user->getPhoneNumber();
+        $email = $user->getEmail();
+        $username = $user->getUsername();
+        $password = $user->getPassword();
+        $paymentStatus = $user->getPaymentStatus();
+        $accountStatus = $user->getAccountStatus();
+        $loginIp = $user->getLoginIp();
+        $createdAt = $user->getCreatedAt();
+        try{
+
+            $db = new DB();
+            $conn = $db->connect();
+
+            $stmt = $conn->prepare("UPDATE users SET 
+                                                    userReferralCode=:userReferralCode,
+                                                    fullName=:fullName,
+                                                    idNo=:idNo,
+                                                    phoneNumber=:phoneNumber, 
+                                                    email=:email, 
+                                                    username=:username,
+                                                    password=:password, 
+                                                    paymentStatus=:paymentStatus,
+                                                    accountStatus=:accountStatus,   
+                                                    loginIp=:loginIp, 
+                                                    createdAt=:createdAt
+                                              WHERE id=:id");
+
+            $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":userReferralCode", $userReferralCode);
+            $stmt->bindParam(":fullName", $fullName);
+            $stmt->bindParam(":idNo", $idNo);
+            $stmt->bindParam(":phoneNumber", $phoneNumber);
+            $stmt->bindParam(":email", $email);
+            $stmt->bindParam(":username", $username);
+            $stmt->bindParam(":password", $password);
+            $stmt->bindParam(":paymentStatus", $paymentStatus);
+            $stmt->bindParam(":accountStatus", $accountStatus);
+            $stmt->bindParam(":loginIp", $loginIp);
+            $stmt->bindParam(":createdAt", $createdAt);
+            $query = $stmt->execute();
+            if ($query){
+                $db->closeConnection();
+                return true;
+            }else {
+                $db->closeConnection();
+                return false;
+            }
+        } catch (\PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
     }
 
     public static function delete($id)
     {
-        // TODO: Implement delete() method.
+        try{
+
+            $db = new DB();
+            $conn = $db->connect();
+            $stmt = $conn->prepare("DELETE FROM users WHERE id=:id");
+            $stmt->bindParam(":id", $id);
+            $query = $stmt->execute();
+            if ($query){
+                $db->closeConnection();
+                return true;
+            } else{
+                $db->closeConnection();
+                return false;
+            }
+
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 
     public static function destroy()
     {
-        // TODO: Implement destroy() method.
+        try{
+
+            $db = new DB();
+            $conn = $db->connect();
+            $stmt = $conn->prepare("DELETE FROM users WHERE 1");
+            $query = $stmt->execute();
+            if ($query){
+                $db->closeConnection();
+                return true;
+            } else{
+                $db->closeConnection();
+                return false;
+            }
+
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
     }
 
     public static function getId($id)
     {
-        // TODO: Implement getId() method.
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+            $stmt = $conn->prepare("SELECT * FROM users WHERE id=:id");
+            $stmt->bindParam(":id", $id);
+            if ($stmt->execute() and $stmt->rowCount() == 1 ){
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $row;
+            } else{
+                $db->closeConnection();
+                return [];
+            }
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return [];
+        }
     }
 
     public static function getObject($id)
     {
-        // TODO: Implement getObject() method.
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+            $stmt = $conn->prepare("SELECT * FROM users WHERE id=:id");
+            $stmt->bindParam(":id", $id);
+            $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, User::class);
+            if ($stmt->execute() and $stmt->rowCount() == 1 ){
+                $user = $stmt->fetch();
+                $db->closeConnection();
+                return $user;
+            } else{
+                $db->closeConnection();
+                return null;
+            }
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return [];
+        }
     }
 
     public static function all()
     {
-        // TODO: Implement all() method.
+        try{
+            $db = new DB();
+            $conn = $db->connect();
+            $stmt = $conn->prepare("SELECT * FROM users WHERE 1");
+            if ($stmt->execute() and $stmt->rowCount() == 1 ){
+                $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $rows;
+            } else{
+                $db->closeConnection();
+                return [];
+            }
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return [];
+        }
     }
 
 
