@@ -6,7 +6,7 @@
  * Time: 1:31 AM
  */
 
-namespace Hudutech\DBManager;
+namespace App\DBManager;
 
 
 class ComplexQuery

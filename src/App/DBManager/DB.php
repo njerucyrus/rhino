@@ -7,7 +7,7 @@
  * Date: 4/1/17
  * Time: 11:46 PM
  */
-namespace Hudutech\DBManager;
+namespace App\DBManager;
 class DB
 {
     /**
