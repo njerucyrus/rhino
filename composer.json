@@ -1,8 +1,7 @@
 {
   "autoload":{
-    "psr-0": {
-      "App\\":"src/App/"
+    "psr-4": {
+      "Hudutech\\":"src/Hudutech/"
     }
   }
-
 }

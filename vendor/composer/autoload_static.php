@@ -6,28 +6,25 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit3bc89df873069c5f666e6f5181fdf3ff
 {
-    public static $prefixesPsr0 = array (
-        'A' => 
+    public static $prefixLengthsPsr4 = array (
+        'H' => 
         array (
-            'App\\' => 
-            array (
-                0 => __DIR__ . '/../..' . '/src/App',
-            ),
+            'Hudutech\\' => 9,
         ),
     );
 
-    public static $classMap = array (
-        'App\\AppInterface\\BaseInterface' => __DIR__ . '/../..' . '/src/App/AppInterface/BaseInterface.php',
-        'App\\AppInterface\\UserInterface' => __DIR__ . '/../..' . '/src/App/AppInterface/UserInterface.php',
-        'App\\Controller\\UserController' => __DIR__ . '/../..' . '/src/App/Controller/UserController.php',
-        'App\\Entity\\User' => __DIR__ . '/../..' . '/src/App/Entity/User.php',
+    public static $prefixDirsPsr4 = array (
+        'Hudutech\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src/Hudutech',
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInit3bc89df873069c5f666e6f5181fdf3ff::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit3bc89df873069c5f666e6f5181fdf3ff::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3bc89df873069c5f666e6f5181fdf3ff::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3bc89df873069c5f666e6f5181fdf3ff::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

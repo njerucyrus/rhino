@@ -6,8 +6,4 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App\\AppInterface\\BaseInterface' => $baseDir . '/src/App/AppInterface/BaseInterface.php',
-    'App\\AppInterface\\UserInterface' => $baseDir . '/src/App/AppInterface/UserInterface.php',
-    'App\\Controller\\UserController' => $baseDir . '/src/App/Controller/UserController.php',
-    'App\\Entity\\User' => $baseDir . '/src/App/Entity/User.php',
 );
