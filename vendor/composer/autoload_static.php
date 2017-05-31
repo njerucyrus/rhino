@@ -22,8 +22,16 @@ class ComposerStaticInitf2e6d16bb2124dc086289decd86c5fb5
 
     public static $classMap = array (
         'App\\AppInterface\\BaseInterface' => __DIR__ . '/../..' . '/src/App/AppInterface/BaseInterface.php',
+        'App\\AppInterface\\ReferralTreeInterface' => __DIR__ . '/../..' . '/src/App/AppInterface/ReferralTreeInterface.php',
+        'App\\AppInterface\\SiteInterface' => __DIR__ . '/../..' . '/src/App/AppInterface/SiteInterface.php',
         'App\\AppInterface\\UserInterface' => __DIR__ . '/../..' . '/src/App/AppInterface/UserInterface.php',
+        'App\\Controller\\ReferralTreeController' => __DIR__ . '/../..' . '/src/App/Controller/ReferralTreeController.php',
+        'App\\Controller\\SiteController' => __DIR__ . '/../..' . '/src/App/Controller/SiteController.php',
         'App\\Controller\\UserController' => __DIR__ . '/../..' . '/src/App/Controller/UserController.php',
+        'App\\DBManager\\ComplexQuery' => __DIR__ . '/../..' . '/src/App/DBManager/ComplexQuery.php',
+        'App\\DBManager\\DB' => __DIR__ . '/../..' . '/src/App/DBManager/DB.php',
+        'App\\Entity\\ReferralTree' => __DIR__ . '/../..' . '/src/App/Entity/ReferralTree.php',
+        'App\\Entity\\Site' => __DIR__ . '/../..' . '/src/App/Entity/Site.php',
         'App\\Entity\\User' => __DIR__ . '/../..' . '/src/App/Entity/User.php',
     );
 
