@@ -14,5 +14,5 @@ use App\Entity\User;
 interface UserInterface extends BaseInterface
 {
     public function create(User $user);
-    public function update(User $user);
+    public function update(User $user, $id);
 }
