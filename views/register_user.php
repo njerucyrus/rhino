@@ -13,11 +13,11 @@ include 'includes/register_user.inc.php';
 <?php include 'head_views.php' ?>
 <body class="page-body skin-facebook">
 <div class="page-container">
-    <?php  include 'right_menu_views.php' ?>
+
     <div class="main-content">
         <div class="row">
             <div class="col-md-12">
-                <?php include 'header_menu_views.php' ?>
+                <?php //include 'header_menu_views.php' ?>
                 <div class="panel panel-primary" data-collapsed="0">
 
                     <div class="panel-heading">
@@ -74,7 +74,7 @@ include 'includes/register_user.inc.php';
                                 <label for="idNo" class="col-sm-3 control-label">ID Number</label>
 
                                 <div class="col-sm-5">
-                                    <input type="email" class="form-control" name="idNo" placeholder="ID Number" required>
+                                    <input type="text" class="form-control" name="idNo" placeholder="ID Number" required>
                                 </div>
                             </div>
 
@@ -115,7 +115,7 @@ include 'includes/register_user.inc.php';
                             </div>
 
                             <div class="form-group">
-                                <label for="confirmpassword" class="col-sm-3 control-label">Confirm Password</label>
+                                <label for="confirm" class="col-sm-3 control-label">Confirm Password</label>
 
                                 <div class="col-sm-5">
                                     <input type="password" class="form-control" name="confirm"
@@ -126,7 +126,7 @@ include 'includes/register_user.inc.php';
                             <div class="form-group">
                                 <label for="paymentOption"  class="col-sm-3 control-label">Payment Option</label>
                                 <div class="col-sm-5">
-                                <select id="paymentOption" name="gender" class="form-control">
+                                <select id="paymentOption" name="paymentStatus" class="form-control">
                                     <option value="mpesa">M-Pesa</option>
                                     <option value="paypal">Paypal</option>
                                 </select>
