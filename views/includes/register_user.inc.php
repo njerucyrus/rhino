@@ -15,7 +15,7 @@ if(!empty($_POST['submit'])) {
         if ($_POST['password'] == $_POST['confirm']) {
             $user = new \Hudutech\Entity\User();
 
-            $user->setFirstName($_POST['firstName']);
+            $user->setRoleId($_POST['firstName']);
             $user->setLastName(($_POST['lastName']));
             $user->setUsername($_POST['username']);
             $user->setEmail($_POST['email']);
