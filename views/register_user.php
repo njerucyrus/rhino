@@ -5,15 +5,15 @@
  * Date: 06/05/2017
  * Time: 22:22
  */
-require_once __DIR__ . '/../vendor/autoload.php';
-include __DIR__ . '/includes/register_user.inc.php';
+require_once  '../vendor/autoload.php';
+include 'includes/register_user.inc.php';
 ?>
 <!DOCTYPE html>
 <html>
 <?php include 'head_views.php' ?>
 <body class="page-body skin-facebook">
 <div class="page-container">
-    <?php include 'right_menu_views.php' ?>
+    <?php  include 'right_menu_views.php' ?>
     <div class="main-content">
         <div class="row">
             <div class="col-md-12">
@@ -43,7 +43,7 @@ include __DIR__ . '/includes/register_user.inc.php';
                                 echo "";
                             }
                             ?>
-                            <h1>Register User</h1>
+                            <h1>Join Us</h1>
                         </div>
 
 
@@ -55,18 +55,34 @@ include __DIR__ . '/includes/register_user.inc.php';
                               action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
 
                             <div class="form-group">
-                                <label for="firstName" class="col-sm-3 control-label">First Name</label>
+                                <label for="userReferralCode" class="col-sm-3 control-label">Referral Code</label>
 
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="firstName" placeholder="First Name" required>
+                                    <input type="text" class="form-control" name="userReferralCode" placeholder="Referral Code" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="lastName" class="col-sm-3 control-label">Last Name</label>
+                                <label for="fullName" class="col-sm-3 control-label">Full Name</label>
 
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" name="lastName" placeholder="Last Name" required>
+                                    <input type="text" class="form-control" name="fullName" placeholder="Full Name" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="idNo" class="col-sm-3 control-label">ID Number</label>
+
+                                <div class="col-sm-5">
+                                    <input type="email" class="form-control" name="idNo" placeholder="ID Number" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phoneNumber" class="col-sm-3 control-label">Phone Number</label>
+
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number" required>
                                 </div>
                             </div>
 
@@ -87,19 +103,7 @@ include __DIR__ . '/includes/register_user.inc.php';
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label">Select User Level</label>
 
-                                <div class="col-sm-5">
-                                    <select name="userLevel" class="form-control">
-                                        <option>admin</option>
-                                        <option>receptionist</option>
-                                        <option>doctor</option>
-                                        <option>lab_technician</option>
-                                        <option>pharmacist</option>
-                                    </select>
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <label for="password" class="col-sm-3 control-label">Password</label>
@@ -117,6 +121,17 @@ include __DIR__ . '/includes/register_user.inc.php';
                                     <input type="password" class="form-control" name="confirm"
                                            placeholder="Confirm Password" required>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="paymentOption"  class="col-sm-3 control-label">Payment Option</label>
+                                <div class="col-sm-5">
+                                <select id="paymentOption" name="gender" class="form-control">
+                                    <option value="mpesa">M-Pesa</option>
+                                    <option value="paypal">Paypal</option>
+                                </select>
+                                </div>
+
                             </div>
 
 

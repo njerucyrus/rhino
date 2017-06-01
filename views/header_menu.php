@@ -6,31 +6,27 @@
  * Time: 19:31
  */
 ?>
-<div class="row">
+<ul id="mainmenu" class="nav menu sf-menu responsive-menu superfish">
+    <li class="">
+        <a href="#title_about">About</a>
+    </li>
+    <li class="">
+        <a href="#features">Features</a>
+    </li>
+    <li class="">
+        <a href="#team">Our Team</a>
+    </li>
+    <li class="">
+        <a href="#portfolio">Our Projects</a>
+    </li>
+    <li class="">
+        <a href="#faq">FAQ</a>
+    </li>
+    <li class="">
+        <a href="#prices">Prices</a>
+    </li>
+    <li class="">
+        <a href="#contact">Contact</a>
+    </li>
 
-    <!-- Profile Info and Notifications -->
-    <div class="col-offset-3 col-md-6 col-sm-8  ">
-
-        <H1>SugarBaker Memorial Dispensary</H1>
-
-    </div>
-
-
-    <!-- Raw Links -->
-    <div class="col-md-6 col-sm-4 clearfix hidden-xs">
-
-        <ul class="list-inline links-list pull-right">
-
-
-
-
-            <li>
-                <a href="views/logout.php">
-                    Log Out <i class="entypo-logout right"></i>
-                </a>
-            </li>
-        </ul>
-
-    </div>
-
-</div>
+</ul>

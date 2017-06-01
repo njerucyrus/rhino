@@ -4,7 +4,7 @@ require_once 'vendor/autoload.php';
 $username = '';
 $level = '';
 if (!isset($_SESSION['username'])) {
-    header('Location: views/login.php');
+    //header('Location: views/login.php');
 }
 if (isset($_SESSION['username'])) {
     $user = \Hudutech\Controller\UserController::getLoggedInUser($_SESSION['username']);
