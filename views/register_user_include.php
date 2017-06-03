@@ -5,8 +5,7 @@
  * Date: 06/05/2017
  * Time: 22:22
  */
-require_once 'vendor/autoload.php';
-include 'views/includes/register_user.inc.php';
+
 ?>
 
 <div class="page-container">
@@ -72,7 +71,7 @@ include 'views/includes/register_user.inc.php';
                     <label for="email" class="control-label">Email</label>
 
 
-                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+                    <input type="email" class="form-control" name="email" placeholder="Email" required/>
 
                 </div>
             </div>
@@ -92,7 +91,7 @@ include 'views/includes/register_user.inc.php';
 
 
                     <input type="password" class="form-control" name="confirm" placeholder="Confirm Password"
-                           required>
+                           required/>
 
                 </div>
             </div>
@@ -100,9 +99,8 @@ include 'views/includes/register_user.inc.php';
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-4">
-
-                    <input type="submit" name="submit" value="Join"
-                           class="btn btn-primary btn-lg btn-block "/>
+                    <button type="submit" class="btn btn-lg btn-blue ">Save Student</button>
+                    <input type="submit" name="submit" value="Join" class="btn btn-primary btn-lg btn-block "/>
                 </div>
             </div>
 
