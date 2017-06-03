@@ -8,25 +8,23 @@
 ?>
 <ul id="mainmenu" class="nav menu sf-menu responsive-menu superfish">
     <li class="">
-        <a href="#title_about">About</a>
+        <a href="#"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Home</a>
     </li>
     <li class="">
-        <a href="#features">Features</a>
+        <a href="#title_about"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">About</a>
+    </li>
+
+
+    <li class="">
+        <a href="#contact"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Contact</a>
     </li>
     <li class="">
-        <a href="#team">Our Team</a>
+        <a href="#join_us"><button class="joinBtn">Join Us</button></a>
     </li>
-    <li class="">
-        <a href="#portfolio">Our Projects</a>
+
+    <li>
+        <a href="#mainslider" class="dropdown-toggle" data-toggle="dropdown"><button class="loginBtn">Login</button> <span class="caret"></span></a>
     </li>
-    <li class="">
-        <a href="#faq">FAQ</a>
-    </li>
-    <li class="">
-        <a href="#prices">Prices</a>
-    </li>
-    <li class="">
-        <a href="#contact">Contact</a>
-    </li>
+
 
 </ul>
