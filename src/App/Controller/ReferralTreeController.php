@@ -278,6 +278,24 @@ class ReferralTreeController implements ReferralTreeInterface
             return false;
         }
     }
+    public function updateEarning($referralCode, $levelEarning, $amount){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("UPDATE referral_earnings SET '{$levelEarning}'='{$levelEarning}'+'{$amount}' WHERE referralCode=:referralCode");
+            $stmt->bindParam(":referralCode", $referralCode);
+            if($stmt->execute()){
+                $db->closeConnection();
+                return true;
+            } else{
+                $db->closeConnection();
+                return false;
+            }
+        } catch (\PDOException $e){
+            $e->getMessage();
+            return false;
+        }
+    }
     public static function debitAccounts($referralCode){
         $codes = self::getReferredByTree($referralCode);
         if (isset($codes['l1']) and $codes['l1'] != ''){
@@ -291,10 +309,37 @@ class ReferralTreeController implements ReferralTreeInterface
             if($count1['l1Count'] < 5 ){
                 //update the count with +1
                 //and make l1 payment of 20% of 4000
-            }
-            if($count2['l2Count'] < 25){
+                self::updateCount($codes['l1'], 'l1Count');
+                $amount = 0.2 * 4000;
+                self::updateEarning($codes['l1'], 'l1Earning', $amount);
 
             }
+            if($count2['l2Count'] < 25){
+                self::updateCount($codes['l2'], 'l2Count');
+                $amount = 0.15 * 4000;
+                self::updateEarning($codes['l2'], 'l2Earning', $amount);
+            }
+            if($count3['l3Count'] < 125){
+                self::updateCount($codes['l3'], 'l3Count');
+                $amount = 0.1 * 4000;
+                self::updateEarning($codes['l3'], 'l3Earning', $amount);
+            }
+            if($count4['l4Count'] < 625){
+                self::updateCount($codes['l4'], 'l4Count');
+                $amount = 0.05 * 4000;
+                self::updateEarning($codes['l4'], 'l4Earning', $amount);
+            }
+            if($count5['l5Count'] < 3125){
+                self::updateCount($codes['l5'], 'l5Count');
+                $amount = 0.03 * 4000;
+                self::updateEarning($codes['l5'], 'l5Earning', $amount);
+            }
+            if($count6['l6Count'] < 15625){
+                self::updateCount($codes['l6'], 'l6Count');
+                $amount = 0.02 * 4000;
+                self::updateEarning($codes['l6'], 'l6Earning', $amount);
+            }
+
         }
     }
 
