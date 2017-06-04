@@ -214,22 +214,29 @@ class ReferralTreeController implements ReferralTreeInterface
      */
     public static function updateReferralTree($referralCode){
         $levels = self::getReferredByTree($referralCode);
-        try{
-            $db = new DB();
-            $conn = $db->connect();
-            $stmt = $conn->prepare("UPDATE referral_tree SET l2=:l2, l3=:l3, l4=:l4, l5=l5, l6=:l6
+
+        try {
+            if(!empty($levels)) {
+                $db = new DB();
+                $conn = $db->connect();
+                $stmt = $conn->prepare("UPDATE referral_tree SET l2=:l2, l3=:l3, l4=:l4, l5=:l5, l6=:l6
                                    WHERE userReferralCode=:referralCode");
-            $stmt->bindParam(":l2", $levels['l1']);
-            $stmt->bindParam(":l3", $levels['l2']);
-            $stmt->bindParam(":l4", $levels['l3']);
-            $stmt->bindParam(":l5", $levels['l4']);
-            $stmt->bindParam(":l6", $levels['l5']);
-            $stmt->bindParam(":referralCode", $referralCode);
-            if ($stmt->execute()){
-               return true;
+                $stmt->bindParam(":l2", $levels['l1']);
+                $stmt->bindParam(":l3", $levels['l2']);
+                $stmt->bindParam(":l4", $levels['l3']);
+                $stmt->bindParam(":l5", $levels['l4']);
+                $stmt->bindParam(":l6", $levels['l5']);
+                $stmt->bindParam(":referralCode", $referralCode);
+                if ($stmt->execute()) {
+                    $db->closeConnection();
+                    return true;
+                } else {
+                    return false;
+                }
             } else{
                 return false;
             }
+
         } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
