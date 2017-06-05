@@ -82,7 +82,29 @@ class FundController implements FundInterface
 
     public static function withDraw($userId, $amount)
     {
-        // TODO: Implement withDraw() method.
+        $db = new DB();
+        $conn = $db->connect();
+       //check if the account balance is sufficient
+
+        $balance = self::checkBalance($userId);
+        if((float)$balance >= (float)$amount) {
+            try{
+                $stmt = $conn->prepare("UPDATE earning_account SET balance=balance-{$amount} 
+                                        WHERE  userId=:userId");
+                $stmt->bindParam(":userId", $userId);
+                if($stmt->execute()){
+                    $db->closeConnection();
+                    return true;
+                }else{
+                    $db->closeConnection();
+                    return false;
+                }
+            } catch (\PDOException $e){
+                echo $e->getMessage();
+                return false;
+            }
+        }
+
     }
 
     public static function delete($id)
