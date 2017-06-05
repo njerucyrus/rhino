@@ -2,31 +2,39 @@
 /**
  * Created by PhpStorm.
  * User: New LAptop
- * Date: 06/05/2017
- * Time: 23:29
+ * Date: 01/06/2017
+ * Time: 00:38
  */
 ?>
-<!-- Bottom scripts (common) -->
-<script src="../public/assets/js/gsap/TweenMax.min.js"></script>
 
-<script src="../public/assets/js/jquery-3.2.0.slim.min.js"></script>
+
 <script src="../public/assets/js/jquery-1.11.3.min.js"></script>
-<script src="../public/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
-<script src="../public/assets/js/bootstrap.js"></script>
-<script src="../public/assets/js/joinable.js"></script>
-<script src="../public/assets/js/resizeable.js"></script>
-<script src="../public/assets/js/neon-api.js"></script>
-<script src="../public/assets/js/neon-login.js"></script>
-<script src="../public/assets/js/jquery-1.11.3.min.js"></script
-<!-- Imported scripts on this page -->
-<script src="../public/assets/js/bootstrap-switch.min.js"></script>
-<script src="../public/assets/js/neon-chat.js"></script>
-<script src="../public/assets/js/paginator/jquery.paginate.min.js"></script>
+<script src="../public/assets/js/bootstrap.min.js"></script>
+<script src="../public/assets/js/main.js"></script>
 
 
-<!-- JavaScripts initializations and stuff -->
-<script src="../public/assets/js/neon-custom.js"></script>
-
-
-<!-- Demo Settings -->
-<script src="../public/assets/js/neon-demo.js"></script>
+<script src="../public/assets/js/vendor/respond.min.js"></script>
+<script src="../public/assets/js/vendor/placeholdem.min.js"></script>
+<script src="../public/assets/js/vendor/jquery-1.10.2.min.js"></script>
+<script src="../public/assets/js/vendor/bootstrap.min.js"></script>
+<script src="../public/assets/js/vendor/hoverIntent.js"></script>
+<script src="../public/assets/js/vendor/superfish.js"></script>
+<script src="../public/assets/js/vendor/jquery.actual.min.js"></script>
+<script src="../public/assets/js/vendor/jquery.elastislide.js"></script>
+<script src="../public/assets/js/vendor/jquery.flexslider-min.js"></script>
+<script src="../public/assets/js/vendor/jquery.prettyPhoto.js"></script>
+<script src="../public/assets/js/vendor/jquery.easing.1.3.js"></script>
+<script src="../public/assets/js/vendor/jquery.ui.totop.js"></script>
+<script src="../public/assets/js/vendor/jquery.isotope.min.js"></script>
+<script src="../public/assets/js/vendor/jquery.easypiechart.min.js"></script>
+<script src='../public/assets/js/vendor/jflickrfeed.min.js'></script>
+<script src="../public/assets/js/vendor/jquery.sticky.js"></script>
+<script src='../public/assets/js/vendor/owl.carousel.min.js'></script>
+<script src='../public/assets/js/vendor/jquery.nicescroll.min.js'></script>
+<script src='../public/assets/js/vendor/jquery.fractionslider.min.js'></script>
+<script src='../public/assets/js/vendor/jquery.scrollTo-min.js'></script>
+<script src='../public/assets/js/vendor/jquery.localscroll-min.js'></script>
+<script src='../public/assets/js/vendor/jquery.parallax-1.1.3.js'></script>
+<script src='twitter/jquery.tweet.min.js'></script>
+<script src="../public/assets/js/plugins.js"></script>
+<script src="../public/assets/js/main.js"></script>

@@ -1,9 +1,15 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: New LAptop
+ * Date: 06/05/2017
+ * Time: 22:22
+ */
+require_once  'vendor/autoload.php';
+include 'views/includes/register_user.inc.php';
+?>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" xmlns="http://www.w3.org/1999/html"> <!--<![endif]-->
+<html>
     <head>
         <meta charset="utf-8">
         
@@ -15,10 +21,6 @@
         <!--[if lt IE 7]>
             <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
         <![endif]-->
-
-
-
-
 
 <section id="header" class="bg-color0">
     <div class="container"><div class="row">
@@ -64,13 +66,13 @@
                 </form>
             </div>
             <div class="bottom text-center">
-                New here ? <a href="#"><b>Join Us</b></a>
+                New here ? <a href="#join_us"><b>Join Us</b></a>
             </div>
         </div>
 
         <div class="tagLogin desktop-hide">
-            <button class="loginBtn">Login</button><br>
-            <button class="joinBtn">Join Us</button>
+            <a  href="views/login.php" class="loginBtn">Login</a><br><br>
+            <a href="#join_us" class="joinBtn"> Join Us</a>
         </div>
         <div class="tagIntro mobile-hide-intro">
             <h3>We create awareness, campaign,  partner and offer consultancy services for the E-learning services in
@@ -224,6 +226,26 @@
       <div class="col-sm-12 text-center">
           <h2 class="block-header">Join Us</h2>
           <p>Please fill the information below to join us.</p>
+          <?php
+          if (empty($success_msg) && !empty($error_msg)) {
+              ?>
+              <div class="alert alert-danger alert-dismissable">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <?php echo $error_msg ?>
+              </div>
+              <?php
+          } elseif (empty($error_msg) and !empty($success_msg)) {
+              ?>
+              <div class="alert alert-success alert-dismissable">
+                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                  <?php echo $success_msg ?>
+              </div>
+
+              <?php
+          } else {
+              echo "";
+          }
+          ?>
         </div>
       </div>
 
@@ -331,7 +353,9 @@
   
 <!--footer scripts-->
     <?php include_once 'views/footer.php';?>
-        
+
+    <script src="/public/assets/js/jquery-1.11.3.min.js"></script>
+    <script src="/public/assets/js/bootstrap.min.js"></script>
 
        
     </body>

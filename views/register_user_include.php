@@ -99,7 +99,7 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-4">
-                    <button type="submit" class="btn btn-lg btn-blue ">Save Student</button>
+
                     <input type="submit" name="submit" value="Join" class="btn btn-primary btn-lg btn-block "/>
                 </div>
             </div>
