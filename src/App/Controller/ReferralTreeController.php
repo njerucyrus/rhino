@@ -20,17 +20,17 @@ class ReferralTreeController implements ReferralTreeInterface
         $userId = $referralTree->getUserId();
         $userReferralCode = $referralTree->getUserReferralCode();
 
-        try{
+        try {
             $db = new DB();
             $conn = $db->connect();
             $stmt = $conn->prepare("INSERT INTO referral_tree(userId, userReferralCode) VALUES (:userId, :userReferralCode)");
             $stmt->bindParam(":userId", $userId);
             $stmt->bindParam(":userReferralCode", $userReferralCode);
             $query = $stmt->execute();
-            if($query) {
+            if ($query) {
                 $db->closeConnection();
                 return true;
-            } else{
+            } else {
                 $db->closeConnection();
                 return false;
             }
@@ -42,7 +42,7 @@ class ReferralTreeController implements ReferralTreeInterface
 
     public static function delete($id)
     {
-        try{
+        try {
             $db = new DB();
             $conn = $db->connect();
 
@@ -52,7 +52,7 @@ class ReferralTreeController implements ReferralTreeInterface
             if ($query) {
                 $db->closeConnection();
                 return true;
-            } else{
+            } else {
                 $db->closeConnection();
                 return false;
             }
@@ -64,7 +64,7 @@ class ReferralTreeController implements ReferralTreeInterface
 
     public static function destroy()
     {
-        try{
+        try {
             $db = new DB();
             $conn = $db->connect();
 
@@ -74,7 +74,7 @@ class ReferralTreeController implements ReferralTreeInterface
             if ($query) {
                 $db->closeConnection();
                 return true;
-            } else{
+            } else {
                 $db->closeConnection();
                 return false;
             }
@@ -86,7 +86,7 @@ class ReferralTreeController implements ReferralTreeInterface
 
     public static function getId($id)
     {
-        try{
+        try {
             $db = new DB();
             $conn = $db->connect();
             $stmt = $conn->prepare("SELECT t.* FROM referral_tree t WHERE t.id=:id");
@@ -95,7 +95,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 $row = $stmt->fetch(\PDO::FETCH_ASSOC);
                 $db->closeConnection();
                 return $row;
-            } else{
+            } else {
                 $db->closeConnection();
                 return [];
             }
@@ -105,11 +105,13 @@ class ReferralTreeController implements ReferralTreeInterface
         }
     }
 
-    public static function getObject($id){}
+    public static function getObject($id)
+    {
+    }
 
     public static function all()
     {
-        try{
+        try {
 
             $db = new DB();
             $conn = $db->connect();
@@ -119,7 +121,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
                 $db->closeConnection();
                 return $rows;
-            } else{
+            } else {
                 $db->closeConnection();
                 return [];
             }
@@ -129,9 +131,10 @@ class ReferralTreeController implements ReferralTreeInterface
         }
     }
 
-    public static function generateReferralCode($length=6){
+    public static function generateReferralCode($length = 6)
+    {
         $str = "";
-        $characters = array_merge(range('A','Z'), range('0','9'));
+        $characters = array_merge(range('A', 'Z'), range('0', '9'));
         $max = count($characters) - 1;
         for ($i = 0; $i < $length; $i++) {
             $rand = mt_rand(0, $max);
@@ -141,8 +144,9 @@ class ReferralTreeController implements ReferralTreeInterface
         return strtoupper($str);
     }
 
-    public static function createReferralTree($userId, $userReferralCode, $referralCode=null){
-        try{
+    public static function createReferralTree($userId, $userReferralCode, $referralCode = null)
+    {
+        try {
             $db = new DB();
             $conn = $db->connect();
             $stmt = $conn->prepare("INSERT INTO referral_tree(userId, userReferralCode, l1)
@@ -150,61 +154,91 @@ class ReferralTreeController implements ReferralTreeInterface
             $stmt->bindParam(":userId", $userId);
             $stmt->bindParam(":userReferralCode", $userReferralCode);
             $stmt->bindParam(":l1", $referralCode);
-            if ($stmt->execute()){
+            if ($stmt->execute()) {
                 $db->closeConnection();
                 return true;
-            } else{
+            } else {
                 $db->closeConnection();
                 return false;
             }
 
-        }catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
 
 
-    public static function getL1($referralCode) {
+    public static function getL1($referralCode)
+    {
         $db = new DB();
         $conn = $db->connect();
         try {
             $stmt = $conn->prepare("SELECT l1 FROM referral_tree WHERE userReferralCode=:referralCode");
             $stmt->bindParam(":referralCode", $referralCode);
-            if($stmt->execute() && $stmt->rowCount() ==1){
+            if ($stmt->execute() && $stmt->rowCount() == 1) {
                 $row = $stmt->fetch(\PDO::FETCH_ASSOC);
                 //check if null first....
                 return $row['l1'];
-            } else{
+            } else {
                 return false;
             }
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
-    public static function getReferredByTree($referralCode){
+
+    public static function getTree($referralCode)
+    {
+        $db = new DB();
+        $conn = $db->connect();
+        try {
+            $stmt = $conn->prepare("SELECT * FROM referral_tree WHERE userReferralCode=:referralCode");
+            $stmt->bindParam(":referralCode", $referralCode);
+
+            if ($stmt->execute() && $stmt->rowCount() == 1) {
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                return array(
+                    "l1" => isset($row['l1']) ? $row['l1'] : null,
+                    "l2" => isset($row['l2']) ? $row['l2'] : null,
+                    "l3" => isset($row['l3']) ? $row['l3'] : null,
+                    "l4" => isset($row['l4']) ? $row['l4'] : null,
+                    "l5" => isset($row['l5']) ? $row['l5'] : null,
+                    "l6" => isset($row['l6']) ? $row['l6'] : null
+                );
+            } else {
+                return [];
+            }
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return ['error' => $e->getMessage()];
+        }
+    }
+    public static function getReferredByTree($referralCode)
+    {
         $db = new DB();
         $conn = $db->connect();
         $l1Code = self::getL1($referralCode);
-        try{
-           $stmt = $conn->prepare("SELECT * FROM referral_tree WHERE userReferralCode=:l1Code");
-           $stmt->bindParam(":l1Code", $l1Code);
-           if($stmt->execute() && $stmt->rowCount() == 1){
-               $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-               return array(
-                   "l1"=>isset($row['l1']) ? $row['l1'] : null,
-                   "l2"=>isset($row['l2']) ? $row['l2'] : null,
-                   "l3"=>isset($row['l3']) ? $row['l3'] : null,
-                   "l4"=>isset($row['l4']) ? $row['l4'] : null,
-                   "l5"=>isset($row['l5']) ? $row['l5'] : null
-               );
-           } else{
-               return [];
-           }
+        try {
+            $stmt = $conn->prepare("SELECT * FROM referral_tree WHERE userReferralCode=:referralCode");
+            $stmt->bindParam(":referralCode", $l1Code);
+
+            if ($stmt->execute() && $stmt->rowCount() == 1) {
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                return array(
+                    "l1" => isset($row['l1']) ? $row['l1'] : null,
+                    "l2" => isset($row['l2']) ? $row['l2'] : null,
+                    "l3" => isset($row['l3']) ? $row['l3'] : null,
+                    "l4" => isset($row['l4']) ? $row['l4'] : null,
+                    "l5" => isset($row['l5']) ? $row['l5'] : null
+                );
+            } else {
+                return ['empty'];
+            }
         } catch (\PDOException $e) {
             echo $e->getMessage();
-            return [];
+            return ['error'=>$e->getMessage()];
         }
     }
 
@@ -212,15 +246,16 @@ class ReferralTreeController implements ReferralTreeInterface
      * @param $referralCode
      * @return bool
      */
-    public static function updateReferralTree($referralCode){
+    public static function updateReferralTree($referralCode)
+    {
         $levels = self::getReferredByTree($referralCode);
 
         try {
-            if(!empty($levels)) {
+            if (!empty($levels)) {
                 $db = new DB();
                 $conn = $db->connect();
                 $stmt = $conn->prepare("UPDATE referral_tree SET l2=:l2, l3=:l3, l4=:l4, l5=:l5, l6=:l6
-                                   WHERE userReferralCode=:referralCode");
+                                        WHERE userReferralCode=:referralCode");
                 $stmt->bindParam(":l2", $levels['l1']);
                 $stmt->bindParam(":l3", $levels['l2']);
                 $stmt->bindParam(":l4", $levels['l3']);
@@ -233,7 +268,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 } else {
                     return false;
                 }
-            } else{
+            } else {
                 return false;
             }
 
@@ -243,41 +278,82 @@ class ReferralTreeController implements ReferralTreeInterface
         }
     }
 
-    public static function getCounts($referralCode){
+    public static function createReferralCodeCounts($referralCode){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("INSERT INTO referral_code_counts(referralCode) VALUES (:referralCode)");
+            $stmt->bindParam(":referralCode", $referralCode);
+            if($stmt->execute()){
+                $db->closeConnection();
+                return true;
+            } else{
+                $db->closeConnection();
+                return false;
+            }
+        } catch (\PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public static function createReferralCodeEarning($userId=null, $referralCode){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("INSERT INTO referral_earnings(userId,referralCode) VALUES (:userId, :referralCode)");
+            $stmt->bindParam(":userId", $userId);
+            $stmt->bindParam(":referralCode", $referralCode);
+            if($stmt->execute()){
+                $db->closeConnection();
+                return true;
+            } else{
+                $db->closeConnection();
+                return false;
+            }
+        } catch (\PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public static function getCounts($referralCode)
+    {
         $db = new DB();
         $conn = $db->connect();
 
-        try{
+        try {
             $stmt = $conn->prepare("SELECT * FROM referral_code_counts WHERE referralCode=:referralCode");
             $stmt->bindParam(":referralCode", $referralCode);
-            if($stmt->execute() && $stmt->rowCount() > 0){
+            if ($stmt->execute() && $stmt->rowCount() == 1) {
                 $row = $stmt->fetch(\PDO::FETCH_ASSOC);
                 return array(
-                    "l1Count"=>(int)$row['l1Count'],
-                    "l2Count"=>(int)$row['l2Count'],
-                    "l3Count"=>(int)$row['l3Count'],
-                    "l4Count"=>(int)$row['l4Count'],
-                    "l5Count"=>(int)$row['l5Count'],
-                    "l6Count"=>(int)$row['l6Count']
+                    "l1Count" => (int)$row['l1Count'],
+                    "l2Count" => (int)$row['l2Count'],
+                    "l3Count" => (int)$row['l3Count'],
+                    "l4Count" => (int)$row['l4Count'],
+                    "l5Count" => (int)$row['l5Count'],
+                    "l6Count" => (int)$row['l6Count']
                 );
-            } else{
+            } else {
                 return [];
             }
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return [];
         }
     }
-    public static function updateCount($referralCode, $level){
+
+    public static function updateCount($referralCode, $level)
+    {
         $db = new DB();
         $conn = $db->connect();
-        try{
-            $stmt = $conn->prepare("UPDATE referral_code_counts SET '{$level}'= '{$level}'+1 
+        try {
+            echo $level;
+            $stmt = $conn->prepare("UPDATE referral_code_counts SET {$level}={$level}+1 
                                     WHERE referralCode=:referralCode");
             $stmt->bindParam(":referralCode", $referralCode);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 return true;
-            } else{
+            } else {
                 return false;
             }
         } catch (\PDOException $e) {
@@ -285,35 +361,41 @@ class ReferralTreeController implements ReferralTreeInterface
             return false;
         }
     }
-    public function updateEarning($referralCode, $levelEarning, $amount){
+
+    public function updateEarning($referralCode, $levelEarning, $amount)
+    {
         $db = new DB();
         $conn = $db->connect();
-        try{
-            $stmt = $conn->prepare("UPDATE referral_earnings SET '{$levelEarning}'='{$levelEarning}'+'{$amount}' WHERE referralCode=:referralCode");
-            $stmt->bindParam(":referralCode", $referralCode);
-            if($stmt->execute()){
+        try {
+           // echo $levelEarning.PHP_EOL;
+            $stmt = $conn->prepare("UPDATE referral_earnings SET {$levelEarning}={$levelEarning}+{$amount} WHERE referralCode='{$referralCode}'");
+
+            //$stmt->bindParam(":referralCode", $referralCode);
+            //print_r($stmt);
+            if ($stmt->execute()) {
                 $db->closeConnection();
+                echo "UPDATED WELL".PHP_EOL;
                 return true;
-            } else{
+            } else {
                 $db->closeConnection();
                 return false;
             }
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             $e->getMessage();
             return false;
         }
     }
-    public static function debitAccounts($referralCode){
-        $codes = self::getReferredByTree($referralCode);
-        if (isset($codes['l1']) and $codes['l1'] != ''){
-            $count1 = self::getReferredByTree($codes['l1']);
-            $count2 = self::getReferredByTree($codes['l2']);
-            $count3 = self::getReferredByTree($codes['l3']);
-            $count4 = self::getReferredByTree($codes['l4']);
-            $count5 = self::getReferredByTree($codes['l5']);
-            $count6 = self::getReferredByTree($codes['l6']);
 
-            if($count1['l1Count'] < 5 ){
+    public static function debitAccounts($referralCode)
+    {
+        $codes = self::getTree($referralCode);
+
+
+        if (!empty($codes['l1']) && !is_null($codes['l1'])) {
+
+            $count = self::getCounts($codes['l1']);
+
+            if (isset($count['l1Count']) && $count['l1Count'] < 5) {
                 //update the count with +1
                 //and make l1 payment of 20% of 4000
                 self::updateCount($codes['l1'], 'l1Count');
@@ -321,27 +403,59 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateEarning($codes['l1'], 'l1Earning', $amount);
 
             }
-            if($count2['l2Count'] < 25){
+
+        }
+
+        if (!empty($codes['l2']) && !is_null($codes['l2'])) {
+            $count2 = self::getCounts($codes['l2']);
+
+            if (isset($count2['l2Count']) && $count2['l2Count'] < 25) {
                 self::updateCount($codes['l2'], 'l2Count');
                 $amount = 0.15 * 4000;
                 self::updateEarning($codes['l2'], 'l2Earning', $amount);
             }
-            if($count3['l3Count'] < 125){
+
+        }
+
+        if (!empty($codes['l3']) && !is_null($codes['l3'])) {
+            $count3 = self::getCounts($codes['l3']);
+
+            if (isset($count3['l3Count']) && $count3['l3Count'] < 125) {
                 self::updateCount($codes['l3'], 'l3Count');
                 $amount = 0.1 * 4000;
                 self::updateEarning($codes['l3'], 'l3Earning', $amount);
             }
-            if($count4['l4Count'] < 625){
+
+        }
+
+        if (!empty($codes['l4']) && !is_null($codes['l4'])) {
+
+            $count4 = self::getCounts($codes['l4']);
+
+            if (isset($count4['l4Count']) && $count4['l4Count'] < 625) {
                 self::updateCount($codes['l4'], 'l4Count');
                 $amount = 0.05 * 4000;
                 self::updateEarning($codes['l4'], 'l4Earning', $amount);
             }
-            if($count5['l5Count'] < 3125){
+
+        }
+
+        if (!empty($codes['l5']) && !is_null($codes['l5'])) {
+
+            $count5 = self::getCounts($codes['l5']);
+
+            if (isset($count5['l5Count']) && $count5['l5Count'] < 3125) {
                 self::updateCount($codes['l5'], 'l5Count');
                 $amount = 0.03 * 4000;
                 self::updateEarning($codes['l5'], 'l5Earning', $amount);
             }
-            if($count6['l6Count'] < 15625){
+
+        }
+
+        if (!empty($codes['l6']) && !is_null($codes['l6'])) {
+            $count6 = self::getCounts($codes['l6']);
+
+            if (isset($count6['l6Count']) && $count6['l6Count'] < 15625) {
                 self::updateCount($codes['l6'], 'l6Count');
                 $amount = 0.02 * 4000;
                 self::updateEarning($codes['l6'], 'l6Earning', $amount);

@@ -7,12 +7,12 @@
  */
 require_once __DIR__.'/vendor/autoload.php';
 
-$referralCode = 500;
+$referralCode = 6000;
 use \App\Entity\User;
 use \App\Controller\UserController;
 use \App\Controller\ReferralTreeController;
 $user = new User();
-$user->setUsername('cyrus njeru 136');
+$user->setUsername(mt_rand(0, 1000));
 $user->setPassword('secret');
 $user->setFullName("njeru cyrus");
 $user->setCreatedAt(date('Y-m-d H:i:s'));
@@ -26,26 +26,23 @@ $user->setPaymentStatus('paid');
 $user->setUserReferralCode($referralCode);
 $userCtrl = new UserController();
 $created = $userCtrl->create($user);
-if($created){
-$refTree = ReferralTreeController::createReferralTree(12, $referralCode, '300');
-if($refTree){
-    $updated = ReferralTreeController::updateReferralTree($referralCode);
-    if($updated) {
-        $debited = ReferralTreeController::debitAccounts($referralCode);
-        if($debited){
-            echo "earning done";
-        }else{
-            echo "error in earning";
-        }
-    }else{
-        echo "error n updating rtree";
-    }
-    echo "DONE";
-}else{
-    echo "got error in tree";
-}
-}
+$refTree = ReferralTreeController::createReferralTree(12, $referralCode,600);
+$updated = ReferralTreeController::updateReferralTree($referralCode);
+ReferralTreeController::createReferralCodeEarning(12, $referralCode);
+ReferralTreeController::createReferralCodeCounts($referralCode);
 
+    $updated = ReferralTreeController::updateReferralTree($referralCode);
+    print_r(ReferralTreeController::debitAccounts($referralCode));
+
+
+
+
+//$l1Code = ReferralTreeController::getL1($referralCode);
+
+
+$levels = ReferralTreeController::getTree($referralCode);
+
+print_r($levels);
 
 
 
