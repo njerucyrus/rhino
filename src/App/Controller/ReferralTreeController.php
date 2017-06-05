@@ -471,7 +471,6 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l1'], 'l1Count');
                 $amount = 0.2 * 4000;
                 self::updateEarning($codes['l1'], 'l1Earning', $amount);
-                self::updateTotalEarning();
 
             }
 
@@ -484,7 +483,6 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l2'], 'l2Count');
                 $amount = 0.15 * 4000;
                 self::updateEarning($codes['l2'], 'l2Earning', $amount);
-                self::updateTotalEarning();
             }
 
         }
@@ -496,7 +494,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l3'], 'l3Count');
                 $amount = 0.1 * 4000;
                 self::updateEarning($codes['l3'], 'l3Earning', $amount);
-                self::updateTotalEarning();
+
             }
 
         }
@@ -509,7 +507,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l4'], 'l4Count');
                 $amount = 0.05 * 4000;
                 self::updateEarning($codes['l4'], 'l4Earning', $amount);
-                self::updateTotalEarning();
+
             }
 
         }
@@ -522,7 +520,6 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l5'], 'l5Count');
                 $amount = 0.03 * 4000;
                 self::updateEarning($codes['l5'], 'l5Earning', $amount);
-                self::updateTotalEarning();
             }
 
         }
@@ -534,7 +531,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l6'], 'l6Count');
                 $amount = 0.02 * 4000;
                 self::updateEarning($codes['l6'], 'l6Earning', $amount);
-                self::updateTotalEarning();
+
             }
 
         }
