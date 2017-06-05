@@ -71,7 +71,7 @@ include 'views/includes/register_user.inc.php';
         </div>
 
         <div class="tagLogin desktop-hide">
-            <a  href="views/login.php" class="loginBtn">Login</a><br>
+            <a  href="views/login.php" class="loginBtn">Login</a><br><br>
             <a href="#join_us" class="joinBtn"> Join Us</a>
         </div>
         <div class="tagIntro mobile-hide-intro">
