@@ -6,6 +6,13 @@
  * Time: 00:38
  */
 ?>
+
+
+<script src="../public/assets/js/jquery-1.11.3.min.js"></script>
+<script src="../public/assets/js/bootstrap.min.js"></script>
+<script src="../public/assets/js/main.js"></script>
+
+
 <script src="../public/assets/js/vendor/respond.min.js"></script>
 <script src="../public/assets/js/vendor/placeholdem.min.js"></script>
 <script src="../public/assets/js/vendor/jquery-1.10.2.min.js"></script>
@@ -31,5 +38,3 @@
 <script src='twitter/jquery.tweet.min.js'></script>
 <script src="../public/assets/js/plugins.js"></script>
 <script src="../public/assets/js/main.js"></script>
-
-
