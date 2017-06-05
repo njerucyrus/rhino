@@ -61,7 +61,23 @@ class FundController implements FundInterface
 
     public static function checkBalance($userId)
     {
-        // TODO: Implement checkBalance() method.
+      try{
+          $db = new DB();
+          $conn = $db->connect();
+          $stmt= $conn->prepare("SELECT balance FROM earning_account WHERE userId=:userId");
+          $stmt->bindParam(":userId", $userId);
+          if ($stmt->execute() && $stmt->rowCount() == 1){
+              $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+              $db->closeConnection();
+              return $row['balance'];
+          }else{
+              $db->closeConnection();
+              return 0;
+          }
+      } catch (\PDOException $e){
+          echo $e->getMessage();
+          return 0;
+      }
     }
 
     public static function withDraw($userId, $amount)
