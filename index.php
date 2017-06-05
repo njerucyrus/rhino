@@ -30,6 +30,7 @@ $refTree = ReferralTreeController::createReferralTree(12, $referralCode,600);
 $updated = ReferralTreeController::updateReferralTree($referralCode);
 ReferralTreeController::createReferralCodeEarning(12, $referralCode);
 ReferralTreeController::createReferralCodeCounts($referralCode);
+ReferralTreeController::updateTotalEarning();
 
     $updated = ReferralTreeController::updateReferralTree($referralCode);
     print_r(ReferralTreeController::debitAccounts($referralCode));

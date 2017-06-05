@@ -315,6 +315,7 @@ class ReferralTreeController implements ReferralTreeInterface
             return false;
         }
     }
+
     public static function getCounts($referralCode)
     {
         $db = new DB();
@@ -386,6 +387,75 @@ class ReferralTreeController implements ReferralTreeInterface
         }
     }
 
+    /**
+     * @param $referralCode
+     * @return int
+     *
+     */
+    public static function getTotalEarning($referralCode){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("SELECT (l1Earning + l2Earning +l3Earning + l4Earning + l5Earning + l6Earning) as totalEarning
+                                    FROM referral_earnings WHERE referralCode=:referralCode");
+            $stmt->bindParam(":referralCode", $referralCode);
+            if($stmt->execute() && $stmt->rowCount() == 1){
+               $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+               $db->closeConnection();
+               return $row['totalEarning'];
+            }else{
+                return 0;
+            }
+
+        } catch (\PDOException $e){
+            echo $e->getMessage();
+            return 0;
+        }
+    }
+    public static function getReferralCodes(){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("SELECT referralCode FROM referral_earnings WHERE 1");
+            if ($stmt->execute() && $stmt->rowCount() > 0) {
+                $row = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $row;
+            }else{
+                $db->closeConnection();
+                return [];
+            }
+        } catch (\PDOException $e){
+            echo $e->getMessage();
+            return [];
+        }
+    }
+    public static function updateTotalEarning(){
+        $codes = self::getReferralCodes();
+        $db = new DB();
+        $conn = $db->connect();
+        try
+        {
+          $stmt = $conn->prepare("UPDATE referral_earnings SET totalEarning=:totalEarning 
+                                  WHERE referralCode=:referralCode");
+          if(!empty($codes)){
+              foreach ($codes as $code){
+                  $total = self::getTotalEarning($code['referralCode']);
+                  $stmt->bindParam(":totalEarning", $total);
+                  $stmt->bindParam(":referralCode", $code['referralCode']);
+                  $stmt->execute();
+              }
+              return true;
+          }else{
+              return false;
+          }
+
+
+        } catch (\PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
     public static function debitAccounts($referralCode)
     {
         $codes = self::getTree($referralCode);
@@ -401,6 +471,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l1'], 'l1Count');
                 $amount = 0.2 * 4000;
                 self::updateEarning($codes['l1'], 'l1Earning', $amount);
+                self::updateTotalEarning();
 
             }
 
@@ -413,6 +484,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l2'], 'l2Count');
                 $amount = 0.15 * 4000;
                 self::updateEarning($codes['l2'], 'l2Earning', $amount);
+                self::updateTotalEarning();
             }
 
         }
@@ -424,6 +496,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l3'], 'l3Count');
                 $amount = 0.1 * 4000;
                 self::updateEarning($codes['l3'], 'l3Earning', $amount);
+                self::updateTotalEarning();
             }
 
         }
@@ -436,6 +509,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l4'], 'l4Count');
                 $amount = 0.05 * 4000;
                 self::updateEarning($codes['l4'], 'l4Earning', $amount);
+                self::updateTotalEarning();
             }
 
         }
@@ -448,6 +522,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l5'], 'l5Count');
                 $amount = 0.03 * 4000;
                 self::updateEarning($codes['l5'], 'l5Earning', $amount);
+                self::updateTotalEarning();
             }
 
         }
@@ -459,6 +534,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l6'], 'l6Count');
                 $amount = 0.02 * 4000;
                 self::updateEarning($codes['l6'], 'l6Earning', $amount);
+                self::updateTotalEarning();
             }
 
         }
