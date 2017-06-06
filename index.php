@@ -7,7 +7,7 @@
  */
 require_once __DIR__.'/vendor/autoload.php';
 
-$referralCode = 6000;
+$referralCode = 400;
 use \App\Entity\User;
 use \App\Controller\UserController;
 use \App\Controller\ReferralTreeController;
@@ -26,16 +26,17 @@ $user->setPaymentStatus('paid');
 $user->setUserReferralCode($referralCode);
 $userCtrl = new UserController();
 $created = $userCtrl->create($user);
-$refTree = ReferralTreeController::createReferralTree(12, $referralCode,600);
+$id = ReferralTreeController::getUserId($referralCode);
+
+
+$refTree = ReferralTreeController::createReferralTree($id, $referralCode, 300);
 $updated = ReferralTreeController::updateReferralTree($referralCode);
-ReferralTreeController::createReferralCodeEarning(12, $referralCode);
+ReferralTreeController::createReferralCodeEarning($id, $referralCode);
 ReferralTreeController::createReferralCodeCounts($referralCode);
 
 $updated = ReferralTreeController::updateReferralTree($referralCode);
 print_r(ReferralTreeController::debitAccounts($referralCode));
 ReferralTreeController::updateTotalEarning();
-
-
 
 
 //$l1Code = ReferralTreeController::getL1($referralCode);

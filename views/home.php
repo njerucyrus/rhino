@@ -100,9 +100,7 @@ $sites = \App\Controller\SiteController::all();
             <button class="accordion">Section 1</button>
             <div class="panel">
                 <div class="panel-body" style="color: red;">
-                    Lorem ipsum...djsdsdjdjkds
-                    djdjdjd
-                    ddjjdjddshdjsdjkdjdsjdjdsj
+                    Lorem ipsum...djsdsdjdjkd
                 </div>
             </div>
 

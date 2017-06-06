@@ -106,9 +106,7 @@ class ReferralTreeController implements ReferralTreeInterface
         }
     }
 
-    public static function getObject($id)
-    {
-    }
+    public static function getObject($id){}
 
     public static function all()
     {
@@ -132,25 +130,27 @@ class ReferralTreeController implements ReferralTreeInterface
         }
     }
 
-    public static function getUserId($referralCode){
+    public static function getUserId($referralCode)
+    {
         $db = new DB();
         $conn = $db->connect();
-        try{
-            $stmt = $conn->prepare("SELECT userId FROM referral_tree WHERE userReferralCode=:referralCode");
-            $stmt->bindParam(":referralCode",$referralCode);
-            if($stmt->execute() && $stmt->rowCount() == 1){
+        try {
+            $stmt = $conn->prepare("SELECT id FROM users WHERE userReferralCode=:referralCode");
+            $stmt->bindParam(":referralCode", $referralCode);
+            if ($stmt->execute() && $stmt->rowCount() == 1) {
                 $row = $stmt->fetch(\PDO::FETCH_ASSOC);
                 $db->closeConnection();
-                return $row['userId'];
-            } else{
+                return $row['id'];
+            } else {
                 $db->closeConnection();
                 return null;
             }
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return null;
         }
     }
+
     public static function generateReferralCode($length = 6)
     {
         $str = "";
@@ -177,12 +177,13 @@ class ReferralTreeController implements ReferralTreeInterface
             if ($stmt->execute()) {
                 $db->closeConnection();
                 //create earning account
+
                 $fund = new Fund();
+                $fund->setUserId($userId);
                 $fund->setAmountEarning(0);
                 $fund->setBalance(0);
                 $fundCtrl = new FundController();
                 $fundCtrl->create($fund);
-
                 return true;
             } else {
                 $db->closeConnection();
@@ -211,7 +212,7 @@ class ReferralTreeController implements ReferralTreeInterface
                 return false;
             }
         } catch (\PDOException $e) {
-            echo $e->getMessage();
+            print $e->getMessage();
             return false;
         }
     }
@@ -242,6 +243,7 @@ class ReferralTreeController implements ReferralTreeInterface
             return ['error' => $e->getMessage()];
         }
     }
+
     public static function getReferredByTree($referralCode)
     {
         $db = new DB();
@@ -265,7 +267,7 @@ class ReferralTreeController implements ReferralTreeInterface
             }
         } catch (\PDOException $e) {
             echo $e->getMessage();
-            return ['error'=>$e->getMessage()];
+            return ['error' => $e->getMessage()];
         }
     }
 
@@ -305,39 +307,42 @@ class ReferralTreeController implements ReferralTreeInterface
         }
     }
 
-    public static function createReferralCodeCounts($referralCode){
+    public static function createReferralCodeCounts($referralCode)
+    {
         $db = new DB();
         $conn = $db->connect();
-        try{
+        try {
             $stmt = $conn->prepare("INSERT INTO referral_code_counts(referralCode) VALUES (:referralCode)");
             $stmt->bindParam(":referralCode", $referralCode);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $db->closeConnection();
                 return true;
-            } else{
+            } else {
                 $db->closeConnection();
                 return false;
             }
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
-    public static function createReferralCodeEarning($userId=null, $referralCode){
+
+    public static function createReferralCodeEarning($userId, $referralCode)
+    {
         $db = new DB();
         $conn = $db->connect();
-        try{
+        try {
             $stmt = $conn->prepare("INSERT INTO referral_earnings(userId,referralCode) VALUES (:userId, :referralCode)");
             $stmt->bindParam(":userId", $userId);
             $stmt->bindParam(":referralCode", $referralCode);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $db->closeConnection();
                 return true;
-            } else{
+            } else {
                 $db->closeConnection();
                 return false;
             }
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
         }
@@ -395,14 +400,12 @@ class ReferralTreeController implements ReferralTreeInterface
         $db = new DB();
         $conn = $db->connect();
         try {
-           // echo $levelEarning.PHP_EOL;
-            $stmt = $conn->prepare("UPDATE referral_earnings SET {$levelEarning}={$levelEarning}+{$amount} WHERE referralCode='{$referralCode}'");
+            // echo $levelEarning.PHP_EOL;
+            $stmt = $conn->prepare("UPDATE referral_earnings SET {$levelEarning}={$levelEarning}+{$amount}
+                                    WHERE referralCode='{$referralCode}'");
 
-            //$stmt->bindParam(":referralCode", $referralCode);
-            //print_r($stmt);
             if ($stmt->execute()) {
                 $db->closeConnection();
-                echo "UPDATED WELL".PHP_EOL;
                 return true;
             } else {
                 $db->closeConnection();
@@ -419,70 +422,75 @@ class ReferralTreeController implements ReferralTreeInterface
      * @return int
      *
      */
-    public static function getTotalEarning($referralCode){
+    public static function getTotalEarning($referralCode)
+    {
         $db = new DB();
         $conn = $db->connect();
-        try{
-            $stmt = $conn->prepare("SELECT (l1Earning + l2Earning +l3Earning + l4Earning + l5Earning + l6Earning) as totalEarning
+        try {
+            $stmt = $conn->prepare("SELECT (l1Earning + l2Earning +l3Earning + l4Earning + l5Earning + l6Earning) AS totalEarning
                                     FROM referral_earnings WHERE referralCode=:referralCode");
             $stmt->bindParam(":referralCode", $referralCode);
-            if($stmt->execute() && $stmt->rowCount() == 1){
-               $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-               $db->closeConnection();
-               return $row['totalEarning'];
-            }else{
+            if ($stmt->execute() && $stmt->rowCount() == 1) {
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $row['totalEarning'];
+            } else {
                 return 0;
             }
 
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return 0;
         }
     }
-    public static function getReferralCodes(){
+
+    public static function getReferralCodes()
+    {
         $db = new DB();
         $conn = $db->connect();
-        try{
+        try {
             $stmt = $conn->prepare("SELECT referralCode FROM referral_earnings WHERE 1");
             if ($stmt->execute() && $stmt->rowCount() > 0) {
                 $row = $stmt->fetchAll(\PDO::FETCH_ASSOC);
                 $db->closeConnection();
                 return $row;
-            }else{
+            } else {
                 $db->closeConnection();
                 return [];
             }
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return [];
         }
     }
-    public static function updateTotalEarning(){
+
+    public static function updateTotalEarning()
+    {
         $codes = self::getReferralCodes();
         $db = new DB();
         $conn = $db->connect();
-        try
-        {
-          $stmt = $conn->prepare("UPDATE referral_earnings SET totalEarning=:totalEarning 
+        try {
+            $stmt = $conn->prepare("UPDATE referral_earnings SET totalEarning=:totalEarning 
                                   WHERE referralCode=:referralCode");
-          if(!empty($codes)){
-              foreach ($codes as $code){
-                  $total = self::getTotalEarning($code['referralCode']);
-                  $stmt->bindParam(":totalEarning", $total);
-                  $stmt->bindParam(":referralCode", $code['referralCode']);
-                  $stmt->execute();
-              }
-              return true;
-          }else{
-              return false;
-          }
+            if (!empty($codes)) {
+                foreach ($codes as $code) {
+                    $total = self::getTotalEarning($code['referralCode']);
+                    $stmt->bindParam(":totalEarning", $total);
+                    $stmt->bindParam(":referralCode", $code['referralCode']);
+                    $stmt->execute();
+                }
+                return true;
+            } else {
+                return false;
+            }
 
 
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
         }
     }
+
     public static function debitAccounts($referralCode)
     {
         $codes = self::getTree($referralCode);
@@ -498,6 +506,8 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l1'], 'l1Count');
                 $amount = 0.2 * 4000;
                 self::updateEarning($codes['l1'], 'l1Earning', $amount);
+                FundController::updateAccountEarning(self::getUserId($codes['l1']), $amount);
+                FundController::updateAccountBalance(self::getUserId($codes['l1']), $amount);
 
             }
 
@@ -510,10 +520,10 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l2'], 'l2Count');
                 $amount = 0.15 * 4000;
                 self::updateEarning($codes['l2'], 'l2Earning', $amount);
+                FundController::updateAccountEarning(self::getUserId($codes['l2']), $amount);
+                FundController::updateAccountBalance(self::getUserId($codes['l2']), $amount);
             }
-
         }
-
         if (!empty($codes['l3']) && !is_null($codes['l3'])) {
             $count3 = self::getCounts($codes['l3']);
 
@@ -521,6 +531,8 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l3'], 'l3Count');
                 $amount = 0.1 * 4000;
                 self::updateEarning($codes['l3'], 'l3Earning', $amount);
+                FundController::updateAccountEarning(self::getUserId($codes['l3']), $amount);
+                FundController::updateAccountBalance(self::getUserId($codes['l3']), $amount);
 
             }
 
@@ -534,6 +546,8 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l4'], 'l4Count');
                 $amount = 0.05 * 4000;
                 self::updateEarning($codes['l4'], 'l4Earning', $amount);
+                FundController::updateAccountEarning(self::getUserId($codes['l4']), $amount);
+                FundController::updateAccountBalance(self::getUserId($codes['l4']), $amount);
 
             }
 
@@ -547,17 +561,22 @@ class ReferralTreeController implements ReferralTreeInterface
                 self::updateCount($codes['l5'], 'l5Count');
                 $amount = 0.03 * 4000;
                 self::updateEarning($codes['l5'], 'l5Earning', $amount);
+
+                FundController::updateAccountEarning(self::getUserId($codes['l5']), $amount);
+                FundController::updateAccountBalance(self::getUserId($codes['l5']), $amount);
             }
 
         }
 
         if (!empty($codes['l6']) && !is_null($codes['l6'])) {
             $count6 = self::getCounts($codes['l6']);
-
             if (isset($count6['l6Count']) && $count6['l6Count'] < 15625) {
                 self::updateCount($codes['l6'], 'l6Count');
                 $amount = 0.02 * 4000;
                 self::updateEarning($codes['l6'], 'l6Earning', $amount);
+
+                FundController::updateAccountEarning(self::getUserId($codes['l6']), $amount);
+                FundController::updateAccountBalance(self::getUserId($codes['l6']), $amount);
 
             }
 
