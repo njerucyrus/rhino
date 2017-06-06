@@ -8,15 +8,14 @@
 ?>
 
 
-<script src="../public/assets/js/jquery-1.11.3.min.js"></script>
+<script src="../public/assets/js/jquery-3.2.1.min.js"></script>
 <script src="../public/assets/js/bootstrap.min.js"></script>
 <script src="../public/assets/js/main.js"></script>
 
 
 <script src="../public/assets/js/vendor/respond.min.js"></script>
 <script src="../public/assets/js/vendor/placeholdem.min.js"></script>
-<script src="../public/assets/js/vendor/jquery-1.10.2.min.js"></script>
-<script src="../public/assets/js/vendor/bootstrap.min.js"></script>
+
 <script src="../public/assets/js/vendor/hoverIntent.js"></script>
 <script src="../public/assets/js/vendor/superfish.js"></script>
 <script src="../public/assets/js/vendor/jquery.actual.min.js"></script>
@@ -35,6 +34,6 @@
 <script src='../public/assets/js/vendor/jquery.scrollTo-min.js'></script>
 <script src='../public/assets/js/vendor/jquery.localscroll-min.js'></script>
 <script src='../public/assets/js/vendor/jquery.parallax-1.1.3.js'></script>
-<script src='twitter/jquery.tweet.min.js'></script>
+
 <script src="../public/assets/js/plugins.js"></script>
 <script src="../public/assets/js/main.js"></script>

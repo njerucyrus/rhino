@@ -15,8 +15,8 @@ $sites = \App\Controller\SiteController::all();
     <meta charset="utf-8">
 
     <title>Home</title>
-
-    <?php include_once 'head_views.php'; ?>
+    <link rel="stylesheet" href="../public/assets/css/bootstrap.css">
+    <?php //include_once 'head_views.php'; ?>
 
 
 
@@ -128,8 +128,9 @@ $sites = \App\Controller\SiteController::all();
 
 
 <!--footer scripts-->
-<?php include_once 'footer_views.php'; ?>
-
+<?php //include_once 'footer_views.php'; ?>
+<script src="../public/assets/js/jquery-3.2.1.min.js"></script>
+<script src="../public/assets/js/bootstrap.js"></script>
 <script>
     var acc = document.getElementsByClassName("accordion");
     var i;
