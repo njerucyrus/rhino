@@ -158,7 +158,7 @@ class FundController implements FundInterface
         // TODO: Implement all() method.
     }
 
-    public static function showEarnings(){
+    public static function showAllEarnings(){
         $db = new DB();
         $conn = $db->connect();
         try{
@@ -172,6 +172,32 @@ class FundController implements FundInterface
                 $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
                 $db->closeConnection();
                 return $rows;
+            } else{
+                $db->closeConnection();
+                return [];
+            }
+        } catch (\PDOException $e){
+            echo $e->getMessage();
+            return [];
+        }
+    }
+
+    public static function myEarning($userId){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("SELECT DISTINCT u.userReferralCode,
+                                    u.fullName, u.idNo, u.email, u.phoneNumber,
+                                    t.totalEarning, t.balance
+                                    FROM users u , earning_account t
+                                    INNER JOIN users ur ON t.userId=ur.id
+                                    WHERE t.userId=ur.id AND t.totalEarning !=0 AND
+                                    t.userId=:userId LIMIT 1");
+            $stmt->bindParam(":userId", $userId);
+            if($stmt->execute()){
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $row;
             } else{
                 $db->closeConnection();
                 return [];
