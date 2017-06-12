@@ -11,19 +11,19 @@
         <a href="#"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Home</a>
     </li>
     <li class="">
-        <a href="../index2.php#title_about"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">About</a>
+        <a href="../index.php#title_about" style="font-size: 15px;  padding: 20px 10px 5px 10px;">About</a>
     </li>
 
 
     <li class="">
-        <a href="../index2.php#contact"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Contact</a>
+        <a href="../index.php#contact" style="font-size: 15px;  padding: 20px 10px 5px 10px;">Contact</a>
     </li>
     <li class="">
-        <a href="../index2.php#join_us"><button class="joinBtn">Join Us</button></a>
+        <a href="../index.php#join_us"><button class="joinBtn">Join Us</button></a>
     </li>
 
     <li>
-        <a href="../index2.php#mainslider" class="dropdown-toggle" data-toggle="dropdown"><button class="loginBtn">Login</button> <span class="caret"></span></a>
+        <a href="../index.php#mainslider" class="dropdown-toggle" data-toggle="dropdown"><button class="loginBtn">Login</button> <span class="caret"></span></a>
     </li>
 
 
