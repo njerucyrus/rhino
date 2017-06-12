@@ -244,7 +244,7 @@ include 'views/includes/register_user.inc.php';
       </div>
 
   <div class="row">
-      <?php include 'views/register_user_include.php'?>
+      <?php include 'views/signup.php' ?>
   </div>
   </div>
 </section>
