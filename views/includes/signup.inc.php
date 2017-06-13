@@ -49,9 +49,12 @@ if (isset($_POST['fullName']) &&
             ReferralTreeController::updateTotalEarning();
             unset($_SESSION['referralCode']);
             $success .="Account created successfully";
+            header('Location: views/signup_success.php?status=200');
+
+
         }
     } else {
-        $error .= "Password Did Not Match";
+        $status = "Password Did Not Match";
     }
 } else {
     $error .= "All fields Required";
