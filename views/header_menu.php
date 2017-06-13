@@ -23,8 +23,10 @@
     </li>
 
     <li>
-        <a href="#mainslider" class="dropdown-toggle" data-toggle="dropdown"><button class="loginBtn">Login</button> <span class="caret"></span></a>
+        <a href="#mainslider"><button class="loginBtn">Login</button>
     </li>
 
 
 </ul>
+
+

@@ -6,17 +6,17 @@
  * Time: 22:22
  */
 
+
 ?>
 
 <div class="page-container">
-
 
     <div class="col-md-12 col-md-offset-2">
         <?php //include 'header_menu_views.php' ?>
 
 
         <form role="form" class="form-horizontal form-groups-bordered" method="post"
-              action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
+              action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
 
 
             <!-- Text input-->
@@ -25,7 +25,7 @@
                     <label for="userReferralCode" class="control-label">Referral Code</label>
 
 
-                    <input type="text" class=".SmallInput form-control " name="userReferralCode"
+                    <input type="text" class=".SmallInput form-control " name="referralCode"
                            placeholder="Referral Code">
 
                 </div>
@@ -42,7 +42,7 @@
             <div class="form-group">
 
                 <div class="col-sm-4">
-                    <label for="userName" class="control-label">Username</label>
+                    <label for="username" class="control-label">Username</label>
 
 
                     <input type="text" class="form-control" name="username" placeholder="Username" required>
@@ -87,10 +87,10 @@
                            required>
                 </div>
                 <div class="col-sm-4">
-                    <label for="confirm" class="control-label">Confirm Password</label>
+                    <label for="confirmPassword" class="control-label">Confirm Password</label>
 
 
-                    <input type="password" class="form-control" name="confirm" placeholder="Confirm Password"
+                    <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password"
                            required/>
 
                 </div>

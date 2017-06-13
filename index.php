@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Created by PhpStorm.
  * User: New LAptop
@@ -6,15 +7,13 @@
  * Time: 22:22
  */
 require_once  'vendor/autoload.php';
-include 'views/includes/register_user.inc.php';
+include "views/includes/signup.inc.php";
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        
         <title>Home</title>
-
     <?php include_once 'views/head.php' ?>
     </head>
     <body><div id="top"></div>
@@ -221,18 +220,18 @@ include 'views/includes/register_user.inc.php';
           <h2 class="block-header">Join Us</h2>
           <p>Please fill the information below to join us.</p>
           <?php
-          if (empty($success_msg) && !empty($error_msg)) {
+          if (empty($success) && !empty($error)) {
               ?>
               <div class="alert alert-danger alert-dismissable">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  <?php echo $error_msg ?>
+                  <?php echo $error?>
               </div>
               <?php
-          } elseif (empty($error_msg) and !empty($success_msg)) {
+          } elseif (empty($error) and !empty($success)) {
               ?>
               <div class="alert alert-success alert-dismissable">
                   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  <?php echo $success_msg ?>
+                  <?php echo $success ?>
               </div>
 
               <?php
@@ -300,7 +299,7 @@ include 'views/includes/register_user.inc.php';
           City, Street str., ZIP<br> 
           <span><strong>Phone:</strong> </span>(123) 456-7890<br>
           <span><strong>Email:</strong> </span>
-          <a href="mailto:info@company.com">info@company.com</a><br> 
+          <a href="#">info@company.com</a><br>
           We provide original, quality, attractive and functional design.
         </p>
         <p>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 /**
  * Created by PhpStorm.
  * User: hudutech
@@ -9,7 +8,8 @@ session_start();
 use \App\Entity\User;
 use \App\Controller\UserController;
 use \App\Controller\ReferralTreeController;
-
+$error = '';
+$success = '';
 if (!isset($_SESSION['referralCode'])) {
     $_SESSION['referralCode'] = ReferralTreeController::generateReferralCode();
 }
@@ -43,16 +43,14 @@ if (isset($_POST['fullName']) &&
                 //use the option for a referralCode and debit the code.
                 $id = ReferralTreeController::getUserId($_SESSION['referralCode']);
                 $refTree = ReferralTreeController::createReferralTree($id, $_SESSION['referralCode'], $_POST['referralCode']);
-                ReferralTreeController::updateReferralTree($_SESSION['referralCode']);
-                ReferralTreeController::createReferralCodeEarning($id, $_SESSION['referralCode']);
-                ReferralTreeController::createReferralCodeCounts($_SESSION['referralCode']);
-                ReferralTreeController::debitAccounts($_SESSION['referralCode']);
+                ReferralTreeController::updateReferralTree($_POST['referralCode']);
+                ReferralTreeController::debitAccounts($_POST['referralCode']);
                 ReferralTreeController::updateTotalEarning();
                 unset($_SESSION['referralCode']);
-                $message .= 'Account Created Successfully';
+                $success .= 'Account Created Successfully';
                 $_SESSION['username'] = $_POST['username'];
                 //login the user
-                header('Location: home.php');
+                //header('Location: home.php');
 
             }
             // without the referralCode
@@ -62,10 +60,10 @@ if (isset($_POST['fullName']) &&
                 ReferralTreeController::createReferralCodeEarning($id, $_SESSION['referralCode']);
                 ReferralTreeController::createReferralCodeCounts($_SESSION['referralCode']);
                 unset($_SESSION['referralCode']);
-                $message .= 'Account Created Successfully';
+                $success .= 'Account Created Successfully';
                 $_SESSION['username'] = $_POST['username'];
                 //login the user
-                header('Location: home.php');
+                header('Location: views/home.php');
             }
         }
     } else {

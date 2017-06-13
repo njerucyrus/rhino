@@ -46,5 +46,3 @@ $levels = ReferralTreeController::getTree($referralCode);
 
 print_r($levels);
 
-
-
