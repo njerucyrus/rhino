@@ -167,7 +167,7 @@ class FundController implements FundInterface
                                     t.totalEarning, t.balance
                                     FROM users u , earning_account t
                                     INNER JOIN users ur ON t.userId=ur.id
-                                    WHERE t.userId=ur.id AND t.totalEarning !=0");
+                                    WHERE t.userId=u.id AND t.totalEarning !=0");
             if($stmt->execute()){
                 $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
                 $db->closeConnection();
@@ -188,10 +188,10 @@ class FundController implements FundInterface
         try{
             $stmt = $conn->prepare("SELECT DISTINCT u.userReferralCode,
                                     u.fullName, u.idNo, u.email, u.phoneNumber,
-                                    t.totalEarning, t.balance
+                                    u.createdAt, t.totalEarning, t.balance
                                     FROM users u , earning_account t
                                     INNER JOIN users ur ON t.userId=ur.id
-                                    WHERE t.userId=ur.id AND t.totalEarning !=0 AND
+                                    WHERE t.userId=u.id  AND
                                     t.userId=:userId LIMIT 1");
             $stmt->bindParam(":userId", $userId);
             if($stmt->execute()){

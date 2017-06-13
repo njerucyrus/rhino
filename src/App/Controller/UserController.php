@@ -28,7 +28,7 @@ class UserController implements UserInterface
         $accountStatus = $user->getAccountStatus();
         $loginIp = $user->getLoginIp();
         $createdAt = $user->getCreatedAt();
-        try{
+        try {
             $db = new DB();
             $conn = $db->connect();
 
@@ -71,10 +71,10 @@ class UserController implements UserInterface
             $stmt->bindParam(":loginIp", $loginIp);
             $stmt->bindParam(":createdAt", $createdAt);
             $query = $stmt->execute();
-            if ($query){
+            if ($query) {
                 $db->closeConnection();
                 return true;
-            }else {
+            } else {
                 $db->closeConnection();
                 return false;
             }
@@ -98,7 +98,7 @@ class UserController implements UserInterface
         $accountStatus = $user->getAccountStatus();
         $loginIp = $user->getLoginIp();
         $createdAt = $user->getCreatedAt();
-        try{
+        try {
 
             $db = new DB();
             $conn = $db->connect();
@@ -130,14 +130,14 @@ class UserController implements UserInterface
             $stmt->bindParam(":loginIp", $loginIp);
             $stmt->bindParam(":createdAt", $createdAt);
             $query = $stmt->execute();
-            if ($query){
+            if ($query) {
                 $db->closeConnection();
                 return true;
-            }else {
+            } else {
                 $db->closeConnection();
                 return false;
             }
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
         }
@@ -145,17 +145,17 @@ class UserController implements UserInterface
 
     public static function delete($id)
     {
-        try{
+        try {
 
             $db = new DB();
             $conn = $db->connect();
             $stmt = $conn->prepare("DELETE FROM users WHERE id=:id");
             $stmt->bindParam(":id", $id);
             $query = $stmt->execute();
-            if ($query){
+            if ($query) {
                 $db->closeConnection();
                 return true;
-            } else{
+            } else {
                 $db->closeConnection();
                 return false;
             }
@@ -168,16 +168,16 @@ class UserController implements UserInterface
 
     public static function destroy()
     {
-        try{
+        try {
 
             $db = new DB();
             $conn = $db->connect();
             $stmt = $conn->prepare("DELETE FROM users WHERE 1");
             $query = $stmt->execute();
-            if ($query){
+            if ($query) {
                 $db->closeConnection();
                 return true;
-            } else{
+            } else {
                 $db->closeConnection();
                 return false;
             }
@@ -190,16 +190,16 @@ class UserController implements UserInterface
 
     public static function getId($id)
     {
-        try{
+        try {
             $db = new DB();
             $conn = $db->connect();
             $stmt = $conn->prepare("SELECT * FROM users WHERE id=:id");
             $stmt->bindParam(":id", $id);
-            if ($stmt->execute() and $stmt->rowCount() == 1 ){
+            if ($stmt->execute() and $stmt->rowCount() == 1) {
                 $row = $stmt->fetch(\PDO::FETCH_ASSOC);
                 $db->closeConnection();
                 return $row;
-            } else{
+            } else {
                 $db->closeConnection();
                 return [];
             }
@@ -209,19 +209,38 @@ class UserController implements UserInterface
         }
     }
 
+    public static function getUserId($username)
+    {
+        $db = new DB();
+        $conn = $db->connect();
+        try {
+            $stmt = $conn->prepare("SELECT id FROM users WHERE username=:username LIMIT 1");
+            $stmt->bindParam(":username", $username);
+            $id = null;
+            if ($stmt->execute() && $stmt->rowCount() == 1) {
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                $id = $row['id'];
+            }
+            return $id;
+        } catch (\PDOException $exception) {
+            echo $exception->getMessage();
+            return null;
+        }
+    }
+
     public static function getObject($id)
     {
-        try{
+        try {
             $db = new DB();
             $conn = $db->connect();
             $stmt = $conn->prepare("SELECT * FROM users WHERE id=:id");
             $stmt->bindParam(":id", $id);
             $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, User::class);
-            if ($stmt->execute() and $stmt->rowCount() == 1 ){
+            if ($stmt->execute() and $stmt->rowCount() == 1) {
                 $user = $stmt->fetch();
                 $db->closeConnection();
                 return $user;
-            } else{
+            } else {
                 $db->closeConnection();
                 return null;
             }
@@ -233,15 +252,15 @@ class UserController implements UserInterface
 
     public static function all()
     {
-        try{
+        try {
             $db = new DB();
             $conn = $db->connect();
             $stmt = $conn->prepare("SELECT * FROM users WHERE 1");
-            if ($stmt->execute() and $stmt->rowCount() >0 ){
+            if ($stmt->execute() and $stmt->rowCount() > 0) {
                 $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
                 $db->closeConnection();
                 return $rows;
-            } else{
+            } else {
                 $db->closeConnection();
                 return [];
             }
