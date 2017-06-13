@@ -209,7 +209,7 @@ class SiteController implements SiteInterface
             $db = new DB();
             $conn = $db->connect();
             $stmt = $conn->prepare("SELECT t.* FROM sites t WHERE 1");
-            if($stmt->execute() && $stmt->rowCount() >0){
+            if($stmt->execute() && $stmt->rowCount() > 0){
                 $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
                 $db->closeConnection();
                 return $rows;
