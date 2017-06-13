@@ -57,7 +57,7 @@ include 'includes/register_user.inc.php';
                         <li><span class="fa fa-check text-success"></span> Get access to learning opportunities</li>
 
                     </ul>
-                    <p><a href="../index2.php#join_us" class="btn btn-info btn-block">Yes please, register now</a></p>
+                    <p><a href="../index.php#join_us" class="btn btn-info btn-block">Yes please, register now</a></p>
                 </div>
             </div>
         </div>

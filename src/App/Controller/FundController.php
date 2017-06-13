@@ -41,19 +41,17 @@ class FundController implements FundInterface
     }
     public static function updateAccountEarning($userId, $amount)
     {
-        $referralCode = ReferralTreeController::getId($userId)['referralCode'];
-        $earning = ReferralTreeController::getTotalEarning($referralCode);
         $db = new DB();
         $conn = $db->connect();
         try {
-            $stmt = $conn->prepare("UPDATE earning_account SET totalEarning=:totalEarning
+            $stmt = $conn->prepare("UPDATE earning_account SET totalEarning=totalEarning+{$amount}
                                     WHERE userId=:userId");
             $stmt->bindParam(":userId", $userId);
-            $stmt->bindParam(":totalEarning", $earning);
             if ($stmt->execute()) {
                 $db->closeConnection();
                 return true;
             } else {
+                $db->closeConnection();
                 return false;
             }
         } catch (\PDOException $e) {
@@ -160,5 +158,54 @@ class FundController implements FundInterface
         // TODO: Implement all() method.
     }
 
+    public static function showAllEarnings(){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("SELECT DISTINCT u.userReferralCode,
+                                    u.fullName, u.idNo, u.email, u.phoneNumber,
+                                    t.totalEarning, t.balance
+                                    FROM users u , earning_account t
+                                    INNER JOIN users ur ON t.userId=ur.id
+                                    WHERE t.userId=ur.id AND t.totalEarning !=0");
+            if($stmt->execute()){
+                $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $rows;
+            } else{
+                $db->closeConnection();
+                return [];
+            }
+        } catch (\PDOException $e){
+            echo $e->getMessage();
+            return [];
+        }
+    }
+
+    public static function myEarning($userId){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("SELECT DISTINCT u.userReferralCode,
+                                    u.fullName, u.idNo, u.email, u.phoneNumber,
+                                    t.totalEarning, t.balance
+                                    FROM users u , earning_account t
+                                    INNER JOIN users ur ON t.userId=ur.id
+                                    WHERE t.userId=ur.id AND t.totalEarning !=0 AND
+                                    t.userId=:userId LIMIT 1");
+            $stmt->bindParam(":userId", $userId);
+            if($stmt->execute()){
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $row;
+            } else{
+                $db->closeConnection();
+                return [];
+            }
+        } catch (\PDOException $e){
+            echo $e->getMessage();
+            return [];
+        }
+    }
 
 }

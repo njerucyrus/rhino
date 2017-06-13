@@ -22,7 +22,7 @@ if (isset($_SESSION['username'])) {
 
             <!-- logo -->
             <div class="logo">
-                <a href="../index.php">
+                <a href="../index44.php">
                     <img src="../public/assets/images/clinic.png" width="120" alt=""/>
                 </a>
             </div>
