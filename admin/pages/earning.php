@@ -7,7 +7,7 @@
  */
 
 require_once '../../vendor/autoload.php';
-$users = \App\Controller\UserController::all();
+$earnings = \App\Controller\FundController::showAllEarnings();
 $counter=1;
 
 ?>
@@ -23,7 +23,7 @@ $counter=1;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Earnings</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -57,7 +57,7 @@ $counter=1;
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Users</h1>
+                <h1 class="page-header">User Earnings</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -66,7 +66,7 @@ $counter=1;
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Registered users
+                       Recorded Earning
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -76,35 +76,29 @@ $counter=1;
                             <tr>
                                 <th>#</th>
                                 <th>Referral Code</th>
-                                <th>Fullname</th>
-                                <th>username</th>
+                                <th>Full name</th>
                                 <th>Id No</th>
                                 <th>Phone</th>
                                 <th>Email</th>
-                                <th>Status</th>
-                                <th colspan="3">Actions</th>
+                                <th>Total Earning</th>
+                                <th>Balance</th>
+
 
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($users as $user): ?>
+                            <?php foreach ($earnings as $earning): ?>
                             <tr class="odd gradeX">
                                 <td><?php echo $counter++ ?></td>
-                                <td><?php echo $user['userReferralCode'];?></td>
-                                <td><?php echo $user['fullName'];?></td>
-                                <td><?php echo $user['username'];?></td>
-                                <td><?php echo $user['idNo'];?></td>
-                                <td><?php echo $user['phoneNumber'];?></td>
-                                <td><?php echo $user['email'];?></td>
-
-                                <td><?php echo $user['accountStatus'];?></td>
-                                <td colspan="3">
-                                    <button  class="btn btn-xs btn-success">Approve</button>
-                                    <button  class="btn btn-xs btn-default">Block</button>
-                                    <button  class="btn btn-xs btn-danger ">Delete</button>
+                                <td><?php echo $earning['userReferralCode'];?></td>
+                                <td><?php echo $earning['fullName'];?></td>
+                                <td><?php echo $earning['idNo'];?></td>
+                                <td><?php echo $earning['phoneNumber'];?></td>
+                                <td><?php echo $earning['email'];?></td>
+                                <td><?php echo $earning['totalEarning'];?></td>
+                                <td><?php echo $earning['balance'];?></td>
 
 
-                                </td>
 
 
                             </tr>
