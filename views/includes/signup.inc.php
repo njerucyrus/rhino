@@ -10,10 +10,7 @@ use \App\Controller\UserController;
 use \App\Controller\ReferralTreeController;
 $error = '';
 $success = '';
-if (!isset($_SESSION['referralCode'])) {
-    $_SESSION['referralCode'] = ReferralTreeController::generateReferralCode();
-}
-
+$_SESSION['referralCode'] = ReferralTreeController::generateReferralCode();
 if (isset($_POST['fullName']) &&
     isset($_POST['idNo']) &&
     isset($_POST['phoneNumber']) &&
@@ -38,33 +35,20 @@ if (isset($_POST['fullName']) &&
         $userCtrl = new UserController();
         $created = $userCtrl->create($user);
         if ($created) {
-            // with the referralCode
-            if (isset($_POST['referralCode']) && !empty($_POST['referralCode'])) {
-                //use the option for a referralCode and debit the code.
-                $id = ReferralTreeController::getUserId($_SESSION['referralCode']);
+            $id = ReferralTreeController::getUserId($_SESSION['referralCode']);
+            if(isset($_POST['referralCode'])) {
                 $refTree = ReferralTreeController::createReferralTree($id, $_SESSION['referralCode'], $_POST['referralCode']);
-                ReferralTreeController::updateReferralTree($_POST['referralCode']);
-                ReferralTreeController::debitAccounts($_POST['referralCode']);
-                ReferralTreeController::updateTotalEarning();
-                unset($_SESSION['referralCode']);
-                $success .= 'Account Created Successfully';
-                $_SESSION['username'] = $_POST['username'];
-                //login the user
-                //header('Location: home.php');
-
-            }
-            // without the referralCode
-            elseif (!isset($_POST['referralCode'])) {
-                $id = ReferralTreeController::getUserId($_SESSION['referralCode']);
+            }elseif(!isset($_POST['referralCode'])){
                 $refTree = ReferralTreeController::createReferralTree($id, $_SESSION['referralCode']);
-                ReferralTreeController::createReferralCodeEarning($id, $_SESSION['referralCode']);
-                ReferralTreeController::createReferralCodeCounts($_SESSION['referralCode']);
-                unset($_SESSION['referralCode']);
-                $success .= 'Account Created Successfully';
-                $_SESSION['username'] = $_POST['username'];
-                //login the user
-                header('Location: views/home.php');
             }
+            ReferralTreeController::createReferralCodeEarning($id, $_SESSION['referralCode']);
+            ReferralTreeController::createReferralCodeCounts($_SESSION['referralCode']);
+
+            $updated = ReferralTreeController::updateReferralTree($_SESSION['referralCode']);
+            ReferralTreeController::debitAccounts($_SESSION['referralCode']);
+            ReferralTreeController::updateTotalEarning();
+            unset($_SESSION['referralCode']);
+            $success .="Account created successfully";
         }
     } else {
         $error .= "Password Did Not Match";

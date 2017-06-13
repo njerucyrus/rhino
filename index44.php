@@ -7,7 +7,7 @@
  */
 require_once __DIR__.'/vendor/autoload.php';
 
-$referralCode = 400;
+$referralCode = 500;
 use \App\Entity\User;
 use \App\Controller\UserController;
 use \App\Controller\ReferralTreeController;
@@ -29,7 +29,7 @@ $created = $userCtrl->create($user);
 $id = ReferralTreeController::getUserId($referralCode);
 
 
-$refTree = ReferralTreeController::createReferralTree($id, $referralCode, 300);
+$refTree = ReferralTreeController::createReferralTree($id, $referralCode, 400);
 $updated = ReferralTreeController::updateReferralTree($referralCode);
 ReferralTreeController::createReferralCodeEarning($id, $referralCode);
 ReferralTreeController::createReferralCodeCounts($referralCode);

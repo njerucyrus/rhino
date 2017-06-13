@@ -22,11 +22,10 @@
             <!-- Text input-->
             <div class="form-group">
                 <div class="col-sm-4">
-                    <label for="userReferralCode" class="control-label">Referral Code</label>
+                    <label for="referralCode" class="control-label">Referral Code</label>
 
 
-                    <input type="text" class=".SmallInput form-control " name="referralCode"
-                           placeholder="Referral Code">
+                    <input type="text" class="form-control " name="referralCode" id="referralCode">
 
                 </div>
 
@@ -107,6 +106,7 @@
         </form>
 
     </div>
+</div>
 
 
 
