@@ -16,7 +16,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">Asili Africa E-learning Centre</a>
+        <a class="navbar-brand" href="index.php">Asili Africa E-learning Centre</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -245,10 +245,10 @@
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-user fa-fw"></i> View Users<span class="fa arrow"></span></a>
+                    <a href="users.php"><i class="fa fa-user fa-fw"></i> View Users<span class="fa arrow"></span></a>
 
                     <!-- /.nav-second-level -->
                 </li>
@@ -259,7 +259,7 @@
                     <a href="earning.php"><i class="fa fa-dollar fa-fw"></i> Earnings</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-plus-circle fa-fw"></i> Add Website<span class="fa arrow"></span></a>
+                    <a href="add_website.php"><i class="fa fa-plus-circle fa-fw"></i> Add Website Url<span class="fa arrow"></span></a>
 
                     <!-- /.nav-second-level -->
                 </li>
