@@ -8,7 +8,7 @@
 ?>
 <ul id="mainmenu" class="nav menu sf-menu responsive-menu superfish">
     <li class="">
-        <a href="#"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Home</a>
+        <a href="../"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Home</a>
     </li>
     <li class="">
         <a href="../index.php#title_about" style="font-size: 15px;  padding: 20px 10px 5px 10px;">About</a>
