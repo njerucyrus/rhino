@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-sm-12 text-center">
                 <h2 class="block-header">Contact Us</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, doloremque rerum molestias veritatis dolor nostrum omnis ullam voluptatem fugit velit! Inventore, ullam omnis itaque fuga optio beatae esse odio vero?</p>
+                <p>You can contact us through the form below</p>
             </div>
         </div>
         <div class="row">
@@ -28,7 +28,7 @@
                             <input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="Email">
                         </p>
                         <p class="contact-form-message">
-                            <label for="message">Comment</label>
+                            <label for="message">Message</label>
                             <textarea aria-required="true" rows="8" cols="45" name="message" id="message" class="form-control" placeholder="Message"></textarea>
                         </p>
                         <p class="contact-form-submit text-center vertical-margin-81">
@@ -40,12 +40,12 @@
 
             <div class="block widget_text col-sm-3">
                 <h3>About Us</h3>
-                <p>Company Name.<br>
-                    City, Street str., ZIP<br>
+                <p>Asili Africa E-learning Centre<br>
+                    Nairobi<br>
                     <span><strong>Phone:</strong> </span>(123) 456-7890<br>
                     <span><strong>Email:</strong> </span>
-                    <a href="#">info@company.com</a><br>
-                    We provide original, quality, attractive and functional design.
+                    <a href="#">info@asilie-learning.com</a><br>
+                   We campaign, create awareness, partner and offer consultancy services for the E-learning services.
                 </p>
                 <p>
                     <a class="socialico-twitter" href="#" title="Twitter">#</a>
@@ -62,7 +62,7 @@
                 <ul class="nav menu">
                     <li><a href="#title_about">About Us</a></li>
                     <li><a href="#join_us">Join Us</a></li>
-                    <li><a href="#mainslider">Login Us</a></li>
+                    <li><a href="#mainslider">Login In</a></li>
 
                 </ul>
             </div>
