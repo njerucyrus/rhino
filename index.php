@@ -8,6 +8,7 @@ session_start();
  */
 require_once  'vendor/autoload.php';
 include "views/includes/signup.inc.php";
+include "views/includes/login.inc.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -67,11 +68,6 @@ include "views/includes/signup.inc.php";
             <div class="bottom text-center">
                 New here ? <a href="#join_us"><b>Join Us</b></a>
             </div>
-        </div>
-
-        <div class="tagLogin desktop-hide">
-            <a  href="views/login.php" class="loginBtn">Login</a><br><br>
-            <a href="#join_us" class="joinBtn"> Join Us</a>
         </div>
         <div class="tagIntro mobile-hide-intro">
             <h3>We create awareness, campaign,  partner and offer consultancy services for the E-learning services in
