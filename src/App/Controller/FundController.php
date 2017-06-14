@@ -186,7 +186,7 @@ class FundController implements FundInterface
         $db = new DB();
         $conn = $db->connect();
         try{
-            $stmt = $conn->prepare("SELECT DISTINCT u.userReferralCode,
+            $stmt = $conn->prepare("SELECT DISTINCT u.userReferralCode,u.username,
                                     u.fullName, u.idNo, u.email, u.phoneNumber,
                                     u.createdAt, t.totalEarning, t.balance
                                     FROM users u , earning_account t

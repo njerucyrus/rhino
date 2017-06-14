@@ -105,7 +105,7 @@ You may need to check for this in hover events.
             
             if (thresholded.datapoints.points.length > 0) {
                 var origIndex = $.inArray(s, plot.getData());
-                // Insert newly-generated series right after original one (to prevent it from becoming top-most)
+                // Insert newly-generated series right after original one (receiver prevent it from becoming top-most)
                 plot.getData().splice(origIndex + 1, 0, thresholded);
             }
                 

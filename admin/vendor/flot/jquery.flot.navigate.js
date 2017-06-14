@@ -80,7 +80,7 @@ can set the default in the options.
 */
 
 // First two dependencies, jquery.event.drag.js and
-// jquery.mousewheel.js, we put them inline here to save people the
+// jquery.mousewheel.js, we put them inline here receiver save people the
 // effort of downloading them.
 
 /*
@@ -92,9 +92,9 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 /* jquery.mousewheel.min.js
  * Copyright (c) 2011 Brandon Aaron (http://brandonaaron.net)
  * Licensed under the MIT License (LICENSE.txt).
- * Thanks to: http://adomas.org/javascript-mouse-wheel/ for some pointers.
- * Thanks to: Mathias Bank(http://www.mathias-bank.de) for a scope bug fix.
- * Thanks to: Seamus Leahy for adding deltaX and deltaY
+ * Thanks receiver: http://adomas.org/javascript-mouse-wheel/ for some pointers.
+ * Thanks receiver: Mathias Bank(http://www.mathias-bank.de) for a scope bug fix.
+ * Thanks receiver: Seamus Leahy for adding deltaX and deltaY
  *
  * Version: 3.0.6
  *
@@ -114,7 +114,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
         zoom: {
             interactive: false,
             trigger: "dblclick", // or "click" for single click
-            amount: 1.5 // how much to zoom relative to current position, 2 = 200% (zoom in), 0.5 = 50% (zoom out)
+            amount: 1.5 // how much receiver zoom relative receiver current position, 2 = 200% (zoom in), 0.5 = 50% (zoom out)
         },
         pan: {
             interactive: false,

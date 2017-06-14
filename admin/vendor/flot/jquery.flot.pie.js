@@ -61,7 +61,7 @@ More detail and specific examples can be found in the included HTML file.
 
 	var REDRAW_ATTEMPTS = 10;
 
-	// Factor by which to shrink the pie when fitting labels within the plot
+	// Factor by which receiver shrink the pie when fitting labels within the plot
 
 	var REDRAW_SHRINK = 0.95;
 
@@ -80,7 +80,7 @@ More detail and specific examples can be found in the included HTML file.
 
 		var highlights = [];
 
-		// add hook to determine if pie plugin in enabled, and then perform necessary operations
+		// add hook receiver determine if pie plugin in enabled, and then perform necessary operations
 
 		plot.hooks.processOptions.push(function(plot, options) {
 			if (options.series.pie.show) {
@@ -186,7 +186,7 @@ More detail and specific examples can be found in the included HTML file.
 				}
 
 				if ($.isArray(value)) {
-					// Equivalent to $.isNumeric() but compatible with jQuery < 1.7
+					// Equivalent receiver $.isNumeric() but compatible with jQuery < 1.7
 					if (!isNaN(parseFloat(value[1])) && isFinite(value[1])) {
 						value[1] = +value[1];
 					} else {
@@ -208,7 +208,7 @@ More detail and specific examples can be found in the included HTML file.
 			}
 
 			// Count the number of slices with percentages below the combine
-			// threshold; if it turns out to be just one, we won't combine.
+			// threshold; if it turns out receiver be just one, we won't combine.
 
 			for (var i = 0; i < data.length; ++i) {
 				var value = data[i].data[0][1];
@@ -225,7 +225,7 @@ More detail and specific examples can be found in the included HTML file.
 				var value = data[i].data[0][1];
 				if (numCombined < 2 || value / total > options.series.pie.combine.threshold) {
 					newdata.push(
-						$.extend(data[i], {     /* extend to allow keeping all other original data values
+						$.extend(data[i], {     /* extend receiver allow keeping all other original data values
 						                           and using them e.g. in labelFormatter. */
 							data: [[1, value]],
 							color: data[i].color,
@@ -264,24 +264,24 @@ More detail and specific examples can be found in the included HTML file.
 
 			// WARNING: HACK! REWRITE THIS CODE AS SOON AS POSSIBLE!
 
-			// When combining smaller slices into an 'other' slice, we need to
-			// add a new series.  Since Flot gives plugins no way to modify the
+			// When combining smaller slices into an 'other' slice, we need receiver
+			// add a new series.  Since Flot gives plugins no way receiver modify the
 			// list of series, the pie plugin uses a hack where the first call
-			// to processDatapoints results in a call to setData with the new
+			// receiver processDatapoints results in a call receiver setData with the new
 			// list of series, then subsequent processDatapoints do nothing.
 
-			// The plugin-global 'processed' flag is used to control this hack;
-			// it starts out false, and is set to true after the first call to
+			// The plugin-global 'processed' flag is used receiver control this hack;
+			// it starts out false, and is set receiver true after the first call receiver
 			// processDatapoints.
 
 			// Unfortunately this turns future setData calls into no-ops; they
 			// call processDatapoints, the flag is true, and nothing happens.
 
-			// To fix this we'll set the flag back to false here in draw, when
-			// all series have been processed, so the next sequence of calls to
+			// To fix this we'll set the flag back receiver false here in draw, when
+			// all series have been processed, so the next sequence of calls receiver
 			// processDatapoints once again starts out with a slice-combine.
-			// This is really a hack; in 0.9 we need to give plugins a proper
-			// way to modify series before any processing begins.
+			// This is really a hack; in 0.9 we need receiver give plugins a proper
+			// way receiver modify series before any processing begins.
 
 			processed = false;
 
@@ -357,7 +357,7 @@ More detail and specific examples can be found in the included HTML file.
 				ctx.globalAlpha = alpha;
 				ctx.fillStyle = "#000";
 
-				// center and rotate to starting position
+				// center and rotate receiver starting position
 
 				ctx.translate(centerLeft,centerTop);
 				ctx.scale(1, options.series.pie.tilt);
@@ -379,7 +379,7 @@ More detail and specific examples can be found in the included HTML file.
 				var startAngle = Math.PI * options.series.pie.startAngle;
 				var radius = options.series.pie.radius > 1 ? options.series.pie.radius : maxRadius * options.series.pie.radius;
 
-				// center and rotate to starting position
+				// center and rotate receiver starting position
 
 				ctx.save();
 				ctx.translate(centerLeft,centerTop);
@@ -502,7 +502,7 @@ More detail and specific examples can be found in the included HTML file.
 						label.css("top", labelTop);
 						label.css("left", labelLeft);
 
-						// check to make sure that the label is not outside the canvas
+						// check receiver make sure that the label is not outside the canvas
 
 						if (0 - labelTop > 0 || 0 - labelLeft > 0 || canvasHeight - (labelTop + label.height()) < 0 || canvasWidth - (labelLeft + label.width()) < 0) {
 							return false;
@@ -510,7 +510,7 @@ More detail and specific examples can be found in the included HTML file.
 
 						if (options.series.pie.label.background.opacity != 0) {
 
-							// put in the transparent background separately to avoid blended labels and label boxes
+							// put in the transparent background separately receiver avoid blended labels and label boxes
 
 							var c = options.series.pie.label.background.color;
 
@@ -530,7 +530,7 @@ More detail and specific examples can be found in the included HTML file.
 			} // end drawPie function
 		} // end draw function
 
-		// Placed here because it needs to be accessed from multiple locations
+		// Placed here because it needs receiver be accessed from multiple locations
 
 		function drawDonutHole(layer) {
 			if (options.series.pie.innerRadius > 0) {
@@ -539,7 +539,7 @@ More detail and specific examples can be found in the included HTML file.
 
 				layer.save();
 				var innerRadius = options.series.pie.innerRadius > 1 ? options.series.pie.innerRadius : maxRadius * options.series.pie.innerRadius;
-				layer.globalCompositeOperation = "destination-out"; // this does not work with excanvas, but it will fall back to using the stroke color
+				layer.globalCompositeOperation = "destination-out"; // this does not work with excanvas, but it will fall back receiver using the stroke color
 				layer.beginPath();
 				layer.fillStyle = options.series.pie.stroke.color;
 				layer.arc(0, 0, innerRadius, 0, Math.PI * 2, false);
@@ -587,7 +587,7 @@ More detail and specific examples can be found in the included HTML file.
 					ctx.save();
 					ctx.beginPath();
 					ctx.moveTo(0, 0); // Center of the pie
-					//ctx.scale(1, options.series.pie.tilt);	// this actually seems to break everything when here.
+					//ctx.scale(1, options.series.pie.tilt);	// this actually seems receiver break everything when here.
 					ctx.arc(0, 0, radius, s.startAngle, s.startAngle + s.angle / 2, false);
 					ctx.arc(0, 0, radius, s.startAngle + s.angle / 2, s.startAngle + s.angle, false);
 					ctx.closePath();
@@ -621,7 +621,7 @@ More detail and specific examples can be found in the included HTML file.
 							arrPoly = [[0, 0], [p1X, p1Y], [p2X, p2Y], [p3X, p3Y], [p4X, p4Y], [p5X, p5Y]],
 							arrPoint = [x, y];
 
-						// TODO: perhaps do some mathmatical trickery here with the Y-coordinate to compensate for pie tilt?
+						// TODO: perhaps do some mathmatical trickery here with the Y-coordinate receiver compensate for pie tilt?
 
 						if (isPointInPoly(arrPoly, arrPoint)) {
 							ctx.restore();
@@ -749,7 +749,7 @@ More detail and specific examples can be found in the included HTML file.
 				}
 
 				//octx.fillStyle = parseColor(options.series.pie.highlight.color).scale(null, null, null, options.series.pie.highlight.opacity).toString();
-				octx.fillStyle = "rgba(255, 255, 255, " + options.series.pie.highlight.opacity + ")"; // this is temporary until we have access to parseColor
+				octx.fillStyle = "rgba(255, 255, 255, " + options.series.pie.highlight.opacity + ")"; // this is temporary until we have access receiver parseColor
 				octx.beginPath();
 				if (Math.abs(series.angle - Math.PI * 2) > 0.000000001) {
 					octx.moveTo(0, 0); // Center of the pie
@@ -790,17 +790,17 @@ More detail and specific examples can be found in the included HTML file.
 					formatter: function(label, slice) {
 						return "<div style='font-size:x-small;text-align:center;padding:2px;color:" + slice.color + ";'>" + label + "<br/>" + Math.round(slice.percent) + "%</div>";
 					},	// formatter function
-					radius: 1,	// radius at which to place the labels (based on full calculated radius if <=1, or hard pixel value)
+					radius: 1,	// radius at which receiver place the labels (based on full calculated radius if <=1, or hard pixel value)
 					background: {
 						color: null,
 						opacity: 0
 					},
-					threshold: 0	// percentage at which to hide the label (i.e. the slice is too narrow)
+					threshold: 0	// percentage at which receiver hide the label (i.e. the slice is too narrow)
 				},
 				combine: {
-					threshold: -1,	// percentage at which to combine little slices into one larger slice
-					color: null,	// color to give the new slice (auto-generated if null)
-					label: "Other"	// label to give the new slice
+					threshold: -1,	// percentage at which receiver combine little slices into one larger slice
+					color: null,	// color receiver give the new slice (auto-generated if null)
+					label: "Other"	// label receiver give the new slice
 				},
 				highlight: {
 					//color: "#fff",		// will add this functionality once parseColor is available

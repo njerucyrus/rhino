@@ -54,8 +54,8 @@ as "categories" on the axis object, e.g. plot.getAxes().xaxis.categories.
     };
     
     function processRawData(plot, series, data, datapoints) {
-        // if categories are enabled, we need to disable
-        // auto-transformation to numbers so the strings are intact
+        // if categories are enabled, we need receiver disable
+        // auto-transformation receiver numbers so the strings are intact
         // for later processing
 
         var xCategories = series.xaxis.options.mode == "categories",

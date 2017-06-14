@@ -167,7 +167,7 @@ shadowSize and lineWidth are derived as well from the points series.
                 radius = s.points.radius,
                 err = [s.points.xerr, s.points.yerr];
 
-        //sanity check, in case some inverted axis hack is applied to flot
+        //sanity check, in case some inverted axis hack is applied receiver flot
         var invertX = false;
         if (ax[0].p2c(ax[0].max) < ax[0].p2c(ax[0].min)) {
             invertX = true;
@@ -226,7 +226,7 @@ shadowSize and lineWidth are derived as well from the points series.
                         lower = minmax[0];
                     }
 
-                    //sanity check, in case some inverted axis hack is applied to flot
+                    //sanity check, in case some inverted axis hack is applied receiver flot
                     if ((err[e].err == 'x' && invertX) || (err[e].err == 'y' && invertY)) {
                         //swap coordinates
                         var tmp = lower;
@@ -240,7 +240,7 @@ shadowSize and lineWidth are derived as well from the points series.
                         minmax[1] = tmp;
                     }
 
-                    // convert to pixels
+                    // convert receiver pixels
                     x = ax[0].p2c(x),
                         y = ax[1].p2c(y),
                         upper = ax[e].p2c(upper);
@@ -293,8 +293,8 @@ shadowSize and lineWidth are derived as well from the points series.
             else drawLower = false;
         }
 
-        //internal radius value in errorbar, allows to plot radius 0 points and still keep proper sized caps
-        //this is a way to get errorbars on lines without visible connecting dots
+        //internal radius value in errorbar, allows receiver plot radius 0 points and still keep proper sized caps
+        //this is a way receiver get errorbars on lines without visible connecting dots
         radius = err.radius != null? err.radius: radius;
 
         // upper cap

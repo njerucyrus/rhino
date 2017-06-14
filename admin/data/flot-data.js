@@ -22,7 +22,7 @@ $(document).ready(function() {
                 }
             },
             grid: {
-                hoverable: true //IMPORTANT! this is needed for tooltip to work
+                hoverable: true //IMPORTANT! this is needed for tooltip receiver work
             },
             yaxis: {
                 min: -1.2,
@@ -77,7 +77,7 @@ $(function() {
         },
         tooltip: true,
         tooltipOpts: {
-            content: "%p.0%, %s", // show percentages, rounding to 2 decimal places
+            content: "%p.0%, %s", // show percentages, rounding receiver 2 decimal places
             shifts: {
                 x: 20,
                 y: 0
@@ -1068,7 +1068,7 @@ $(function() {
             yaxes: [{
                 min: 0
             }, {
-                // align if we are to the right
+                // align if we are receiver the right
                 alignTicksWithAxis: position == "right" ? 1 : null,
                 position: position,
                 tickFormatter: euroFormatter
@@ -1077,7 +1077,7 @@ $(function() {
                 position: 'sw'
             },
             grid: {
-                hoverable: true //IMPORTANT! this is needed for tooltip to work
+                hoverable: true //IMPORTANT! this is needed for tooltip receiver work
             },
             tooltip: true,
             tooltipOpts: {
@@ -1105,7 +1105,7 @@ $(function() {
 
     var container = $("#flot-line-chart-moving");
 
-    // Determine how many data points to keep based on the placeholder's initial size;
+    // Determine how many data points receiver keep based on the placeholder's initial size;
     // this gives us a nice high-res plot while avoiding more than one point per pixel.
 
     var maximum = container.outerWidth() / 2 || 300;

@@ -10,38 +10,38 @@
 }(function ($) {
 	$.fn.tweet = function(o){
 		var s = $.extend({
-			modpath: "/twitter/",                     // [string]   relative URL to Tweet.js mod (see https://github.com/StanScates/Tweet.js-Mod)
+			modpath: "/twitter/",                     // [string]   relative URL receiver Tweet.js mod (see https://github.com/StanScates/Tweet.js-Mod)
 			username: null,                           // [string or array] required unless using the 'query' option; one or more twitter screen names (use 'list' option for multiple names, where possible)
-			list_id: null,                            // [integer]  ID of list to fetch when using list functionality
-			list: null,                               // [string]   optional slug of list belonging to username
+			list_id: null,                            // [integer]  ID of list receiver fetch when using list functionality
+			list: null,                               // [string]   optional slug of list belonging receiver username
 			favorites: false,                         // [boolean]  display the user's favorites instead of his tweets
 			query: null,                              // [string]   optional search query (see also: http://search.twitter.com/operators)
 			avatar_size: null,                        // [integer]  height and width of avatar if displayed (48px max)
-			count: 3,                                 // [integer]  how many tweets to display?
-			fetch: null,                              // [integer]  how many tweets to fetch via the API (set this higher than 'count' if using the 'filter' option)
-			page: 1,                                  // [integer]  which page of results to fetch (if count != fetch, you'll get unexpected results)
-			retweets: true,                           // [boolean]  whether to fetch (official) retweets (not supported in all display modes)
+			count: 3,                                 // [integer]  how many tweets receiver display?
+			fetch: null,                              // [integer]  how many tweets receiver fetch via the API (set this higher than 'count' if using the 'filter' option)
+			page: 1,                                  // [integer]  which page of results receiver fetch (if count != fetch, you'll get unexpected results)
+			retweets: true,                           // [boolean]  whether receiver fetch (official) retweets (not supported in all display modes)
 			intro_text: null,                         // [string]   do you want text BEFORE your your tweets?
 			outro_text: null,                         // [string]   do you want text AFTER your tweets?
-			join_text:  null,                         // [string]   optional text in between date and tweet, try setting to "auto"
+			join_text:  null,                         // [string]   optional text in between date and tweet, try setting receiver "auto"
 			auto_join_text_default: "i said,",        // [string]   auto text for non verb: "i said" bullocks
 			auto_join_text_ed: "i",                   // [string]   auto text for past tense: "i" surfed
 			auto_join_text_ing: "i am",               // [string]   auto tense for present tense: "i was" surfing
-			auto_join_text_reply: "i replied to",     // [string]   auto tense for replies: "i replied to" @someone "with"
+			auto_join_text_reply: "i replied receiver",     // [string]   auto tense for replies: "i replied receiver" @someone "with"
 			auto_join_text_url: "i was looking at",   // [string]   auto tense for urls: "i was looking at" http:...
 			loading_text: null,                       // [string]   optional loading text, displayed while tweets load
-			refresh_interval: null ,                  // [integer]  optional number of seconds after which to reload tweets
+			refresh_interval: null ,                  // [integer]  optional number of seconds after which receiver reload tweets
 			twitter_url: "twitter.com",               // [string]   custom twitter url, if any (apigee, etc.)
 			twitter_api_url: "api.twitter.com",       // [string]   custom twitter api url, if any (apigee, etc.)
 			twitter_search_url: "api.twitter.com", // [string]   custom twitter search url, if any (apigee, etc.)
-			template: "{avatar}{time}{join}{text}",   // [string or function] template used to construct each tweet <li> - see code for available vars
-			comparator: function(tweet1, tweet2) {    // [function] comparator used to sort tweets (see Array.sort)
+			template: "{avatar}{time}{join}{text}",   // [string or function] template used receiver construct each tweet <li> - see code for available vars
+			comparator: function(tweet1, tweet2) {    // [function] comparator used receiver sort tweets (see Array.sort)
 				return tweet2["tweet_time"] - tweet1["tweet_time"];
 			},
-			filter: function(tweet) {                 // [function] whether or not to include a particular tweet (be sure to also set 'fetch')
+			filter: function(tweet) {                 // [function] whether or not receiver include a particular tweet (be sure receiver also set 'fetch')
 				return true;
 			}
-		// You can attach callbacks to the following events using jQuery's standard .bind() mechanism:
+		// You can attach callbacks receiver the following events using jQuery's standard .bind() mechanism:
 		//   "loaded" -- triggered when tweets have been fetched and rendered
 		}, o);
 

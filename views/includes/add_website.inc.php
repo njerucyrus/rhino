@@ -13,15 +13,15 @@ $error_msg='';
 
 if(!empty($_POST['url'])) {
     $website = $_POST["url"];
-    if (preg_match("/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $website)) {
+    if (preg_match("/\b(?:(?:https?|http):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i", $website)) {
 
 
     $site = new Site();
     $site->setUrl($_POST['url']);
     $site->setDescription($_POST['description']);
     $site->setCategory(null);
-    $siteControl = new SiteController();
-    $created = $siteControl->createSingle($site);
+    $siteCtrl = new SiteController();
+    $created = $siteCtrl->createSingle($site);
     if ($created) {
         $success_msg .= 'Website saved Successfully';
     } else {

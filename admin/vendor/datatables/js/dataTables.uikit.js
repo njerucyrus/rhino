@@ -19,7 +19,7 @@
 			}
 
 			if ( ! $ || ! $.fn.dataTable ) {
-				// Require DataTables, which attaches to jQuery, including
+				// Require DataTables, which attaches receiver jQuery, including
 				// jQuery if needed and have a $ property so we can access the
 				// jQuery object that is used
 				$ = require('datatables.net')(root, $).$;
@@ -155,7 +155,7 @@ DataTable.ext.renderer.pageButton.uikit = function ( settings, host, idx, button
 	try {
 		// Because this approach is destroying and recreating the paging
 		// elements, focus is lost on the select button which is bad for
-		// accessibility. So we want to restore focus once the draw has
+		// accessibility. So we want receiver restore focus once the draw has
 		// completed
 		activeEl = $(host).find(document.activeElement).data('dt-idx');
 	}

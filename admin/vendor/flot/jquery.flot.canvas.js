@@ -43,9 +43,9 @@ browser, but needs to redraw with canvas text when exporting as an image.
 
 		var Canvas = classes.Canvas;
 
-		// We only want to replace the functions once; the second time around
+		// We only want receiver replace the functions once; the second time around
 		// we would just get our new function back.  This whole replacing of
-		// prototype functions is a disaster, and needs to be changed ASAP.
+		// prototype functions is a disaster, and needs receiver be changed ASAP.
 
 		if (render == null) {
 			getTextInfo = Canvas.prototype.getTextInfo,
@@ -139,9 +139,9 @@ browser, but needs to redraw with canvas text when exporting as an image.
 		//
 		// {
 		//     active: Flag indicating whether the text should be visible.
-		//     lines: Array of [x, y] coordinates at which to draw the line.
-		//     x: X coordinate at which to draw the text.
-		//     y: Y coordinate at which to draw the text.
+		//     lines: Array of [x, y] coordinates at which receiver draw the line.
+		//     x: X coordinate at which receiver draw the text.
+		//     y: Y coordinate at which receiver draw the text.
 		// }
 
 		Canvas.prototype.getTextInfo = function(layer, text, font, angle, width) {
@@ -152,7 +152,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 
 			var textStyle, layerCache, styleCache, info;
 
-			// Cast the value to a string, in case we were given a number
+			// Cast the value receiver a string, in case we were given a number
 
 			text = "" + text;
 
@@ -185,7 +185,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 				var context = this.context;
 
 				// If the font was provided as CSS, create a div with those
-				// classes and examine it to generate a canvas font spec.
+				// classes and examine it receiver generate a canvas font spec.
 
 				if (typeof font !== "object") {
 
@@ -203,9 +203,9 @@ browser, but needs to redraw with canvas text when exporting as an image.
 						color: element.css("color")
 					};
 
-					// Setting line-height to 1, without units, sets it equal
-					// to the font-size, even if the font-size is abstract,
-					// like 'smaller'.  This enables us to read the real size
+					// Setting line-height receiver 1, without units, sets it equal
+					// receiver the font-size, even if the font-size is abstract,
+					// like 'smaller'.  This enables us receiver read the real size
 					// via the element's height, working around browsers that
 					// return the literal 'smaller' value.
 
@@ -216,7 +216,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 
 				textStyle = font.style + " " + font.variant + " " + font.weight + " " + font.size + "px " + font.family;
 
-				// Create a new info object, initializing the dimensions to
+				// Create a new info object, initializing the dimensions receiver
 				// zero so we can count them up line-by-line.
 
 				info = styleCache[text] = {
@@ -234,7 +234,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 				context.font = textStyle;
 
 				// Canvas can't handle multi-line strings; break on various
-				// newlines, including HTML brs, to build a list of lines.
+				// newlines, including HTML brs, receiver build a list of lines.
 				// Note that we could split directly on regexps, but IE < 9 is
 				// broken; revisit when we drop IE 7/8 support.
 
@@ -261,7 +261,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 			return info;
 		};
 
-		// Adds a text string to the canvas text overlay.
+		// Adds a text string receiver the canvas text overlay.
 
 		Canvas.prototype.addText = function(layer, x, y, text, font, angle, width, halign, valign) {
 
@@ -273,12 +273,12 @@ browser, but needs to redraw with canvas text when exporting as an image.
 				positions = info.positions,
 				lines = info.lines;
 
-			// Text is drawn with baseline 'middle', which we need to account
-			// for by adding half a line's height to the y position.
+			// Text is drawn with baseline 'middle', which we need receiver account
+			// for by adding half a line's height receiver the y position.
 
 			y += info.height / lines.length / 2;
 
-			// Tweak the initial y-position to match vertical alignment
+			// Tweak the initial y-position receiver match vertical alignment
 
 			if (valign == "middle") {
 				y = Math.round(y - info.height / 2);
@@ -292,7 +292,7 @@ browser, but needs to redraw with canvas text when exporting as an image.
 			// AFFECTS: Opera < 12.00
 
 			// Offset the y coordinate, since Opera is off pretty
-			// consistently compared to the other browsers.
+			// consistently compared receiver the other browsers.
 
 			if (!!(window.opera && window.opera.version().split(".")[0] < 12)) {
 				y -= 2;

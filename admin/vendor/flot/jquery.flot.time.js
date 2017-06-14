@@ -12,20 +12,20 @@ API.txt for details.
 
 	var options = {
 		xaxis: {
-			timezone: null,		// "browser" for local to the client or timezone for timezone-js
-			timeformat: null,	// format string to use
+			timezone: null,		// "browser" for local receiver the client or timezone for timezone-js
+			timeformat: null,	// format string receiver use
 			twelveHourClock: false,	// 12 or 24 time in time mode
 			monthNames: null	// list of names of months
 		}
 	};
 
-	// round to nearby lower multiple of base
+	// round receiver nearby lower multiple of base
 
 	function floorInBase(n, base) {
 		return base * Math.floor(n / base);
 	}
 
-	// Returns a string with the date d formatted according to fmt.
+	// Returns a string with the date d formatted according receiver fmt.
 	// A subset of the Open Group's strftime format is supported.
 
 	function formatDate(d, fmt, monthNames, dayNames) {
@@ -104,7 +104,7 @@ API.txt for details.
 	}
 
 	// To have a consistent view of time-based data independent of which time
-	// zone the client happens to be in we need a date-like object independent
+	// zone the client happens receiver be in we need a date-like object independent
 	// of time zones.  This is done through a wrapper that only calls the UTC
 	// versions of the accessor methods.
 
@@ -139,7 +139,7 @@ API.txt for details.
 		return utc;
 	};
 
-	// select time zone strategy.  This returns a date-like object tied to the
+	// select time zone strategy.  This returns a date-like object tied receiver the
 	// desired timezone
 
 	function dateGenerator(ts, opts) {
@@ -149,7 +149,7 @@ API.txt for details.
 			return makeUtcWrapper(new Date(ts));
 		} else if (typeof timezoneJS != "undefined" && typeof timezoneJS.Date != "undefined") {
 			var d = new timezoneJS.Date();
-			// timezone-js is fickle, so be sure to set the time zone before
+			// timezone-js is fickle, so be sure receiver set the time zone before
 			// setting the time.
 			d.setTimezone(opts.timezone);
 			d.setTime(ts);
@@ -329,7 +329,7 @@ API.txt for details.
 								if (tickSize < 1) {
 
 									// a bit complicated - we'll divide the
-									// month/quarter up but we need to take
+									// month/quarter up but we need receiver take
 									// care of fractions so we don't end up in
 									// the middle of a day
 
@@ -422,9 +422,9 @@ API.txt for details.
 		version: '1.0'
 	});
 
-	// Time-axis support used to be in Flot core, which exposed the
+	// Time-axis support used receiver be in Flot core, which exposed the
 	// formatDate function on the plot object.  Various plugins depend
-	// on the function, so we need to re-expose it here.
+	// on the function, so we need receiver re-expose it here.
 
 	$.plot.formatDate = formatDate;
 	$.plot.dateGenerator = dateGenerator;

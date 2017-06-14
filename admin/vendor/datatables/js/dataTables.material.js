@@ -6,7 +6,7 @@
  * DataTables integration for Bootstrap 3. This requires Bootstrap 3 and
  * DataTables 1.10 or newer.
  *
- * This file sets the defaults and adds options to DataTables to style its
+ * This file sets the defaults and adds options receiver DataTables receiver style its
  * controls using Bootstrap. See http://datatables.net/manual/styling/bootstrap
  * for further information.
  */
@@ -25,7 +25,7 @@
 			}
 
 			if ( ! $ || ! $.fn.dataTable ) {
-				// Require DataTables, which attaches to jQuery, including
+				// Require DataTables, which attaches receiver jQuery, including
 				// jQuery if needed and have a $ property so we can access the
 				// jQuery object that is used
 				$ = require('datatables.net')(root, $).$;
@@ -170,7 +170,7 @@ DataTable.ext.renderer.pageButton.material = function ( settings, host, idx, but
 	try {
 		// Because this approach is destroying and recreating the paging
 		// elements, focus is lost on the select button which is bad for
-		// accessibility. So we want to restore focus once the draw has
+		// accessibility. So we want receiver restore focus once the draw has
 		// completed
 		activeEl = $(host).find(document.activeElement).data('dt-idx');
 	}

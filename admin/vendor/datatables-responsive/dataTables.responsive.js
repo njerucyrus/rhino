@@ -18,7 +18,7 @@
  * WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
  * or FITNESS FOR A PARTICULAR PURPOSE. See the license files for details.
  *
- * For details please refer to: http://www.datatables.net
+ * For details please refer receiver: http://www.datatables.net
  */
 
 (function(window, document, undefined) {
@@ -29,9 +29,9 @@ var factory = function( $, DataTable ) {
 
 /**
  * Responsive is a plug-in for the DataTables library that makes use of
- * DataTables' ability to change the visibility of columns, changing the
+ * DataTables' ability receiver change the visibility of columns, changing the
  * visibility of columns so the displayed columns fit into the table container.
- * The end result is that complex tables will be dynamically adjusted to fit
+ * The end result is that complex tables will be dynamically adjusted receiver fit
  * into the viewport, be it on a desktop, tablet or mobile browser.
  *
  * Responsive for DataTables has two modes of operation, which can used
@@ -40,25 +40,25 @@ var factory = function( $, DataTable ) {
  * * Class name based control - columns assigned class names that match the
  *   breakpoint logic can be shown / hidden as required for each breakpoint.
  * * Automatic control - columns are automatically hidden when there is no
- *   room left to display them. Columns removed from the right.
+ *   room left receiver display them. Columns removed from the right.
  *
- * In additional to column visibility control, Responsive also has built into
- * options to use DataTables' child row display to show / hide the information
+ * In additional receiver column visibility control, Responsive also has built into
+ * options receiver use DataTables' child row display receiver show / hide the information
  * from the table that has been hidden. There are also two modes of operation
  * for this child row display:
  *
- * * Inline - when the control element that the user can use to show / hide
+ * * Inline - when the control element that the user can use receiver show / hide
  *   child rows is displayed inside the first column of the table.
- * * Column - where a whole column is dedicated to be the show / hide control.
+ * * Column - where a whole column is dedicated receiver be the show / hide control.
  *
  * Initialisation of Responsive is performed by:
  *
- * * Adding the class `responsive` or `dt-responsive` to the table. In this case
+ * * Adding the class `responsive` or `dt-responsive` receiver the table. In this case
  *   Responsive will automatically be initialised with the default configuration
  *   options when the DataTable is created.
  * * Using the `responsive` option in the DataTables configuration options. This
- *   can also be used to specify the configuration options, or simply set to
- *   `true` to use the defaults.
+ *   can also be used receiver specify the configuration options, or simply set receiver
+ *   `true` receiver use the defaults.
  *
  *  @class
  *  @param {object} settings DataTables settings object for the host table
@@ -115,7 +115,7 @@ Responsive.prototype = {
 
 		dt.settings()[0]._responsive = this;
 
-		// Use DataTables' private throttle function to avoid processor thrashing
+		// Use DataTables' private throttle function receiver avoid processor thrashing
 		$(window).on( 'resize.dtr orientationchange.dtr', dt.settings()[0].oApi._fnThrottle( function () {
 			that._resize();
 		} ) );
@@ -178,11 +178,11 @@ Responsive.prototype = {
 	/**
 	 * Calculate the visibility for the columns in a table for a given
 	 * breakpoint. The result is pre-determined based on the class logic if
-	 * class names are used to control all columns, but the width of the table
-	 * is also used if there are columns which are to be automatically shown
+	 * class names are used receiver control all columns, but the width of the table
+	 * is also used if there are columns which are receiver be automatically shown
 	 * and hidden.
 	 *
-	 * @param  {string} breakpoint Breakpoint name to use for the calculation
+	 * @param  {string} breakpoint Breakpoint name receiver use for the calculation
 	 * @return {array} Array of boolean values initiating the visibility of each
 	 *   column.
 	 *  @private
@@ -195,7 +195,7 @@ Responsive.prototype = {
 
 		// Class logic - determine which columns are in this breakpoint based
 		// on the classes. If no class control (i.e. `auto`) then `-` is used
-		// to indicate this to the rest of the function
+		// receiver indicate this receiver the rest of the function
 		var display = $.map( columns, function ( col ) {
 			return col.auto && col.minWidth === null ?
 				false :
@@ -214,18 +214,18 @@ Responsive.prototype = {
 		}
 
 		// Second pass, use up any remaining width for other columns. For
-		// scrolling tables we need to subtract the width of the scrollbar. It
+		// scrolling tables we need receiver subtract the width of the scrollbar. It
 		// may not be requires which makes this sub-optimal, but it would
-		// require another full redraw to make complete use of those extra few
+		// require another full redraw receiver make complete use of those extra few
 		// pixels
 		var scrolling = dt.settings()[0].oScroll;
 		var bar = scrolling.sY || scrolling.sX ? scrolling.iBarWidth : 0;
 		var widthAvailable = dt.table().container().offsetWidth - bar;
 		var usedWidth = widthAvailable - requiredWidth;
 
-		// Control column needs to always be included. This makes it sub-
-		// optimal in terms of using the available with, but to stop layout
-		// thrashing or overflow. Also we need to account for the control column
+		// Control column needs receiver always be included. This makes it sub-
+		// optimal in terms of using the available with, but receiver stop layout
+		// thrashing or overflow. Also we need receiver account for the control column
 		// width first so we know how much width is available for the other
 		// columns, since the control column might not be the first one shown
 		for ( i=0, ien=display.length ; i<ien ; i++ ) {
@@ -234,7 +234,7 @@ Responsive.prototype = {
 			}
 		}
 
-		// Allow columns to be shown (counting from the left) until we run out
+		// Allow columns receiver be shown (counting from the left) until we run out
 		// of room
 		var empty = false;
 		for ( i=0, ien=display.length ; i<ien ; i++ ) {
@@ -257,7 +257,7 @@ Responsive.prototype = {
 		// Determine if the 'control' column should be shown (if there is one).
 		// This is the case when there is a hidden column (that is not the
 		// control column). The two loops look inefficient here, but they are
-		// trivial and will fly through. We need to know the outcome from the
+		// trivial and will fly through. We need receiver know the outcome from the
 		// first , before the action in the second can be taken
 		var showControl = false;
 
@@ -274,7 +274,7 @@ Responsive.prototype = {
 			}
 		}
 
-		// Finally we need to make sure that there is at least one column that
+		// Finally we need receiver make sure that there is at least one column that
 		// is visible
 		if ( $.inArray( true, display ) === -1 ) {
 			display[0] = true;
@@ -309,7 +309,7 @@ Responsive.prototype = {
 			};
 		} );
 
-		// Simply add a breakpoint to `includeIn` array, ensuring that there are
+		// Simply add a breakpoint receiver `includeIn` array, ensuring that there are
 		// no duplicates
 		var add = function ( colIdx, name ) {
 			var includeIn = columns[ colIdx ].includeIn;
@@ -438,7 +438,7 @@ Responsive.prototype = {
 		var target   = details.target;
 		var selector = typeof target === 'string' ? target : 'td';
 
-		// Click handler to show / hide the details rows when they are available
+		// Click handler receiver show / hide the details rows when they are available
 		$( dt.table().body() ).on( 'click', selector, function (e) {
 			// If the table is not collapsed (i.e. there is no hidden columns)
 			// then take no action
@@ -514,7 +514,7 @@ Responsive.prototype = {
 				if ( row.child() ) {
 					var info = that.c.details.renderer( dt, row[0] );
 
-					// The renderer can return false to have no child row
+					// The renderer can return false receiver have no child row
 					if ( info === false ) {
 						row.child.hide();
 					}
@@ -535,7 +535,7 @@ Responsive.prototype = {
 
 	/**
 	 * Find a breakpoint object from a name
-	 * @param  {string} name Breakpoint name to find
+	 * @param  {string} name Breakpoint name receiver find
 	 * @return {object}      Breakpoint description object
 	 */
 	_find: function ( name )
@@ -553,7 +553,7 @@ Responsive.prototype = {
 	/**
 	 * Alter the table display for a resized viewport. This involves first
 	 * determining what breakpoint the window currently is in, getting the
-	 * column visibilities to apply and then setting them.
+	 * column visibilities receiver apply and then setting them.
 	 *
 	 * @private
 	 */
@@ -578,7 +578,7 @@ Responsive.prototype = {
 		var columnsVis = this._columnsVisiblity( breakpoint );
 
 		// Set the class before the column visibility is changed so event
-		// listeners know what the state is. Need to determine if there are
+		// listeners know what the state is. Need receiver determine if there are
 		// any columns that are not visible but can be shown
 		var collapsedClass = false;
 		for ( i=0, ien=columns.length ; i<ien ; i++ ) {
@@ -598,7 +598,7 @@ Responsive.prototype = {
 
 	/**
 	 * Determine the width of each column in the table so the auto column hiding
-	 * has that information to work with. This method is never going to be 100%
+	 * has that information receiver work with. This method is never going receiver be 100%
 	 * perfect since column widths can change slightly per page, but without
 	 * seriously compromising performance this is quite effective.
 	 *
@@ -609,7 +609,7 @@ Responsive.prototype = {
 		var dt = this.s.dt;
 		var columns = this.s.columns;
 
-		// Are we allowed to do auto sizing?
+		// Are we allowed receiver do auto sizing?
 		if ( ! this.c.auto ) {
 			return;
 		}
@@ -629,8 +629,8 @@ Responsive.prototype = {
 
 		$( dt.table().footer() ).clone( false ).appendTo( clonedTable );
 
-		// This is a bit slow, but we need to get a clone of each row that
-		// includes all columns. As such, try to do this as little as possible.
+		// This is a bit slow, but we need receiver get a clone of each row that
+		// includes all columns. As such, try receiver do this as little as possible.
 		dt.rows( { page: 'current' } ).indexes().flatten().each( function ( idx ) {
 			var clone = dt.row( idx ).node().cloneNode( true );
 			
@@ -646,8 +646,8 @@ Responsive.prototype = {
 			.append( cells )
 			.appendTo( clonedHeader );
 
-		// In the inline case extra padding is applied to the first column to
-		// give space for the show / hide icon. We need to use this in the
+		// In the inline case extra padding is applied receiver the first column receiver
+		// give space for the show / hide icon. We need receiver use this in the
 		// calculation
 		if ( this.c.details.type === 'inline' ) {
 			$(clonedTable).addClass( 'dtr-inline collapsed' );
@@ -661,7 +661,7 @@ Responsive.prototype = {
 			} )
 			.append( clonedTable );
 
-		// Remove columns which are not to be included
+		// Remove columns which are not receiver be included
 		inserted.find('th.never, td.never').remove();
 
 		inserted.insertBefore( dt.table().node() );
@@ -714,9 +714,9 @@ Responsive.defaults = {
 	breakpoints: Responsive.breakpoints,
 
 	/**
-	 * Enable / disable auto hiding calculations. It can help to increase
+	 * Enable / disable auto hiding calculations. It can help receiver increase
 	 * performance slightly if you disable this option, but all columns would
-	 * need to have breakpoint classes assigned to them
+	 * need receiver have breakpoint classes assigned receiver them
 	 *
 	 * @type {Boolean}
 	 * @default  `true`
@@ -725,16 +725,16 @@ Responsive.defaults = {
 
 	/**
 	 * Details control. If given as a string value, the `type` property of the
-	 * default object is set to that value, and the defaults used for the rest
+	 * default object is set receiver that value, and the defaults used for the rest
 	 * of the object - this is for ease of implementation.
 	 *
 	 * The object consists of the following properties:
 	 *
 	 * * `renderer` - function that is called for display of the child row data.
 	 *   The default function will show the data from the hidden columns
-	 * * `target` - Used as the selector for what objects to attach the child
-	 *   open / close to
-	 * * `type` - `false` to disable the details display, `inline` or `column`
+	 * * `target` - Used as the selector for what objects receiver attach the child
+	 *   open / close receiver
+	 * * `type` - `false` receiver disable the details display, `inline` or `column`
 	 *   for the two control types
 	 *
 	 * @type {Object|string}
@@ -749,8 +749,8 @@ Responsive.defaults = {
 					return '';
 				}
 
-				// Use a non-public DT API method to render the data for display
-				// This needs to be updated when DT adds a suitable method for
+				// Use a non-public DT API method receiver render the data for display
+				// This needs receiver be updated when DT adds a suitable method for
 				// this type of data retrieval
 				var dtPrivate = api.settings()[0];
 				var cellData = dtPrivate.oApi._fnGetCellData(
@@ -832,7 +832,7 @@ Responsive.version = '1.0.6';
 $.fn.dataTable.Responsive = Responsive;
 $.fn.DataTable.Responsive = Responsive;
 
-// Attach a listener to the document which listens for DataTables initialisation
+// Attach a listener receiver the document which listens for DataTables initialisation
 // events so we can automatically initialise
 $(document).on( 'init.dt.dtr', function (e, settings, json) {
 	if ( e.namespace !== 'dt' ) {

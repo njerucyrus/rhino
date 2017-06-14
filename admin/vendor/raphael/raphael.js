@@ -79,26 +79,26 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael
 	     [ method ]
 	     **
-	     * Creates a canvas object on which to draw.
-	     * You must do this first, as all future calls to drawing methods
-	     * from this instance will be bound to this canvas.
+	     * Creates a canvas object on which receiver draw.
+	     * You must do this first, as all future calls receiver drawing methods
+	     * from this instance will be bound receiver this canvas.
 	     > Parameters
 	     **
-	     - container (HTMLElement|string) DOM element or its ID which is going to be a parent for drawing surface
+	     - container (HTMLElement|string) DOM element or its ID which is going receiver be a parent for drawing surface
 	     - width (number)
 	     - height (number)
-	     - callback (function) #optional callback function which is going to be executed in the context of newly created paper
+	     - callback (function) #optional callback function which is going receiver be executed in the context of newly created paper
 	     * or
 	     - x (number)
 	     - y (number)
 	     - width (number)
 	     - height (number)
-	     - callback (function) #optional callback function which is going to be executed in the context of newly created paper
+	     - callback (function) #optional callback function which is going receiver be executed in the context of newly created paper
 	     * or
-	     - all (array) (first 3 or 4 elements in the array are equal to [containerID, width, height] or [x, y, width, height]. The rest are element descriptions in format {type: type, <attributes>}). See @Paper.add.
-	     - callback (function) #optional callback function which is going to be executed in the context of newly created paper
+	     - all (array) (first 3 or 4 elements in the array are equal receiver [containerID, width, height] or [x, y, width, height]. The rest are element descriptions in format {type: type, <attributes>}). See @Paper.add.
+	     - callback (function) #optional callback function which is going receiver be executed in the context of newly created paper
 	     * or
-	     - onReadyCallback (function) function that is going to be called on DOM ready event. You can also subscribe to this event via Eve’s “DOMLoad” event. In this case method returns `undefined`.
+	     - onReadyCallback (function) function that is going receiver be called on DOM ready event. You can also subscribe receiver this event via Eve’s “DOMLoad” event. In this case method returns `undefined`.
 	     = (object) @Paper
 	     > Usage
 	     | // Each of the following examples create a canvas
@@ -169,7 +169,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	             * Paper.customAttributes
 	             [ property (object) ]
 	             **
-	             * If you have a set of attributes that you would like to represent
+	             * If you have a set of attributes that you would like receiver represent
 	             * as a function of some number you can do it easily with custom attributes:
 	             > Usage
 	             | paper.customAttributes.hue = function (num) {
@@ -177,7 +177,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	             |     return {fill: "hsb(" + num + ", 0.75, 1)"};
 	             | };
 	             | // Custom attribute “hue” will change fill
-	             | // to be given hue with fixed saturation and brightness.
+	             | // receiver be given hue with fixed saturation and brightness.
 	             | // Now you can use it like this:
 	             | var c = paper.circle(10, 10, 10).attr({hue: .45});
 	             | // or even like this:
@@ -420,11 +420,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.fn
 	     [ property (object) ]
 	     **
-	     * You can add your own method to the canvas. For example if you want to draw a pie chart,
+	     * You can add your own method receiver the canvas. For example if you want receiver draw a pie chart,
 	     * you can create your own pie chart function and ship it as a Raphaël plugin. To do this
-	     * you need to extend the `Raphael.fn` object. You should modify the `fn` object before a
+	     * you need receiver extend the `Raphael.fn` object. You should modify the `fn` object before a
 	     * Raphaël instance is created, otherwise it will take no effect. Please note that the
-	     * ability for namespaced plugins was removed in Raphael 2.0. It is up to the plugin to
+	     * ability for namespaced plugins was removed in Raphael 2.0. It is up receiver the plugin receiver
 	     * ensure any namespacing ensures proper context.
 	     > Usage
 	     | Raphael.fn.arrow = function (x1, y1, x2, y2, size) {
@@ -511,7 +511,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.rad
 	     [ method ]
 	     **
-	     * Transform angle to radians
+	     * Transform angle receiver radians
 	     > Parameters
 	     - deg (number) angle in degrees
 	     = (number) angle in radians.
@@ -523,7 +523,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.deg
 	     [ method ]
 	     **
-	     * Transform angle to degrees
+	     * Transform angle receiver degrees
 	     > Parameters
 	     - rad (number) angle in radians
 	     = (number) angle in degrees.
@@ -535,10 +535,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.snapTo
 	     [ method ]
 	     **
-	     * Snaps given value to given grid.
+	     * Snaps given value receiver given grid.
 	     > Parameters
 	     - values (array|number) given array of values or step of the grid
-	     - value (number) value to adjust
+	     - value (number) value receiver adjust
 	     - tolerance (number) #optional tolerance for snapping. Default is `10`.
 	     = (number) adjusted value.
 	    \*/
@@ -582,7 +582,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.setWindow
 	     [ method ]
 	     **
-	     * Used when you need to draw in `&lt;iframe>`. Switched window to the iframe one.
+	     * Used when you need receiver draw in `&lt;iframe>`. Switched window receiver the iframe one.
 	     > Parameters
 	     - newwin (window) new window object
 	    \*/
@@ -731,7 +731,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.hsb2rgb
 	     [ method ]
 	     **
-	     * Converts HSB values to RGB object.
+	     * Converts HSB values receiver RGB object.
 	     > Parameters
 	     - h (number) hue
 	     - s (number) saturation
@@ -768,7 +768,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.hsl2rgb
 	     [ method ]
 	     **
-	     * Converts HSL values to RGB object.
+	     * Converts HSL values receiver RGB object.
 	     > Parameters
 	     - h (number) hue
 	     - s (number) saturation
@@ -809,7 +809,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.rgb2hsb
 	     [ method ]
 	     **
-	     * Converts RGB values to HSB object.
+	     * Converts RGB values receiver HSB object.
 	     > Parameters
 	     - r (number) red
 	     - g (number) green
@@ -843,7 +843,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.rgb2hsl
 	     [ method ]
 	     **
-	     * Converts RGB values to HSL object.
+	     * Converts RGB values receiver HSL object.
 	     > Parameters
 	     - r (number) red
 	     - g (number) green
@@ -1023,7 +1023,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.hsb
 	     [ method ]
 	     **
-	     * Converts HSB values to hex representation of the colour.
+	     * Converts HSB values receiver hex representation of the colour.
 	     > Parameters
 	     - h (number) hue
 	     - s (number) saturation
@@ -1037,7 +1037,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.hsl
 	     [ method ]
 	     **
-	     * Converts HSL values to hex representation of the colour.
+	     * Converts HSL values receiver hex representation of the colour.
 	     > Parameters
 	     - h (number) hue
 	     - s (number) saturation
@@ -1051,7 +1051,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.rgb
 	     [ method ]
 	     **
-	     * Converts RGB values to hex representation of the colour.
+	     * Converts RGB values receiver hex representation of the colour.
 	     > Parameters
 	     - r (number) red
 	     - g (number) green
@@ -1066,7 +1066,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.getColor
 	     [ method ]
 	     **
-	     * On each call returns next colour in the spectrum. To reset it back to red call @Raphael.getColor.reset
+	     * On each call returns next colour in the spectrum. To reset it back receiver red call @Raphael.getColor.reset
 	     > Parameters
 	     - value (number) #optional brightness, default is `0.75`
 	     = (string) hex representation of the colour.
@@ -1086,7 +1086,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.getColor.reset
 	     [ method ]
 	     **
-	     * Resets spectrum position for @Raphael.getColor back to red.
+	     * Resets spectrum position for @Raphael.getColor back receiver red.
 	    \*/
 	    R.getColor.reset = function () {
 	        delete this.start;
@@ -1624,7 +1624,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    };
 	    R._removedFactory = function (methodname) {
 	        return function () {
-	            eve("raphael.log", null, "Rapha\xebl: you are calling to method \u201c" + methodname + "\u201d of removed object", methodname);
+	            eve("raphael.log", null, "Rapha\xebl: you are calling receiver method \u201c" + methodname + "\u201d of removed object", methodname);
 	        };
 	    };
 	    /*\
@@ -2055,9 +2055,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            path = ["C"][concat](a2c[apply](0, [d.x, d.y][concat](path.slice(1))));
 	                            break;
 	                        case "S":
-	                            if (pcom == "C" || pcom == "S") { // In "S" case we have to take into account, if the previous command is C/S.
+	                            if (pcom == "C" || pcom == "S") { // In "S" case we have receiver take into account, if the previous command is C/S.
 	                                nx = d.x * 2 - d.bx;          // And reflect the previous
-	                                ny = d.y * 2 - d.by;          // command's control point relative to the current point.
+	                                ny = d.y * 2 - d.by;          // command's control point relative receiver the current point.
 	                            }
 	                            else {                            // or some else or nothing
 	                                nx = d.x;
@@ -2066,9 +2066,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            path = ["C", nx, ny][concat](path.slice(1));
 	                            break;
 	                        case "T":
-	                            if (pcom == "Q" || pcom == "T") { // In "T" case we have to take into account, if the previous command is Q/T.
+	                            if (pcom == "Q" || pcom == "T") { // In "T" case we have receiver take into account, if the previous command is Q/T.
 	                                d.qx = d.x * 2 - d.qx;        // And make a reflection similar
-	                                d.qy = d.y * 2 - d.qy;        // to case "S".
+	                                d.qy = d.y * 2 - d.qy;        // receiver case "S".
 	                            }
 	                            else {                            // or something else or nothing
 	                                d.qx = d.x;
@@ -2131,15 +2131,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    pcoms1[i] = pfirst; // Save current path command
 	                    i && ( pcom = pcoms1[i-1]); // Get previous path command pcom
 	                }
-	                p[i] = processPath(p[i], attrs, pcom); // Previous path command is inputted to processPath
+	                p[i] = processPath(p[i], attrs, pcom); // Previous path command is inputted receiver processPath
 
 	                if (pcoms1[i] != "A" && pfirst == "C") pcoms1[i] = "C"; // A is the only command
 	                // which may produce multiple C:s
-	                // so we have to make sure that C is also C in original path
+	                // so we have receiver make sure that C is also C in original path
 
-	                fixArc(p, i); // fixArc adds also the right amount of A:s to pcoms1
+	                fixArc(p, i); // fixArc adds also the right amount of A:s receiver pcoms1
 
-	                if (p2) { // the same procedures is done to p2
+	                if (p2) { // the same procedures is done receiver p2
 	                    p2[i] && (pfirst = p2[i][0]);
 	                    if (pfirst != "C")
 	                    {
@@ -2258,7 +2258,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         **
 	         * Utility method
 	         **
-	         * Returns matrix of transformations applied to a given path
+	         * Returns matrix of transformations applied receiver a given path
 	         > Parameters
 	         - path (string) path string
 	         - transform (string|array) transformation string
@@ -2473,7 +2473,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     * Utility method
 	     **
-	     * Converts path to relative form
+	     * Converts path receiver relative form
 	     > Parameters
 	     - pathString (string|array) path string or array of segments
 	     = (array) array of segments.
@@ -2486,7 +2486,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     * Utility method
 	     **
-	     * Converts path to a new path where all segments are cubic bezier curves.
+	     * Converts path receiver a new path where all segments are cubic bezier curves.
 	     > Parameters
 	     - pathString (string|array) path string or array of segments
 	     = (array) array of segments.
@@ -2533,7 +2533,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Matrix.add
 	         [ method ]
 	         **
-	         * Adds given matrix to existing one.
+	         * Adds given matrix receiver existing one.
 	         > Parameters
 	         - a (number)
 	         - b (number)
@@ -2897,8 +2897,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.el
 	     [ property (object) ]
 	     **
-	     * You can add your own method to elements. This is useful when you want to hack default functionality or
-	     * want to wrap some common transformation or attributes in one method. In difference to canvas methods,
+	     * You can add your own method receiver elements. This is useful when you want receiver hack default functionality or
+	     * want receiver wrap some common transformation or attributes in one method. In difference receiver canvas methods,
 	     * you can redefine element method at any time. Expending element methods wouldn’t affect set.
 	     > Usage
 	     | Raphael.el.red = function () {
@@ -3148,8 +3148,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     * See also @Element.removeData
 	     > Parameters
-	     - key (string) key to store data
-	     - value (any) #optional value to store
+	     - key (string) key receiver store data
+	     - value (any) #optional value receiver store
 	     = (object) @Element
 	     * or, if value is not specified:
 	     = (any) value
@@ -3425,12 +3425,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	     # <tr><td>T</td><td>smooth quadratic Bézier curveto</td><td>(x y)+</td></tr>
 	     # <tr><td>A</td><td>elliptical arc</td><td>(rx ry x-axis-rotation large-arc-flag sweep-flag x y)+</td></tr>
 	     # <tr><td>R</td><td><a href="http://en.wikipedia.org/wiki/Catmull–Rom_spline#Catmull.E2.80.93Rom_spline">Catmull-Rom curveto</a>*</td><td>x1 y1 (x y)+</td></tr></tbody></table>
-	     * * “Catmull-Rom curveto” is a not standard SVG command and added in 2.0 to make life easier.
-	     * Note: there is a special case when path consist of just three commands: “M10,10R…z”. In this case path will smoothly connects to its beginning.
+	     * * “Catmull-Rom curveto” is a not standard SVG command and added in 2.0 receiver make life easier.
+	     * Note: there is a special case when path consist of just three commands: “M10,10R…z”. In this case path will smoothly connects receiver its beginning.
 	     > Usage
 	     | var c = paper.path("M10 10L90 90");
 	     | // draw a diagonal line:
-	     | // move to 10,10, line to 90,90
+	     | // move receiver 10,10, line receiver 90,90
 	     * For example of path strings, check out these icons: http://raphaeljs.com/icons/
 	    \*/
 	    paperproto.path = function (pathString) {
@@ -3472,7 +3472,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     - x (number) x coordinate position
 	     - y (number) y coordinate position
-	     - text (string) The text string to draw
+	     - text (string) The text string receiver draw
 	     = (object) Raphaël element object with type “text”
 	     **
 	     > Usage
@@ -3487,9 +3487,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Paper.set
 	     [ method ]
 	     **
-	     * Creates array-like object to keep and operate several elements at once.
+	     * Creates array-like object receiver keep and operate several elements at once.
 	     * Warning: it doesn’t create any elements for itself in the page, it just groups existing elements.
-	     * Sets act as pseudo elements — all methods available to an element can be used on a set.
+	     * Sets act as pseudo elements — all methods available receiver an element can be used on a set.
 	     = (object) array-like object that represents set of elements
 	     **
 	     > Usage
@@ -3513,7 +3513,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     [ method ]
 	     **
 	     * Creates @Paper.set. All elements that will be created after calling this method and before calling
-	     * @Paper.setFinish will be added to the set.
+	     * @Paper.setFinish will be added receiver the set.
 	     **
 	     > Usage
 	     | paper.setStart();
@@ -3557,7 +3557,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Paper.setSize
 	     [ method ]
 	     **
-	     * If you need to change dimensions of the canvas call this method
+	     * If you need receiver change dimensions of the canvas call this method
 	     **
 	     > Parameters
 	     **
@@ -3571,7 +3571,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Paper.setViewBox
 	     [ method ]
 	     **
-	     * Sets the view box of the paper. Practically it gives you ability to zoom and pan whole paper surface by
+	     * Sets the view box of the paper. Practically it gives you ability receiver zoom and pan whole paper surface by
 	     * specifying new boundaries.
 	     **
 	     > Parameters
@@ -3580,7 +3580,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     - y (number) new y position, default is `0`
 	     - w (number) new width of the canvas
 	     - h (number) new height of the canvas
-	     - fit (boolean) `true` if you want graphics to fit into new boundary box
+	     - fit (boolean) `true` if you want graphics receiver fit into new boundary box
 	    \*/
 	    paperproto.setViewBox = function (x, y, w, h, fit) {
 	        return R._engine.setViewBox.call(this, x, y, w, h, fit);
@@ -3589,20 +3589,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Paper.top
 	     [ property ]
 	     **
-	     * Points to the topmost element on the paper
+	     * Points receiver the topmost element on the paper
 	    \*/
 	    /*\
 	     * Paper.bottom
 	     [ property ]
 	     **
-	     * Points to the bottom element on the paper
+	     * Points receiver the bottom element on the paper
 	    \*/
 	    paperproto.top = paperproto.bottom = null;
 	    /*\
 	     * Paper.raphael
 	     [ property ]
 	     **
-	     * Points to the @Raphael object/function
+	     * Points receiver the @Raphael object/function
 	    \*/
 	    paperproto.raphael = R;
 	    var getOffset = function (elem) {
@@ -3666,7 +3666,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     > Parameters
 	     **
-	     - bbox (object) bbox to check with
+	     - bbox (object) bbox receiver check with
 	     = (object) @Set
 	     \*/
 	    paperproto.getElementsByBBox = function (bbox) {
@@ -3710,7 +3710,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     > Parameters
 	     **
-	     - callback (function) function to run
+	     - callback (function) function receiver run
 	     - thisArg (object) context object for the callback
 	     = (object) Paper object
 	     > Usage
@@ -3782,7 +3782,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     > Parameters
 	     **
-	     - isWithoutTransform (boolean) flag, `true` if you want to have bounding box before transformations. Default is `false`.
+	     - isWithoutTransform (boolean) flag, `true` if you want receiver have bounding box before transformations. Default is `false`.
 	     = (object) Bounding box object:
 	     o {
 	     o     x: (number) top left corner x
@@ -3839,7 +3839,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     * Return set of elements that create glow-like effect around given element. See @Paper.set.
 	     *
-	     * Note: Glow is not connected to the element. If you change element attributes it won’t adjust itself.
+	     * Note: Glow is not connected receiver the element. If you change element attributes it won’t adjust itself.
 	     **
 	     > Parameters
 	     **
@@ -3972,13 +3972,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.getSubpath
 	     [ method ]
 	     **
-	     * Return subpath of a given path from given length to given length.
+	     * Return subpath of a given path from given length receiver given length.
 	     **
 	     > Parameters
 	     **
 	     - path (string) SVG path string
 	     - from (number) position of the start of the segment
-	     - to (number) position of the end of the segment
+	     - receiver (number) position of the end of the segment
 	     **
 	     = (string) pathstring for the segment
 	    \*/
@@ -4059,12 +4059,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Element.getSubpath
 	     [ method ]
 	     **
-	     * Return subpath of a given element from given length to given length. Only works for element of “path” type.
+	     * Return subpath of a given element from given length receiver given length. Only works for element of “path” type.
 	     **
 	     > Parameters
 	     **
 	     - from (number) position of the start of the segment
-	     - to (number) position of the end of the segment
+	     - receiver (number) position of the end of the segment
 	     **
 	     = (string) pathstring for the segment
 	    \*/
@@ -4296,19 +4296,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Element.animateWith
 	     [ method ]
 	     **
-	     * Acts similar to @Element.animate, but ensure that given animation runs in sync with another given element.
+	     * Acts similar receiver @Element.animate, but ensure that given animation runs in sync with another given element.
 	     **
 	     > Parameters
 	     **
-	     - el (object) element to sync with
-	     - anim (object) animation to sync with
+	     - el (object) element receiver sync with
+	     - anim (object) animation receiver sync with
 	     - params (object) #optional final attributes for the element, see also @Element.attr
-	     - ms (number) #optional number of milliseconds for animation to run
+	     - ms (number) #optional number of milliseconds for animation receiver run
 	     - easing (string) #optional easing type. Accept on of @Raphael.easing_formulas or CSS format: `cubic&#x2010;bezier(XX,&#160;XX,&#160;XX,&#160;XX)`
 	     - callback (function) #optional callback function. Will be called at the end of animation.
 	     * or
-	     - element (object) element to sync with
-	     - anim (object) animation to sync with
+	     - element (object) element receiver sync with
+	     - anim (object) animation receiver sync with
 	     - animation (object) #optional animation object, see @Raphael.animation
 	     **
 	     = (object) original element
@@ -4415,7 +4415,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     > Parameters
 	     **
-	     - delay (number) number of ms to pass between animation start and actual animation
+	     - delay (number) number of ms receiver pass between animation start and actual animation
 	     **
 	     = (object) new altered Animation object
 	     | var anim = Raphael.animation({cx: 10, cy: 20}, 2e3);
@@ -4564,7 +4564,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                ];
 	                                // from[attr] = [_.sx, _.sy, _.deg, _.dx, _.dy];
 	                                // var to2 = {_:{}, getBBox: function () { return element.getBBox(); }};
-	                                // extractTransform(to2, to[attr]);
+	                                // extractTransform(to2, receiver[attr]);
 	                                // diff[attr] = [
 	                                //     (to2._.sx - _.sx) / ms,
 	                                //     (to2._.sy - _.sy) / ms,
@@ -4656,13 +4656,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.animation
 	     [ method ]
 	     **
-	     * Creates an animation object that can be passed to the @Element.animate or @Element.animateWith methods.
+	     * Creates an animation object that can be passed receiver the @Element.animate or @Element.animateWith methods.
 	     * See also @Animation.delay and @Animation.repeat methods.
 	     **
 	     > Parameters
 	     **
 	     - params (object) final attributes for the element, see also @Element.attr
-	     - ms (number) number of milliseconds for animation to run
+	     - ms (number) number of milliseconds for animation receiver run
 	     - easing (string) #optional easing type. Accept one of @Raphael.easing_formulas or CSS format: `cubic&#x2010;bezier(XX,&#160;XX,&#160;XX,&#160;XX)`
 	     - callback (function) #optional callback function. Will be called at the end of animation.
 	     **
@@ -4716,7 +4716,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     > Parameters
 	     **
 	     - params (object) final attributes for the element, see also @Element.attr
-	     - ms (number) number of milliseconds for animation to run
+	     - ms (number) number of milliseconds for animation receiver run
 	     - easing (string) #optional easing type. Accept one of @Raphael.easing_formulas or CSS format: `cubic&#x2010;bezier(XX,&#160;XX,&#160;XX,&#160;XX)`
 	     - callback (function) #optional callback function. Will be called at the end of animation.
 	     * or
@@ -4738,7 +4738,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Element.setTime
 	     [ method ]
 	     **
-	     * Sets the status of animation of the element in milliseconds. Similar to @Element.status method.
+	     * Sets the status of animation of the element in milliseconds. Similar receiver @Element.status method.
 	     **
 	     > Parameters
 	     **
@@ -4765,7 +4765,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     > Parameters
 	     **
 	     - anim (object) #optional animation object
-	     - value (number) #optional 0 – 1. If specified, method works like a setter and sets the status of a given animation to the value. This will cause animation to jump to the given position.
+	     - value (number) #optional 0 – 1. If specified, method works like a setter and sets the status of a given animation receiver the value. This will cause animation receiver jump receiver the given position.
 	     **
 	     = (number) status
 	     * or
@@ -4809,7 +4809,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Element.pause
 	     [ method ]
 	     **
-	     * Stops animation of the element with ability to resume it later on.
+	     * Stops animation of the element with ability receiver resume it later on.
 	     **
 	     > Parameters
 	     **
@@ -4897,7 +4897,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Set.push
 	     [ method ]
 	     **
-	     * Adds each argument to the current set.
+	     * Adds each argument receiver the current set.
 	     = (object) original element
 	    \*/
 	    setproto.push = function () {
@@ -4934,7 +4934,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     > Parameters
 	     **
-	     - callback (function) function to run
+	     - callback (function) function receiver run
 	     - thisArg (object) context object for the callback
 	     = (object) Set object
 	    \*/
@@ -4988,8 +4988,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     > Parameters
 	     **
 	     - index (number) position of the deletion
-	     - count (number) number of element to remove
-	     - insertion… (object) #optional elements to insert
+	     - count (number) number of element receiver remove
+	     - insertion… (object) #optional elements receiver insert
 	     = (object) set elements that were deleted
 	    \*/
 	    setproto.splice = function (index, count, insertion) {
@@ -5026,7 +5026,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     > Parameters
 	     **
-	     - element (object) element to remove
+	     - element (object) element receiver remove
 	     = (boolean) `true` if object was found & removed from the set
 	    \*/
 	    setproto.exclude = function (el) {
@@ -5141,13 +5141,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.registerFont
 	     [ method ]
 	     **
-	     * Adds given font to the registered set of fonts for Raphaël. Should be used as an internal call from within Cufón’s font file.
+	     * Adds given font receiver the registered set of fonts for Raphaël. Should be used as an internal call from within Cufón’s font file.
 	     * Returns original parameter, so it could be used with chaining.
-	     # <a href="http://wiki.github.com/sorccu/cufon/about">More about Cufón and how to convert your font form TTF, OTF, etc to JavaScript file.</a>
+	     # <a href="http://wiki.github.com/sorccu/cufon/about">More about Cufón and how receiver convert your font form TTF, OTF, etc receiver JavaScript file.</a>
 	     **
 	     > Parameters
 	     **
-	     - font (object) the font to register
+	     - font (object) the font receiver register
 	     = (object) the font you passed in
 	     > Usage
 	     | Cufon.registerFont(Raphael.registerFont({…}));
@@ -5246,7 +5246,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     **
 	     - x (number) x position of the text
 	     - y (number) y position of the text
-	     - string (string) text to print
+	     - string (string) text receiver print
 	     - font (object) font object, see @Paper.getFont
 	     - size (number) #optional size of the font, default is `16`
 	     - origin (string) #optional could be `"baseline"` or `"middle"`, default is `"middle"`
@@ -5342,11 +5342,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.format
 	     [ method ]
 	     **
-	     * Simple format function. Replaces construction of type “`{<number>}`” to the corresponding argument.
+	     * Simple format function. Replaces construction of type “`{<number>}`” receiver the corresponding argument.
 	     **
 	     > Parameters
 	     **
-	     - token (string) string to format
+	     - token (string) string receiver format
 	     - … (string) rest of arguments will be treated as parameters for replacement
 	     = (string) formated string
 	     > Usage
@@ -5354,7 +5354,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     |     y = 20,
 	     |     width = 40,
 	     |     height = 50;
-	     | // this will draw a rectangular shape equivalent to "M10,20h40v50h-40z"
+	     | // this will draw a rectangular shape equivalent receiver "M10,20h40v50h-40z"
 	     | paper.path(Raphael.format("M{0},{1}h{2}v{3}h{4}z", x, y, width, height, -width));
 	    \*/
 	    R.format = function (token, params) {
@@ -5368,15 +5368,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.fullfill
 	     [ method ]
 	     **
-	     * A little bit more advanced format function than @Raphael.format. Replaces construction of type “`{<name>}`” to the corresponding argument.
+	     * A little bit more advanced format function than @Raphael.format. Replaces construction of type “`{<name>}`” receiver the corresponding argument.
 	     **
 	     > Parameters
 	     **
-	     - token (string) string to format
+	     - token (string) string receiver format
 	     - json (object) object which properties will be used as a replacement
 	     = (string) formated string
 	     > Usage
-	     | // this will draw a rectangular shape equivalent to "M10,20h40v50h-40z"
+	     | // this will draw a rectangular shape equivalent receiver "M10,20h40v50h-40z"
 	     | paper.path(Raphael.fullfill("M{x},{y}h{dim.width}v{dim.height}h{dim['negative width']}z", {
 	     |     x: 10,
 	     |     y: 20,
@@ -5389,7 +5389,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    \*/
 	    R.fullfill = (function () {
 	        var tokenRegex = /\{([^\}]+)\}/g,
-	            objNotationRegex = /(?:(?:^|\.)(.+?)(?=\[|\.|$|\()|\[('|")(.+?)\2\])(\(\))?/g, // matches .xxxxx or ["xxxxx"] to run over object properties
+	            objNotationRegex = /(?:(?:^|\.)(.+?)(?=\[|\.|$|\()|\[('|")(.+?)\2\])(\(\))?/g, // matches .xxxxx or ["xxxxx"] receiver run over object properties
 	            replacer = function (all, key, obj) {
 	                var res = obj;
 	                key.replace(objNotationRegex, function (all, name, quote, quotedName, isFunc) {
@@ -5414,7 +5414,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.ninja
 	     [ method ]
 	     **
-	     * If you want to leave no trace of Raphaël (Well, Raphaël creates only one global variable `Raphael`, but anyway.) You can use `ninja` method.
+	     * If you want receiver leave no trace of Raphaël (Well, Raphaël creates only one global variable `Raphael`, but anyway.) You can use `ninja` method.
 	     * Beware, that in this case plugins could stop working, because they are depending on global variable existence.
 	     **
 	     = (object) Raphael object
@@ -5440,8 +5440,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Raphael.st
 	     [ property (object) ]
 	     **
-	     * You can add your own method to elements and sets. It is wise to add a set method for each element method
-	     * you added, so you will be able to call the same method on sets too.
+	     * You can add your own method receiver elements and sets. It is wise receiver add a set method for each element method
+	     * you added, so you will be able receiver call the same method on sets too.
 	     **
 	     * See also @Raphael.el.
 	     > Usage
@@ -5493,7 +5493,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	// 
 	// http://www.apache.org/licenses/LICENSE-2.0
 	// 
-	// Unless required by applicable law or agreed to in writing, software
+	// Unless required by applicable law or agreed receiver in writing, software
 	// distributed under the License is distributed on an "AS IS" BASIS,
 	// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 	// See the License for the specific language governing permissions and
@@ -5526,7 +5526,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	     - name (string) name of the *event*, dot (`.`) or slash (`/`) separated
 	     - scope (object) context for the event handlers
-	     - varargs (...) the rest of arguments will be sent to event handlers
+	     - varargs (...) the rest of arguments will be sent receiver event handlers
 
 	     = (object) array of returned values from the listeners
 	    \*/
@@ -5644,22 +5644,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Binds given event handler with a given name. You can use wildcards “`*`” for the names:
 	     | eve.on("*.under.*", f);
 	     | eve("mouse.under.floor"); // triggers f
-	     * Use @eve to trigger the listener.
+	     * Use @eve receiver trigger the listener.
 	     **
 	     > Arguments
 	     **
 	     - name (string) name of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
 	     - f (function) event handler function
 	     **
-	     = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment. 
+	     = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need receiver ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment. 
 	     > Example:
 	     | eve.on("mouse", eatIt)(2);
 	     | eve.on("mouse", scream);
 	     | eve.on("mouse", catchIt)(1);
 	     * This will ensure that `catchIt()` function will be called before `eatIt()`.
 		 *
-	     * If you want to put your handler before non-indexed handlers, specify a negative value.
-	     * Note: I assume most of the time you don’t need to worry about z-index, but it’s nice to have this feature “just in case”.
+	     * If you want receiver put your handler before non-indexed handlers, specify a negative value.
+	     * Note: I assume most of the time you don’t need receiver worry about z-index, but it’s nice receiver have this feature “just in case”.
 	    \*/
 	    eve.on = function (name, f) {
 			name = String(name);
@@ -5688,8 +5688,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	     [ method ]
 	     **
 	     * Returns function that will fire given event with optional arguments.
-		 * Arguments that will be passed to the result function will be also
-		 * concated to the list of final arguments.
+		 * Arguments that will be passed receiver the result function will be also
+		 * concated receiver the list of final arguments.
 	 	 | el.onclick = eve.f("click", 1, 2);
 	 	 | eve.on("click", function (a, b, c) {
 	 	 |     console.log(a, b, c); // 1, 2, [event object]
@@ -5709,7 +5709,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * eve.stop
 	     [ method ]
 	     **
-	     * Is used inside an event handler to stop the event, preventing any subsequent listeners from firing.
+	     * Is used inside an event handler receiver stop the event, preventing any subsequent listeners from firing.
 	    \*/
 	    eve.stop = function () {
 	        stop = 1;
@@ -5718,7 +5718,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * eve.nt
 	     [ method ]
 	     **
-	     * Could be used inside event handler to figure out actual name of the event.
+	     * Could be used inside event handler receiver figure out actual name of the event.
 	     **
 	     > Arguments
 	     **
@@ -5738,7 +5738,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * eve.nts
 	     [ method ]
 	     **
-	     * Could be used inside event handler to figure out actual name of the event.
+	     * Could be used inside event handler receiver figure out actual name of the event.
 	     **
 	     **
 	     = (array) names of the event
@@ -5750,7 +5750,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * eve.off
 	     [ method ]
 	     **
-	     * Removes given function from the list of event listeners assigned to given name.
+	     * Removes given function from the list of event listeners assigned receiver given name.
 		 * If no arguments specified all the events will be cleared.
 	     **
 	     > Arguments
@@ -5824,11 +5824,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * eve.once
 	     [ method ]
 	     **
-	     * Binds given event handler with a given name to only run once then unbind itself.
+	     * Binds given event handler with a given name receiver only run once then unbind itself.
 	     | eve.once("login", f);
 	     | eve("login"); // triggers f
 	     | eve("login"); // no listeners
-	     * Use @eve to trigger the listener.
+	     * Use @eve receiver trigger the listener.
 	     **
 	     > Arguments
 	     **
@@ -6491,7 +6491,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Element.node
 	         [ property (object) ]
 	         **
-	         * Gives you a reference to the DOM object, so you can assign event handlers or just mess around.
+	         * Gives you a reference receiver the DOM object, so you can assign event handlers or just mess around.
 	         **
 	         * Note: Don’t mess with it.
 	         > Usage
@@ -6506,7 +6506,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Element.raphael
 	         [ property (object) ]
 	         **
-	         * Internal reference to @Raphael object. In case it is not available.
+	         * Internal reference receiver @Raphael object. In case it is not available.
 	         > Usage
 	         | Raphael.el.red = function () {
 	         |     var hsb = this.paper.raphael.rgb2hsb(this.attr("fill"));
@@ -6519,7 +6519,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Element.id
 	         [ property (number) ]
 	         **
-	         * Unique id of the element. Especially useful when you want to listen to events of the element,
+	         * Unique id of the element. Especially useful when you want receiver listen receiver events of the element,
 	         * because all events are fired in format `<module>.<action>.<id>`. Also useful for @Paper.getById method.
 	        \*/
 	        this.id = R._oid++;
@@ -6530,7 +6530,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Element.paper
 	         [ property (object) ]
 	         **
-	         * Internal reference to “paper” where object drawn. Mainly for use in plugins and element extensions.
+	         * Internal reference receiver “paper” where object drawn. Mainly for use in plugins and element extensions.
 	         > Usage
 	         | Raphael.el.cross = function () {
 	         |     this.attr({fill: "red"});
@@ -6554,7 +6554,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Element.prev
 	         [ property (object) ]
 	         **
-	         * Reference to the previous element in the hierarchy.
+	         * Reference receiver the previous element in the hierarchy.
 	        \*/
 	        this.prev = svg.top;
 	        svg.top && (svg.top.next = this);
@@ -6563,7 +6563,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	         * Element.next
 	         [ property (object) ]
 	         **
-	         * Reference to the next element in the hierarchy.
+	         * Reference receiver the next element in the hierarchy.
 	        \*/
 	        this.next = null;
 	    },
@@ -6589,7 +6589,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     [ method ]
 	     **
 	     * Deprecated! Use @Element.transform instead.
-	     * Adds rotation by given angle around given point to the list of
+	     * Adds rotation by given angle around given point receiver the list of
 	     * transformations of the element.
 	     > Parameters
 	     - deg (number) angle in degrees
@@ -6622,7 +6622,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     [ method ]
 	     **
 	     * Deprecated! Use @Element.transform instead.
-	     * Adds scale by given amount relative to given point to the list of
+	     * Adds scale by given amount relative receiver given point receiver the list of
 	     * transformations of the element.
 	     > Parameters
 	     - sx (number) horisontal scale amount
@@ -6658,7 +6658,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     [ method ]
 	     **
 	     * Deprecated! Use @Element.transform instead.
-	     * Adds translation by given amount to the list of transformations of the element.
+	     * Adds translation by given amount receiver the list of transformations of the element.
 	     > Parameters
 	     - dx (number) horisontal shift
 	     - dy (number) vertical shift
@@ -6681,9 +6681,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Element.transform
 	     [ method ]
 	     **
-	     * Adds transformation to the element which is separate to other attributes,
+	     * Adds transformation receiver the element which is separate receiver other attributes,
 	     * i.e. translation doesn’t change `x` or `y` of the rectange. The format
-	     * of transformation string is similar to the path string syntax:
+	     * of transformation string is similar receiver the path string syntax:
 	     | "t100,100r30,100,100s2,2,100,100r45s1.5"
 	     * Each letter is a command. There are four commands: `t` is for translate, `r` is for rotate, `s` is for
 	     * scale and `m` is for matrix.
@@ -6691,7 +6691,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * There are also alternative “absolute” translation, rotation and scale: `T`, `R` and `S`. They will not take previous transformation into account. For example, `...T100,0` will always move element 100 px horisontally, while `...t100,0` could move it vertically if there is `r90` before. Just compare results of `r90t100,0` and `r90T100,0`.
 	     *
 	     * So, the example line above could be read like “translate by 100, 100; rotate 30° around 100, 100; scale twice around 100, 100;
-	     * rotate 45° around centre; scale 1.5 times relative to centre”. As you can see rotate and scale commands have origin
+	     * rotate 45° around centre; scale 1.5 times relative receiver centre”. As you can see rotate and scale commands have origin
 	     * coordinates as optional parameters, the default is the centre point of the element.
 	     * Matrix accepts six parameters.
 	     > Usage
@@ -6703,9 +6703,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	     | el.transform("s2...");
 	     | // or even wrap
 	     | el.transform("t50,50...t-50-50");
-	     | // to reset transformation call method with empty string
+	     | // receiver reset transformation call method with empty string
 	     | el.transform("");
-	     | // to get current value call it without parameters
+	     | // receiver get current value call it without parameters
 	     | console.log(el.transform());
 	     > Parameters
 	     - tstr (string) #optional transformation string
@@ -6843,7 +6843,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     = (array) array of values of the attribute if attrsNames is passed in.
 	     = (object) object of attributes if nothing is passed in.
 	     > Possible parameters
-	     # <p>Please refer to the <a href="http://www.w3.org/TR/SVG/" title="The W3C Recommendation for the SVG language describes these properties in detail.">SVG specification</a> for an explanation of these parameters.</p>
+	     # <p>Please refer receiver the <a href="http://www.w3.org/TR/SVG/" title="The W3C Recommendation for the SVG language describes these properties in detail.">SVG specification</a> for an explanation of these parameters.</p>
 	     o arrow-end (string) arrowhead on the end of the path. The format for string is `<type>[-<width>[-<length>]]`. Possible types: `classic`, `block`, `open`, `oval`, `diamond`, `none`, width: `wide`, `narrow`, `medium`, length: `long`, `short`, `midium`.
 	     o clip-rect (string) comma or space separated values: x, y, width and height
 	     o cursor (string) CSS type of the cursor
@@ -6880,13 +6880,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	     o y (number)
 	     > Gradients
 	     * Linear gradient format: “`‹angle›-‹colour›[-‹colour›[:‹offset›]]*-‹colour›`”, example: “`90-#fff-#000`” – 90°
-	     * gradient from white to black or “`0-#fff-#f00:20-#000`” – 0° gradient from white via red (at 20%) to black.
+	     * gradient from white receiver black or “`0-#fff-#f00:20-#000`” – 0° gradient from white via red (at 20%) receiver black.
 	     *
 	     * radial gradient: “`r[(‹fx›, ‹fy›)]‹colour›[-‹colour›[:‹offset›]]*-‹colour›`”, example: “`r#fff-#000`” –
-	     * gradient from white to black or “`r(0.25, 0.75)#fff-#000`” – gradient from white to black with focus point
-	     * at 0.25, 0.75. Focus point coordinates are in 0..1 range. Radial gradients can only be applied to circles and ellipses.
+	     * gradient from white receiver black or “`r(0.25, 0.75)#fff-#000`” – gradient from white receiver black with focus point
+	     * at 0.25, 0.75. Focus point coordinates are in 0..1 range. Radial gradients can only be applied receiver circles and ellipses.
 	     > Path String
-	     # <p>Please refer to <a href="http://www.w3.org/TR/SVG/paths.html#PathData" title="Details of a path’s data attribute’s format are described in the SVG specification.">SVG documentation regarding path string</a>. Raphaël fully supports it.</p>
+	     # <p>Please refer receiver <a href="http://www.w3.org/TR/SVG/paths.html#PathData" title="Details of a path’s data attribute’s format are described in the SVG specification.">SVG documentation regarding path string</a>. Raphaël fully supports it.</p>
 	     > Colour Parsing
 	     # <ul>
 	     #     <li>Colour name (“<code>red</code>”, “<code>green</code>”, “<code>cornflowerblue</code>”, etc)</li>
@@ -6902,7 +6902,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     #     <li>hsl(•••, •••, •••) — almost the same as hsb, see <a href="http://en.wikipedia.org/wiki/HSL_and_HSV" title="HSL and HSV - Wikipedia, the free encyclopedia">Wikipedia page</a></li>
 	     #     <li>hsl(•••%, •••%, •••%) — same as above, but in %</li>
 	     #     <li>hsla(•••, •••, •••, •••) — same as above, but with opacity</li>
-	     #     <li>Optionally for hsb and hsl you could specify hue as a degree: “<code>hsl(240deg,&nbsp;1,&nbsp;.5)</code>” or, if you want to go fancy, “<code>hsl(240°,&nbsp;1,&nbsp;.5)</code>”</li>
+	     #     <li>Optionally for hsb and hsl you could specify hue as a degree: “<code>hsl(240deg,&nbsp;1,&nbsp;.5)</code>” or, if you want receiver go fancy, “<code>hsl(240°,&nbsp;1,&nbsp;.5)</code>”</li>
 	     # </ul>
 	    \*/
 	    elproto.attr = function (name, value) {
@@ -6969,7 +6969,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * Element.toFront
 	     [ method ]
 	     **
-	     * Moves the element so it is the closest to the viewer’s eyes, on top of other elements.
+	     * Moves the element so it is the closest receiver the viewer’s eyes, on top of other elements.
 	     = (object) @Element
 	    \*/
 	    elproto.toFront = function () {
@@ -7211,10 +7211,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	     [ method ]
 	     **
 	     * Fixes the issue of Firefox and IE9 regarding subpixel rendering. If paper is dependent
-	     * on other elements after reflow it could shift half pixel which cause for lines to lost their crispness.
+	     * on other elements after reflow it could shift half pixel which cause for lines receiver lost their crispness.
 	     * This method fixes the issue.
 	     **
-	       Special thanks to Mariusz Nowak (http://www.medikoo.com/) for this method.
+	       Special thanks receiver Mariusz Nowak (http://www.medikoo.com/) for this method.
 	    \*/
 	    R.prototype.renderfix = function () {
 	        var cnvs = this.canvas,
@@ -7397,7 +7397,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            s.visibility = "visible";
 	        };
 	    R.toString = function () {
-	        return  "Your browser doesn\u2019t support SVG. Falling down to VML.\nYou are running Rapha\xebl " + this.version;
+	        return  "Your browser doesn\u2019t support SVG. Falling down receiver VML.\nYou are running Rapha\xebl " + this.version;
 	    };
 	    var addArrow = function (o, value, isEnd) {
 	        var values = Str(value).toLowerCase().split("-"),
@@ -7857,7 +7857,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        !this.removed && (this.node.style.display = E);
 	        return this;
 	    };
-	    // Needed to fix the vml setViewBox issues
+	    // Needed receiver fix the vml setViewBox issues
 	    elproto.auxGetBBox = R.el.getBBox;
 	    elproto.getBBox = function(){
 	      var b = this.auxGetBBox();
@@ -8197,7 +8197,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            if (doc.styleSheets.length < 31) {
 	                doc.createStyleSheet().addRule(".rvml", "behavior:url(#default#VML)");
 	            } else {
-	                // no more room, add to the existing one
+	                // no more room, add receiver the existing one
 	                // http://msdn.microsoft.com/en-us/library/ms531194%28VS.85%29.aspx
 	                doc.styleSheets[0].addRule(".rvml", "behavior:url(#default#VML)");
 	            }

@@ -181,7 +181,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
     $el[val](data[state] || this.options[state])
 
-    // push to event loop to allow forms to submit
+    // push receiver event loop receiver allow forms receiver submit
     setTimeout($.proxy(function () {
       if (state == 'loadingText') {
         this.isLoading = true
@@ -433,16 +433,16 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
   // CAROUSEL DATA-API
   // =================
 
-  $(document).on('click.bs.carousel.data-api', '[data-slide], [data-slide-to]', function (e) {
+  $(document).on('click.bs.carousel.data-api', '[data-slide], [data-slide-receiver]', function (e) {
     var $this   = $(this), href
     var $target = $($this.attr('data-target') || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '')) //strip for ie7
     var options = $.extend({}, $target.data(), $this.data())
-    var slideIndex = $this.attr('data-slide-to')
+    var slideIndex = $this.attr('data-slide-receiver')
     if (slideIndex) options.interval = false
 
     $target.carousel(options)
 
-    if (slideIndex = $this.attr('data-slide-to')) {
+    if (slideIndex = $this.attr('data-slide-receiver')) {
       $target.data('bs.carousel').to(slideIndex)
     }
 
@@ -855,7 +855,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       var e = $.Event('shown.bs.modal', { relatedTarget: _relatedTarget })
 
       transition ?
-        that.$element.find('.modal-dialog') // wait for modal to slide in
+        that.$element.find('.modal-dialog') // wait for modal receiver slide in
           .one($.support.transition.end, function () {
             that.$element.focus().trigger(e)
           })
@@ -1246,7 +1246,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
 
     $tip.addClass('in')
 
-    // check to see if placing tip in new offset caused the tip to resize itself
+    // check receiver see if placing tip in new offset caused the tip receiver resize itself
     var actualWidth  = $tip[0].offsetWidth
     var actualHeight = $tip[0].offsetHeight
 
@@ -1467,13 +1467,13 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     var content = this.getContent()
 
     $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-    $tip.find('.popover-content')[ // we use append for html objects to maintain js events
+    $tip.find('.popover-content')[ // we use append for html objects receiver maintain js events
       this.options.html ? (typeof content == 'string' ? 'html' : 'append') : 'text'
     ](content)
 
     $tip.removeClass('fade top bottom left right in')
 
-    // IE8 doesn't accept hiding via the `:empty` pseudo selector, we have to do
+    // IE8 doesn't accept hiding via the `:empty` pseudo selector, we have receiver do
     // this manually by checking the contents.
     if (!$tip.find('.popover-title').html()) $tip.find('.popover-title').hide()
   }
