@@ -6,8 +6,10 @@
  * Time: 11:16 AM
  */
 require_once __DIR__ . '/../vendor/autoload.php';
-$newPasswordErr = $confirmPasswordErr = $matchErr='';
-$newPassword = $confirmPassword = '';
+$newPasswordErr = $confirmPasswordErr = $matchErr = '';
+$newPassword = $confirmPassword = $success = $error = '';
+use App\Auth\Auth;
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($_POST['newPassword'])) {
@@ -20,14 +22,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         $confirmPassword = cleanInput($_POST['newPassword']);
     }
-    if($newPassword != $confirmPassword){
+    if ($newPassword != $confirmPassword) {
         //give the error
-    }else{
-        //do change of password.
+        $confirmPasswordErr = 'Password Did Not Match';
+    } elseif ($newPassword == $confirmPassword && $confirmPasswordErr == '' && $newPasswordErr == '') {
+        $changed = Auth::resetPassword($_SESSION['email'], $newPassword);
+        if ($changed) {
+            $success .= "Password Changed Successfully";
+            header('Refresh: 3;url=../index.php');
+        } else {
+            $error .= "Internal Server Error Occurred while changing your password please try again later.";
+        }
     }
-
 }
-
 function cleanInput($data)
 {
     $data = trim($data);
@@ -66,7 +73,6 @@ function cleanInput($data)
                 </div>
             </div>
 
-
             <div id="resetPasswordForm">
                 <div class="panel">
                     <?php if ($error != ''): ?>
@@ -94,12 +100,12 @@ function cleanInput($data)
                               class="form-group">
                             <label for="newPassword" class="control-label">New Password</label>
                             <input type="password" name="newPassword" id="newPassword" class="form-control" required>
-                            <span class="error">*</span>
+                            <span class="error">* <?php echo $newPasswordErr; ?></span>
 
                             <label for="confirmPassword" class="control-label">Confirm Password</label>
                             <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
                                    required>
-                            <span class="error">*</span>
+                            <span class="error">* <?php echo $confirmPasswordErr; ?></span>
 
                             <input type="submit" name="submit" value="Submit" class="btn btn-primary">
                         </form>
@@ -136,7 +142,7 @@ function cleanInput($data)
                             .html('<div class="alert alert-danger alert-dismissable">' +
                                 '<a href="#" class="close"  data-dismiss="alert" aria-label="close">&times;</a>' +
                                 '<strong>Error! </strong> ' + response.message + '</div>');
-                        $('#resetPasswordForm').show();
+                        $('#resetPasswordForm').hide();
                     }
                 }
             }

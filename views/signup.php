@@ -8,6 +8,13 @@
 
 
 ?>
+<style>
+    .error{
+        color: rgba(206,25,17,0.82);
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
 
 <div class="page-container">
 
@@ -30,10 +37,9 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <label for="fullName" class=" control-label">Full Name</label>
+                    <label for="fullName" class=" control-label">Full Name <span class="error"> * <?php echo $fullNameErr?></span></label>
+                    <input type="text" class="form-control" name="fullName" id="username" required>
 
-
-                    <input type="text" class="form-control" name="fullName" placeholder="Full Name" required>
                 </div>
             </div>
 
@@ -41,36 +47,30 @@
             <div class="form-group">
 
                 <div class="col-sm-4">
-                    <label for="username" class="control-label">Username</label>
+                    <label for="username" class="control-label">Username <span class="error">* <?php echo $usernameErr?></span></label>
 
-
-                    <input type="text" class="form-control" name="username" placeholder="Username" required>
-
+                    <input type="text" class="form-control" name="username" id="username" required>
                 </div>
 
                 <div class="col-sm-4">
-                    <label for="idNo" class="control-label">ID Number</label>
-
-
-                    <input type="text" class="form-control" name="idNo" placeholder="ID Number" required>
+                    <label for="idNo" class="control-label">ID Number <span class="error">* <?php echo $idNoErr?></span></label>
+                    <input type="number" class="form-control" name="idNo" id="idNo"  required>
                 </div>
-
-
             </div>
-
 
             <!-- Text input-->
             <div class="form-group">
                 <div class="col-sm-4">
-                    <label for="phoneNumber" class="control-label">Phone Number</label>
+                    <label for="phoneNumber" class="control-label">Phone Number <span class="error">* <?php echo $phoneNumberErr?></span></label>
 
-                    <input type="text" class="form-control" name="phoneNumber" placeholder="Phone Number" required>
+                    <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" required>
+
+
                 </div>
                 <div class="col-sm-4">
-                    <label for="email" class="control-label">Email</label>
+                    <label for="email" class="control-label">Email <span class="error">* <?php echo $emailErr?></span></label>
+                    <input type="email" class="form-control" name="email" id="email" required/>
 
-
-                    <input type="email" class="form-control" name="email" placeholder="Email" required/>
 
                 </div>
             </div>
@@ -79,26 +79,25 @@
             <!--text input-->
             <div class="form-group">
                 <div class="col-sm-4">
-                    <label for="password" class=" control-label">Password</label>
+                    <label for="password" class=" control-label">Password <span class="error">* <?php echo $passwordErr?></span></label>
 
 
-                    <input type="password" class="form-control" name="password" placeholder="Password"
+                    <input type="password" class="form-control" id='password' name="password"
                            required>
                 </div>
                 <div class="col-sm-4">
-                    <label for="confirmPassword" class="control-label">Confirm Password</label>
+                    <label for="confirmPassword" class="control-label">Confirm Password <span class="error">* <?php echo $confirmPasswordErr?></span></label>
 
 
-                    <input type="password" class="form-control" name="confirmPassword" placeholder="Confirm Password"
-                           required/>
+                    <input type="password" class="form-control" name="confirmPassword"
+                           id="confirmPassword" required/>
 
                 </div>
             </div>
-
-
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-4">
 
+                <div class="col-sm-4 col-sm-offset-2">
+                    <span class="error"><?php echo $matchErr;?></span>
                     <input type="submit" name="submit" value="Join" class="btn btn-primary btn-lg btn-block "/>
                 </div>
             </div>
