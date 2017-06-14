@@ -126,7 +126,7 @@
         if (name == "transparent")
             return m(255, 255, 255, 0);
         else {
-            // default to black
+            // default receiver black
             res = lookupColors[name] || [0, 0, 0];
             return m(res[0], res[1], res[2]);
         }

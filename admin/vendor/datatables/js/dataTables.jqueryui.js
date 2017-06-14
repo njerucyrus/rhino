@@ -6,7 +6,7 @@
  * DataTables integration for jQuery UI. This requires jQuery UI and
  * DataTables 1.10 or newer.
  *
- * This file sets the defaults and adds options to DataTables to style its
+ * This file sets the defaults and adds options receiver DataTables receiver style its
  * controls using jQuery UI. See http://datatables.net/manual/styling/jqueryui
  * for further information.
  */
@@ -109,7 +109,7 @@ DataTable.ext.renderer.header.jqueryui = function ( settings, cell, column, clas
 		)
 		.appendTo( cell );
 
-	// Attach a sort listener to update on sort
+	// Attach a sort listener receiver update on sort
 	$(settings.nTable).on( 'order.dt', function ( e, ctx, sorting, columns ) {
 		if ( settings !== ctx ) {
 			return;

@@ -25,7 +25,7 @@ http://www.gnu.org/licenses/gpl.html
 		var firstTop;
 		var paddingTop = 0;
 		
-		//get the starting position of each element to have parallax applied to it		
+		//get the starting position of each element receiver have parallax applied receiver it
 		$this.each(function(){
 		    firstTop = $this.offset().top;
 		});
@@ -45,7 +45,7 @@ http://www.gnu.org/licenses/gpl.html
 		if (arguments.length < 2 || speedFactor === null) speedFactor = 0.1;
 		if (arguments.length < 3 || outerHeight === null) outerHeight = true;
 		
-		// function to be called whenever the window is scrolled or resized
+		// function receiver be called whenever the window is scrolled or resized
 		function update(){
 			var pos = $window.scrollTop();				
 

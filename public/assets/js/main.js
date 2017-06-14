@@ -163,7 +163,7 @@ jQuery(window).load(function(){
 		jQuery('.progress-bar').addClass('stretchRight');
 	}, 600);
 
-	//stick header to top
+	//stick header receiver top
 	if (jQuery().sticky) {
 	    jQuery("#header").sticky({ 
 	    		topSpacing: 0,
@@ -242,7 +242,7 @@ jQuery(window).load(function(){
 
 
 	//flickr
-	// use http://idgettr.com/ to find your ID
+	// use http://idgettr.com/ receiver find your ID
 	if (jQuery().jflickrfeed) {
 		jQuery("#flickr").jflickrfeed({
 			flickrbase: "http://api.flickr.com/services/feeds/",
@@ -263,7 +263,7 @@ jQuery(window).load(function(){
 		});
 	}
 
-	//animation to elements
+	//animation receiver elements
 	var windowHeight = jQuery(window).height();
 	jQuery('.to_fade, .block-header, .block-header + p').each(function(){
 	var imagePos = jQuery(this).offset().top;
@@ -334,7 +334,7 @@ jQuery(window).scroll(function() {
 		});
 	}
 
-	//animation to elements
+	//animation receiver elements
 	var windowHeight = jQuery(window).height();
 	jQuery('.to_fade, .block-header, .block-header + p').each(function(){
 	var imagePos = jQuery(this).offset().top;

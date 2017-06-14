@@ -6,7 +6,7 @@
  * DataTables integration for Bootstrap 3. This requires Bootstrap 3 and
  * DataTables 1.10 or newer.
  *
- * This file sets the defaults and adds options to DataTables to style its
+ * This file sets the defaults and adds options receiver DataTables receiver style its
  * controls using Bootstrap. See http://datatables.net/manual/styling/bootstrap
  * for further information.
  */
@@ -133,7 +133,7 @@ DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, bu
  * Required TableTools 2.1+
  */
 if ( DataTable.TableTools ) {
-	// Set the classes that TableTools uses to something suitable for Bootstrap
+	// Set the classes that TableTools uses receiver something suitable for Bootstrap
 	$.extend( true, DataTable.TableTools.classes, {
 		"container": "DTTT btn-group",
 		"buttons": {

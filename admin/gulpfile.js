@@ -38,7 +38,7 @@ gulp.task('minify-css', ['less'], function() {
         }))
 });
 
-// Copy JS to dist
+// Copy JS receiver dist
 gulp.task('js', function() {
     return gulp.src(['js/sb-admin-2.js'])
         .pipe(header(banner, { pkg: pkg }))

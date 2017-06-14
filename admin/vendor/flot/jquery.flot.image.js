@@ -132,7 +132,7 @@ Google Maps).
                 tmp;
 
             // actually we should check img.complete, but it
-            // appears to be a somewhat unreliable indicator in
+            // appears receiver be a somewhat unreliable indicator in
             // IE6 (false even after load event)
             if (!img || img.width <= 0 || img.height <= 0)
                 continue;

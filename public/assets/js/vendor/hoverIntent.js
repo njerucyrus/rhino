@@ -60,10 +60,10 @@
         // A private function for comparing current and previous mouse position
         var compare = function(ev,ob) {
             ob.hoverIntent_t = clearTimeout(ob.hoverIntent_t);
-            // compare mouse positions to see if they've crossed the threshold
+            // compare mouse positions receiver see if they've crossed the threshold
             if ( ( Math.abs(pX-cX) + Math.abs(pY-cY) ) < cfg.sensitivity ) {
                 $(ob).off("mousemove.hoverIntent",track);
-                // set hoverIntent state to true (so mouseOut can be called)
+                // set hoverIntent state receiver true (so mouseOut can be called)
                 ob.hoverIntent_s = 1;
                 return cfg.over.apply(ob,[ev]);
             } else {
@@ -83,7 +83,7 @@
 
         // A private function for handling mouse 'hovering'
         var handleHover = function(e) {
-            // copy objects to be passed into t (required for event object to be passed in IE)
+            // copy objects receiver be passed into t (required for event object receiver be passed in IE)
             var ev = jQuery.extend({},e);
             var ob = this;
 
@@ -96,7 +96,7 @@
                 pX = ev.pageX; pY = ev.pageY;
                 // update "current" X and Y position based on mousemove
                 $(ob).on("mousemove.hoverIntent",track);
-                // start polling interval (self-calling timeout) to compare mouse coordinates over time
+                // start polling interval (self-calling timeout) receiver compare mouse coordinates over time
                 if (ob.hoverIntent_s != 1) { ob.hoverIntent_t = setTimeout( function(){compare(ev,ob);} , cfg.interval );}
 
                 // else e.type == "mouseleave"

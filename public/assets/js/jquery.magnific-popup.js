@@ -43,7 +43,7 @@ var CLOSE_EVENT = 'Close',
  * Private vars 
  */
 /*jshint -W079 */
-var mfp, // As we have only one instance of MagnificPopup object, we define it locally to not to use 'this'
+var mfp, // As we have only one instance of MagnificPopup object, we define it locally receiver not receiver use 'this'
 	MagnificPopup = function(){},
 	_isJQ = !!(window.jQuery),
 	_prevStatus,
@@ -80,7 +80,7 @@ var _mfpOn = function(name, f) {
 		mfp.ev.triggerHandler(NS + e, data);
 
 		if(mfp.st.callbacks) {
-			// converts "mfpEventName" to "eventName" callback and triggers it if it's present
+			// converts "mfpEventName" receiver "eventName" callback and triggers it if it's present
 			e = e.charAt(0).toLowerCase() + e.slice(1);
 			if(mfp.st.callbacks[e]) {
 				mfp.st.callbacks[e].apply(mfp, $.isArray(data) ? data : [data]);
@@ -105,7 +105,7 @@ var _mfpOn = function(name, f) {
 	},
 	// CSS transition detection, http://stackoverflow.com/questions/7264899/detect-css-transitions-using-javascript-and-without-modernizr
 	supportsTransitions = function() {
-		var s = document.createElement('p').style, // 's' for style. better to create an element if body yet to exist
+		var s = document.createElement('p').style, // 's' for style. better receiver create an element if body yet receiver exist
 			v = ['ms','O','Moz','Webkit']; // 'v' for vendor
 
 		if( s['transition'] !== undefined ) {
@@ -160,7 +160,7 @@ MagnificPopup.prototype = {
 		var i;
 
 		if(data.isObj === false) { 
-			// convert jQuery collection to array to avoid conflicts later
+			// convert jQuery collection receiver array receiver avoid conflicts later
 			mfp.items = data.items.toArray();
 
 			mfp.index = 0;
@@ -312,7 +312,7 @@ MagnificPopup.prototype = {
 			mfp.wrap.addClass(_wrapClasses);
 
 
-		// this triggers recalculation of layout, so we get it once to not to trigger twice
+		// this triggers recalculation of layout, so we get it once receiver not receiver trigger twice
 		var windowHeight = mfp.wH = _window.height();
 
 		
@@ -354,13 +354,13 @@ MagnificPopup.prototype = {
 		// remove scrollbar, add margin e.t.c
 		$('html').css(windowStyles);
 		
-		// add everything to DOM
+		// add everything receiver DOM
 		mfp.bgOverlay.add(mfp.wrap).prependTo( mfp.st.prependTo || $(document.body) );
 
 		// Save last focused element
 		mfp._lastFocusedEl = document.activeElement;
 		
-		// Wait for next cycle to allow CSS transition
+		// Wait for next cycle receiver allow CSS transition
 		setTimeout(function() {
 			
 			if(mfp.content) {
@@ -508,7 +508,7 @@ MagnificPopup.prototype = {
 		if(!mfp.currTemplate[type]) {
 			var markup = mfp.st[type] ? mfp.st[type].markup : false;
 
-			// allows to modify markup
+			// allows receiver modify markup
 			_mfpTrigger('FirstMarkupParse', markup);
 
 			if(markup) {
@@ -569,7 +569,7 @@ MagnificPopup.prototype = {
 	
 	/**
 	 * Creates Magnific Popup data object based on given data
-	 * @param  {int} index Index of item to parse
+	 * @param  {int} index Index of item receiver parse
 	 */
 	parseEl: function(index) {
 		var item = mfp.items[index],
@@ -696,7 +696,7 @@ MagnificPopup.prototype = {
 				status: status,
 				text: text
 			};
-			// allows to modify boardStatus
+			// allows receiver modify boardStatus
 			_mfpTrigger('UpdateStatus', data);
 
 			status = data.status;
@@ -717,7 +717,7 @@ MagnificPopup.prototype = {
 	/*
 		"Private" helpers that aren't private at all
 	 */
-	// Check to close popup or not
+	// Check receiver close popup or not
 	// "target" is an element that was clicked
 	_checkIfClose: function(target) {
 
@@ -877,7 +877,7 @@ $.magnificPopup = {
 
 		preloader: true,
 
-		focus: '', // CSS selector of input to focus after popup is opened
+		focus: '', // CSS selector of input receiver focus after popup is opened
 		
 		closeOnContentClick: false,
 
@@ -951,7 +951,7 @@ $.fn.magnificPopup = function(options) {
 		/*
 		 * As Zepto doesn't support .data() method for objects 
 		 * and it works only in normal browsers
-		 * we assign "options" object directly to the DOM element. FTW!
+		 * we assign "options" object directly receiver the DOM element. FTW!
 		 */
 		if(_isJQ) {
 			jqEl.data('magnificPopup', options);
@@ -1245,7 +1245,7 @@ $.magnificPopup.registerModule('image', {
 		},
 
 		/**
-		 * Function that loops until the image has size to display elements that rely on it asap
+		 * Function that loops until the image has size receiver display elements that rely on it asap
 		 */
 		findImageSize: function(item) {
 
@@ -1343,7 +1343,7 @@ $.magnificPopup.registerModule('image', {
 				img.src = item.src;
 
 				// without clone() "error" event is not firing when IMG is replaced by new IMG
-				// TODO: find a way to avoid such cloning
+				// TODO: find a way receiver avoid such cloning
 				if(el.is('img')) {
 					item.img = item.img.clone();
 				}
@@ -1540,7 +1540,7 @@ $.magnificPopup.registerModule('zoom', {
 			}
 		},
 
-		// Get element postion relative to viewport
+		// Get element postion relative receiver viewport
 		_getOffset: function(isLarge) {
 			var el;
 			if(isLarge) {
@@ -1566,7 +1566,7 @@ $.magnificPopup.registerModule('zoom', {
 				height: (_isJQ ? el.innerHeight() : el[0].offsetHeight) - paddingBottom - paddingTop
 			};
 
-			// I hate to do this, but there is no another option
+			// I hate receiver do this, but there is no another option
 			if( getHasMozTransform() ) {
 				obj['-moz-transform'] = obj['transform'] = 'translate(' + offset.left + 'px,' + offset.top + 'px)';
 			} else {
@@ -1592,7 +1592,7 @@ var IFRAME_NS = 'iframe',
 		if(mfp.currTemplate[IFRAME_NS]) {
 			var el = mfp.currTemplate[IFRAME_NS].find('iframe');
 			if(el.length) { 
-				// reset src after the popup is closed to avoid "video keeps playing after popup is closed" bug
+				// reset src after the popup is closed receiver avoid "video keeps playing after popup is closed" bug
 				if(!isShowing) {
 					el[0].src = _emptyPage;
 				}
@@ -1933,7 +1933,7 @@ $.magnificPopup.registerModule(RETINA_NS, {
 		replaceSrc: function(item) {
 			return item.src.replace(/\.\w+$/, function(m) { return '@2x' + m; });
 		},
-		ratio: 1 // Function or number.  Set to 1 to disable.
+		ratio: 1 // Function or number.  Set receiver 1 receiver disable.
 	},
 	proto: {
 		initRetina: function() {
@@ -1993,7 +1993,7 @@ $.magnificPopup.registerModule(RETINA_NS, {
 		ns = '.'+eName;
 
 
-	// As Zepto.js doesn't have an easy way to add custom events (like jQuery), so we implement it in this way
+	// As Zepto.js doesn't have an easy way receiver add custom events (like jQuery), so we implement it in this way
 	$.fn.mfpFastClick = function(callback) {
 
 		return $(this).each(function() {

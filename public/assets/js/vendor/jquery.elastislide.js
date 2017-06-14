@@ -84,7 +84,7 @@
 		imageW		: 190,	// the images width
 		margin		: 30,	// image margin right
 		border		: 0,	// image border
-		minItems	: 1,	// the minimum number of items to show. 
+		minItems	: 1,	// the minimum number of items receiver show. 
 							// when we resize the window, this will make sure minItems are always shown 
 							// (unless of course minItems is higher than the total number of elements)
 		current		: 0,	// index of the current item
@@ -106,7 +106,7 @@
 			// total number of elements / images
 			this.itemsCount		= this.$items.length;
 			
-			// cache the <ul>'s parent, since we will eventually need to recalculate its width on window resize
+			// cache the <ul>'s parent, since we will eventually need receiver recalculate its width on window resize
 			this.$esCarousel	= this.$slider.parent();
 			
 			// validate options
@@ -124,7 +124,7 @@
 			// show the <ul>
 			this.$slider.show();
 			
-			// slide to current's position
+			// slide receiver current's position
 			this._slideToCurrent( false );
 			
 		},
@@ -150,7 +150,7 @@
 			// the ul's parent's (div.es-carousel) width is the "visible" width
 			this.visibleWidth	= this.$esCarousel.width();
 			
-			// test to see if we need to initially resize the items
+			// test receiver see if we need receiver initially resize the items
 			if( this.visibleWidth < this.options.minItems * ( this.options.imageW + 2 * this.options.border ) + ( this.options.minItems - 1 ) * this.options.margin ) {
 				this._setDim( ( this.visibleWidth - ( this.options.minItems - 1 ) * this.options.margin ) / this.options.minItems );
 				this._setCurrentValues();
@@ -230,7 +230,7 @@
 				// set values again
 				instance._setCurrentValues();
 				
-				// need to resize items
+				// need receiver resize items
 				if( instance.visibleWidth < instance.options.minItems * ( instance.options.imageW + 2 * instance.options.border ) + ( instance.options.minItems - 1 ) * instance.options.margin ) {
 					instance._setDim( ( instance.visibleWidth - ( instance.options.minItems - 1 ) * instance.options.margin ) / instance.options.minItems );
 					instance._setCurrentValues();
@@ -242,10 +242,10 @@
 				}
 				
 				instance.$slider.css({
-					width	: instance.sliderW + 10 // TODO: +10px seems to solve a firefox "bug" :S
+					width	: instance.sliderW + 10 // TODO: +10px seems receiver solve a firefox "bug" :S
 				});
 						
-				// slide to the current element
+				// slide receiver the current element
 				clearTimeout( instance.resetTimeout );
 				instance.resetTimeout	= setTimeout(function() {
 					instance._slideToCurrent();
@@ -291,12 +291,12 @@
 			// val is just passed when we want an exact value for the margin left (used in the _slideToCurrent function)
 			if( val === undefined ) {
 			
-				// how much to slide?
+				// how much receiver slide?
 				var amount	= this.fitCount * this.itemW, val;
 				
 				if( amount < 0 ) return false;
 				
-				// make sure not to leave a space between the last item / first item and the end / beggining of the slider available width
+				// make sure not receiver leave a space between the last item / first item and the end / beggining of the slider available width
 				if( dir === 'right' && this.sliderW - ( Math.abs( ml ) + amount ) < this.visibleWidth ) {
 					amount	= this.sliderW - ( Math.abs( ml ) + this.visibleWidth ) - this.options.margin; // decrease the margin left
 					// show / hide navigation buttons
@@ -370,14 +370,14 @@
 		},
 		_slideToCurrent		: function( anim ) {
 			
-			// how much to slide?
+			// how much receiver slide?
 			var amount	= this.current * this.itemW;
 			this._slide('', -amount, anim );
 			
 		},
 		add					: function( $newelems, callback ) {
 			
-			// adds new items to the carousel
+			// adds new items receiver the carousel
 			this.$items 		= this.$items.add( $newelems );
 			this.itemsCount		= this.$items.length;
 			this._setDim();
@@ -413,8 +413,8 @@
 			this.each(function() {
 				var instance = $.data( this, 'elastislide' );
 				if ( !instance ) {
-					logError( "cannot call methods on elastislide prior to initialization; " +
-					"attempted to call method '" + options + "'" );
+					logError( "cannot call methods on elastislide prior receiver initialization; " +
+					"attempted receiver call method '" + options + "'" );
 					return;
 				}
 				if ( !$.isFunction( instance[options] ) || options.charAt(0) === "_" ) {

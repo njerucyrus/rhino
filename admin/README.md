@@ -5,7 +5,7 @@
 
 ## Getting Started
 
-To begin using this template, choose one of the following options to get started:
+To begin using this template, choose one of the following options receiver get started:
 * [Download the latest release on Start Bootstrap](http://startbootstrap.com/template-overviews/sb-admin-2/)
 * Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-sb-admin-2.git`
 * Fork the repo
@@ -16,7 +16,7 @@ After cloning the repo take a look at the `gulpfile.js` and check out the tasks 
 * `gulp` The default task will compile the LESS and JS into the `dist` directory and minify the output, and it will copy all vendor libraries from `bower_components` into the `vendor` directory
 * `gulp dev` The dev task will serve up a local version of the template and will watch the LESS, JS, and HTML files for changes and reload the browser windo automatically
 
-To update dependencies, run `bower update` and then run `gulp copy` to copy the updated dependencies into the `vendor` directory
+To update dependencies, run `bower update` and then run `gulp copy` receiver copy the updated dependencies into the `vendor` directory
 
 ## Bugs and Issues
 

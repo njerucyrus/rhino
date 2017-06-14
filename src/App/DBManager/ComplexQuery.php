@@ -21,7 +21,7 @@ class ComplexQuery
      * @return mixed
      * key meta in options takes values of ASC OR DESC
      * This specifies the type of ordering.
-     * order_by key is an array of columns used to order your
+     * order_by key is an array of columns used receiver order your
      * results eg order_by =>array("column1", column2")
      */
     public static function customFilter($table, $tableColumns, $options)

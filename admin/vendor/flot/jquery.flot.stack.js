@@ -123,7 +123,7 @@ charts or filled areas).
                         j += otherps;
                     }
                     else if (px > qx) {
-                        // we got past point below, might need to
+                        // we got past point below, might need receiver
                         // insert interpolated extra point
                         if (withlines && i > 0 && points[i - ps] != null) {
                             intery = py + (points[i - ps + accumulateOffset] - py) * (qx - px) / (points[i - ps + keyOffset] - px);
@@ -146,7 +146,7 @@ charts or filled areas).
                         for (m = 0; m < ps; ++m)
                             newpoints.push(points[i + m]);
                         
-                        // we might be able to interpolate a point below,
+                        // we might be able receiver interpolate a point below,
                         // this can give us a better y
                         if (withlines && j > 0 && otherpoints[j - otherps] != null)
                             bottom = qy + (otherpoints[j - otherps + accumulateOffset] - qy) * (px - qx) / (otherpoints[j - otherps + keyOffset] - qx);

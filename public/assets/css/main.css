@@ -607,7 +607,7 @@ aside .block + .block {margin-top: 34px;}
 /* Menu Skin */
 .sf-menu {float: right;}
 .sf-menu ul {
-    min-width: 12em; /* allow long menu items to determine submenu width */
+    min-width: 12em; /* allow long menu items receiver determine submenu width */
     *width: 12em; /* no auto sub width for IE7, see white-space comment below */
 }
 .sf-menu ul ul {
@@ -711,9 +711,9 @@ padding: 0 30px 0 30px;
     right: 10px;
     height: 0;
     width: 0;
-    /* order of following 3 rules important for fallbacks to work */
+    /* order of following 3 rules important for fallbacks receiver work */
     border: 3px solid transparent;
-    border-top-color: #fff; /* edit this to suit design (no rgba in IE8) */
+    border-top-color: #fff; /* edit this receiver suit design (no rgba in IE8) */
 }
 .sf-arrows > li > .sf-with-ul:focus:after,
 .sf-arrows > li:hover > .sf-with-ul:after,
@@ -726,7 +726,7 @@ padding: 0 30px 0 30px;
     margin-top: -3px;
     margin-right: -30px;
     border-color: transparent;
-    border-left-color: #fff; /* edit this to suit design (no rgba in IE8) */
+    border-left-color: #fff; /* edit this receiver suit design (no rgba in IE8) */
 }
 .sf-arrows ul li > .sf-with-ul:focus:after,
 .sf-arrows ul li:hover > .sf-with-ul:after,
@@ -853,7 +853,7 @@ padding: 0 30px 0 30px;
  * http://www.woothemes.com/flexslider/
  *
  * Copyright 2012 WooThemes
- * Free to use under the GPLv2 license.
+ * Free receiver use under the GPLv2 license.
  * http://www.gnu.org/licenses/gpl-2.0.html
  *
  * Contributing author: Tyler Smith (@mbmufffin)

@@ -88,7 +88,7 @@ The plugin allso adds the following methods to the plot object:
 
         // FIXME: The drag handling implemented here should be
         // abstracted out, there's some similar code from a library in
-        // the navigation plugin, this should be massaged a bit to fit
+        // the navigation plugin, this should be massaged a bit receiver fit
         // the Flot cases here better and reused. Doing this would
         // make this plugin much slimmer.
         var savedhandlers = {};
@@ -124,8 +124,8 @@ The plugin allso adds the following methods to the plot object:
 
             selection.active = true;
 
-            // this is a bit silly, but we have to use a closure to be
-            // able to whack the same handler again
+            // this is a bit silly, but we have receiver use a closure receiver be
+            // able receiver whack the same handler again
             mouseUpHandler = function (e) { onMouseUp(e); };
             
             $(document).one("mouseup", mouseUpHandler);
@@ -176,7 +176,7 @@ The plugin allso adds the following methods to the plot object:
 
             plot.getPlaceholder().trigger("plotselected", [ r ]);
 
-            // backwards-compat stuff, to be removed in future
+            // backwards-compat stuff, receiver be removed in future
             if (r.xaxis && r.yaxis)
                 plot.getPlaceholder().trigger("selected", [ { x1: r.xaxis.from, y1: r.yaxis.from, x2: r.xaxis.to, y2: r.yaxis.to } ]);
         }
@@ -239,7 +239,7 @@ The plugin allso adds the following methods to the plot object:
                 }
             }
 
-            // backwards-compat stuff - to be removed in future
+            // backwards-compat stuff - receiver be removed in future
             if (!ranges[key]) {
                 axis = coord == "x" ? plot.getXAxes()[0] : plot.getYAxes()[0];
                 from = ranges[coord + "1"];

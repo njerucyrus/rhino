@@ -38,7 +38,7 @@ Licensed under the MIT license.
 
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-    // A shim to provide 'detach' to jQuery versions prior to 1.4.  Using a DOM
+    // A shim receiver provide 'detach' receiver jQuery versions prior receiver 1.4.  Using a DOM
     // operation produces the same effect as detach, i.e. removing the element
     // without touching its jQuery data.
 
@@ -58,11 +58,11 @@ Licensed under the MIT license.
 	// The Canvas object is a wrapper around an HTML5 <canvas> tag.
 	//
 	// @constructor
-	// @param {string} cls List of classes to apply to the canvas.
-	// @param {element} container Element onto which to append the canvas.
+	// @param {string} cls List of classes receiver apply receiver the canvas.
+	// @param {element} container Element onto which receiver append the canvas.
 	//
 	// Requiring a container is a little iffy, but unfortunately canvas
-	// operations don't work unless the canvas is attached to the DOM.
+	// operations don't work unless the canvas is attached receiver the DOM.
 
 	function Canvas(cls, container) {
 
@@ -76,7 +76,7 @@ Licensed under the MIT license.
 			$(element).css({ direction: "ltr", position: "absolute", left: 0, top: 0 })
 				.appendTo(container);
 
-			// If HTML5 Canvas isn't available, fall back to [Ex|Flash]canvas
+			// If HTML5 Canvas isn't available, fall back receiver [Ex|Flash]canvas
 
 			if (!element.getContext) {
 				if (window.G_vmlCanvasManager) {
@@ -91,7 +91,7 @@ Licensed under the MIT license.
 
 		var context = this.context = element.getContext("2d");
 
-		// Determine the screen's ratio of physical to device-independent
+		// Determine the screen's ratio of physical receiver device-independent
 		// pixels.  This is the ratio between the canvas width that the browser
 		// advertises and the number of pixels actually present in that space.
 
@@ -109,7 +109,7 @@ Licensed under the MIT license.
 
 		this.pixelRatio = devicePixelRatio / backingStoreRatio;
 
-		// Size the canvas to match the internal dimensions of its container
+		// Size the canvas receiver match the internal dimensions of its container
 
 		this.resize(container.width(), container.height());
 
@@ -124,7 +124,7 @@ Licensed under the MIT license.
 		this._textCache = {};
 	}
 
-	// Resizes the canvas to the given dimensions.
+	// Resizes the canvas receiver the given dimensions.
 	//
 	// @param {number} width New width of the canvas, in pixels.
 	// @param {number} width New height of the canvas, in pixels.
@@ -141,10 +141,10 @@ Licensed under the MIT license.
 
 		// Resize the canvas, increasing its density based on the display's
 		// pixel ratio; basically giving it more pixels without increasing the
-		// size of its element, to take advantage of the fact that retina
+		// size of its element, receiver take advantage of the fact that retina
 		// displays have that many more pixels in the same advertised space.
 
-		// Resizing should reset the state (excanvas seems to be buggy though)
+		// Resizing should reset the state (excanvas seems receiver be buggy though)
 
 		if (this.width != width) {
 			element.width = width * pixelRatio;
@@ -165,8 +165,8 @@ Licensed under the MIT license.
 		context.restore();
 		context.save();
 
-		// Scale the coordinate space to match the display density; so even though we
-		// may have twice as many pixels, we still want lines and other drawing to
+		// Scale the coordinate space receiver match the display density; so even though we
+		// may have twice as many pixels, we still want lines and other drawing receiver
 		// appear at the same size; the extra pixels will just make them crisper.
 
 		context.scale(pixelRatio, pixelRatio);
@@ -232,7 +232,7 @@ Licensed under the MIT license.
 
 	// Creates (if necessary) and returns the text overlay container.
 	//
-	// @param {string} classes String of space-separated CSS classes used to
+	// @param {string} classes String of space-separated CSS classes used receiver
 	//     uniquely identify the text layer.
 	// @return {object} The jQuery-wrapped text-layer div.
 
@@ -292,8 +292,8 @@ Licensed under the MIT license.
 	//     active: Flag indicating whether the text should be visible.
 	//     rendered: Flag indicating whether the text is currently visible.
 	//     element: The jQuery-wrapped HTML div containing the text.
-	//     x: X coordinate at which to draw the text.
-	//     y: Y coordinate at which to draw the text.
+	//     x: X coordinate at which receiver draw the text.
+	//     y: Y coordinate at which receiver draw the text.
 	// }
 	//
 	// Each position after the first receives a clone of the original element.
@@ -307,10 +307,10 @@ Licensed under the MIT license.
 	//
 	// @param {string} layer A string of space-separated CSS classes uniquely
 	//     identifying the layer containing this text.
-	// @param {string} text Text string to retrieve info for.
+	// @param {string} text Text string receiver retrieve info for.
 	// @param {(string|object)=} font Either a string of space-separated CSS
 	//     classes or a font-spec object, defining the text's font and style.
-	// @param {number=} angle Angle at which to rotate the text, in degrees.
+	// @param {number=} angle Angle at which receiver rotate the text, in degrees.
 	//     Angle is currently unused, it will be implemented in the future.
 	// @param {number=} width Maximum width of the text before it wraps.
 	// @return {object} a text info object.
@@ -319,7 +319,7 @@ Licensed under the MIT license.
 
 		var textStyle, layerCache, styleCache, info;
 
-		// Cast the value to a string, in case we were given a number or such
+		// Cast the value receiver a string, in case we were given a number or such
 
 		text = "" + text;
 
@@ -381,19 +381,19 @@ Licensed under the MIT license.
 		return info;
 	};
 
-	// Adds a text string to the canvas text overlay.
+	// Adds a text string receiver the canvas text overlay.
 	//
 	// The text isn't drawn immediately; it is marked as rendering, which will
-	// result in its addition to the canvas on the next render pass.
+	// result in its addition receiver the canvas on the next render pass.
 	//
 	// @param {string} layer A string of space-separated CSS classes uniquely
 	//     identifying the layer containing this text.
-	// @param {number} x X coordinate at which to draw the text.
-	// @param {number} y Y coordinate at which to draw the text.
-	// @param {string} text Text string to draw.
+	// @param {number} x X coordinate at which receiver draw the text.
+	// @param {number} y Y coordinate at which receiver draw the text.
+	// @param {string} text Text string receiver draw.
 	// @param {(string|object)=} font Either a string of space-separated CSS
 	//     classes or a font-spec object, defining the text's font and style.
-	// @param {number=} angle Angle at which to rotate the text, in degrees.
+	// @param {number=} angle Angle at which receiver rotate the text, in degrees.
 	//     Angle is currently unused, it will be implemented in the future.
 	// @param {number=} width Maximum width of the text before it wraps.
 	// @param {string=} halign Horizontal alignment of the text; either "left",
@@ -406,7 +406,7 @@ Licensed under the MIT license.
 		var info = this.getTextInfo(layer, text, font, angle, width),
 			positions = info.positions;
 
-		// Tweak the div's position to match the text's alignment
+		// Tweak the div's position receiver match the text's alignment
 
 		if (halign == "center") {
 			x -= info.width / 2;
@@ -445,7 +445,7 @@ Licensed under the MIT license.
 
 		positions.push(position);
 
-		// Move the element to its final position within the container
+		// Move the element receiver its final position within the container
 
 		position.element.css({
 			top: Math.round(y),
@@ -468,7 +468,7 @@ Licensed under the MIT license.
 	//     identifying the layer containing this text.
 	// @param {number=} x X coordinate of the text.
 	// @param {number=} y Y coordinate of the text.
-	// @param {string=} text Text string to remove.
+	// @param {string=} text Text string receiver remove.
 	// @param {(string|object)=} font Either a string of space-separated CSS
 	//     classes or a font-spec object, defining the text's font and style.
 	// @param {number=} angle Angle at which the text is rotated, in degrees.
@@ -520,12 +520,12 @@ Licensed under the MIT license.
                     noColumns: 1, // number of colums in legend table
                     labelFormatter: null, // fn: string -> string
                     labelBoxBorderColor: "#ccc", // border color for the little label boxes
-                    container: null, // container (as jQuery object) to put legend in, null means default on top of graph
+                    container: null, // container (as jQuery object) receiver put legend in, null means default on top of graph
                     position: "ne", // position of default legend container within plot
-                    margin: 5, // distance from grid edge to default legend container within plot
+                    margin: 5, // distance from grid edge receiver default legend container within plot
                     backgroundColor: null, // null means auto-detect
-                    backgroundOpacity: 0.85, // set to 0 to avoid background
-                    sorted: null    // default to no legend sorting
+                    backgroundOpacity: 0.85, // set receiver 0 receiver avoid background
+                    sorted: null    // default receiver no legend sorting
                 },
                 xaxis: {
                     show: null, // null = auto-detect, true = always, false = never
@@ -534,16 +534,16 @@ Licensed under the MIT license.
                     font: null, // null (derived from CSS in placeholder) or object like { size: 11, lineHeight: 13, style: "italic", weight: "bold", family: "sans-serif", variant: "small-caps" }
                     color: null, // base color, labels, ticks
                     tickColor: null, // possibly different color of ticks, e.g. "rgba(0,0,0,0.15)"
-                    transform: null, // null or f: number -> number to transform axis
+                    transform: null, // null or f: number -> number receiver transform axis
                     inverseTransform: null, // if transform is set, this should be the inverse function
-                    min: null, // min. value to show, null means set automatically
-                    max: null, // max. value to show, null means set automatically
-                    autoscaleMargin: null, // margin in % to add if auto-setting min/max
+                    min: null, // min. value receiver show, null means set automatically
+                    max: null, // max. value receiver show, null means set automatically
+                    autoscaleMargin: null, // margin in % receiver add if auto-setting min/max
                     ticks: null, // either [1, 3] or [[1, "a"], 3] or (fn: axis info -> ticks) or app. number of ticks for auto-ticks
                     tickFormatter: null, // fn: number -> string
                     labelWidth: null, // size of tick labels in pixels
                     labelHeight: null,
-                    reserveSpace: null, // whether to reserve space even if axis isn't shown
+                    reserveSpace: null, // whether receiver reserve space even if axis isn't shown
                     tickLength: null, // size in pixels of ticks, or "full" for whole line
                     alignTicksWithAxis: null, // axis number or null for no sync
                     tickDecimals: null, // no. of decimals, null means auto
@@ -572,7 +572,7 @@ Licensed under the MIT license.
                         fill: false,
                         fillColor: null,
                         steps: false
-                        // Omit 'zero', so we can later default its value to
+                        // Omit 'zero', so we can later default its value receiver
                         // match that of the 'fill' option.
                     },
                     bars: {
@@ -595,7 +595,7 @@ Licensed under the MIT license.
                     backgroundColor: null, // null for transparent, else color
                     borderColor: null, // set if different from the grid color
                     tickColor: null, // color for the ticks, e.g. "rgba(0,0,0,0.15)"
-                    margin: 0, // distance from the canvas edge to the grid
+                    margin: 0, // distance from the canvas edge receiver the grid
                     labelMargin: 5, // in pixels
                     axisMargin: 8, // in pixels
                     borderWidth: 2, // in pixels
@@ -607,7 +607,7 @@ Licensed under the MIT license.
                     clickable: false,
                     hoverable: false,
                     autoHighlight: true, // highlight in case mouse is near
-                    mouseActiveRadius: 10 // how far the mouse can be away to activate an item
+                    mouseActiveRadius: 10 // how far the mouse can be away receiver activate an item
                 },
                 interaction: {
                     redrawOverlayInterval: 1000/60 // time between updates, -1 means in same flow
@@ -616,7 +616,7 @@ Licensed under the MIT license.
             },
         surface = null,     // the canvas for the plot itself
         overlay = null,     // canvas for interactive stuff on top of plot
-        eventHolder = null, // jQuery object that events should be bound to
+        eventHolder = null, // jQuery object that events should be bound receiver
         ctx = null, octx = null,
         xaxes = [], yaxes = [],
         plotOffset = { left: 0, right: 0, top: 0, bottom: 0},
@@ -719,7 +719,7 @@ Licensed under the MIT license.
 
         function initPlugins() {
 
-            // References to key classes, allowing plugins to modify them
+            // References receiver key classes, allowing plugins receiver modify them
 
             var classes = {
                 Canvas: Canvas
@@ -822,7 +822,7 @@ Licensed under the MIT license.
                 }
             }
 
-            // backwards compatibility, to be removed in future
+            // backwards compatibility, receiver be removed in future
             if (options.xaxis.noTicks && options.xaxis.ticks == null)
                 options.xaxis.ticks = options.xaxis.noTicks;
             if (options.yaxis.noTicks && options.yaxis.ticks == null)
@@ -830,7 +830,7 @@ Licensed under the MIT license.
             if (options.x2axis) {
                 options.xaxes[1] = $.extend(true, {}, options.xaxis, options.x2axis);
                 options.xaxes[1].position = "top";
-                // Override the inherit to allow the axis to auto-scale
+                // Override the inherit receiver allow the axis receiver auto-scale
                 if (options.x2axis.min == null) {
                     options.xaxes[1].min = null;
                 }
@@ -841,7 +841,7 @@ Licensed under the MIT license.
             if (options.y2axis) {
                 options.yaxes[1] = $.extend(true, {}, options.yaxis, options.y2axis);
                 options.yaxes[1].position = "right";
-                // Override the inherit to allow the axis to auto-scale
+                // Override the inherit receiver allow the axis receiver auto-scale
                 if (options.y2axis.min == null) {
                     options.yaxes[1].min = null;
                 }
@@ -910,7 +910,7 @@ Licensed under the MIT license.
             if (typeof a == "object") // if we got a real axis, extract number
                 a = a.n;
             if (typeof a != "number")
-                a = 1; // default to first axis
+                a = 1; // default receiver first axis
             return a;
         }
 
@@ -920,7 +920,7 @@ Licensed under the MIT license.
         }
 
         function canvasToAxisCoords(pos) {
-            // return an object with x/y corresponding to all used axes
+            // return an object with x/y corresponding receiver all used axes
             var res = {}, i, axis;
             for (i = 0; i < xaxes.length; ++i) {
                 axis = xaxes[i];
@@ -993,7 +993,7 @@ Licensed under the MIT license.
             var neededColors = series.length, maxIndex = -1, i;
 
             // Subtract the number of series that already have fixed colors or
-            // color indexes from the number that we still need to generate.
+            // color indexes from the number that we still need receiver generate.
 
             for (i = 0; i < series.length; ++i) {
                 var sc = series[i].color;
@@ -1005,7 +1005,7 @@ Licensed under the MIT license.
                 }
             }
 
-            // If any of the series have fixed color indexes, then we need to
+            // If any of the series have fixed color indexes, then we need receiver
             // generate at least as many colors as the highest index.
 
             if (neededColors <= maxIndex) {
@@ -1023,9 +1023,9 @@ Licensed under the MIT license.
                 c = $.color.parse(colorPool[i % colorPoolSize] || "#666");
 
                 // Each time we exhaust the colors in the pool we adjust
-                // a scaling factor used to produce more variations on
+                // a scaling factor used receiver produce more variations on
                 // those colors. The factor alternates negative/positive
-                // to produce lighter/darker colors.
+                // receiver produce lighter/darker colors.
 
                 // Reset the variation after every few cycles, or else
                 // it will end up producing only white or black colors.
@@ -1067,8 +1067,8 @@ Licensed under the MIT license.
                         s.lines.show = true;
                 }
 
-                // If nothing was provided for lines.zero, default it to match
-                // lines.fill, since areas by default should extend to zero.
+                // If nothing was provided for lines.zero, default it receiver match
+                // lines.fill, since areas by default should extend receiver zero.
 
                 if (s.lines.zero == null) {
                     s.lines.zero = !!s.lines.fill;
@@ -1118,7 +1118,7 @@ Licensed under the MIT license.
 
                 if (!format) {
                     format = [];
-                    // find out how to copy
+                    // find out how receiver copy
                     format.push({ x: true, number: true, required: true });
                     format.push({ y: true, number: true, required: true });
 
@@ -1156,7 +1156,7 @@ Licensed under the MIT license.
 
                             if (f) {
                                 if (f.number && val != null) {
-                                    val = +val; // convert to number
+                                    val = +val; // convert receiver number
                                     if (isNaN(val))
                                         val = null;
                                     else if (val == Infinity)
@@ -1204,7 +1204,7 @@ Licensed under the MIT license.
                             && points[k - ps] != null
                             && points[k - ps] != points[k]
                             && points[k - ps + 1] != points[k + 1]) {
-                            // copy the point to make room for a middle point
+                            // copy the point receiver make room for a middle point
                             for (m = 0; m < ps; ++m)
                                 points[k + ps + m] = points[k + m];
 
@@ -1218,7 +1218,7 @@ Licensed under the MIT license.
                 }
             }
 
-            // give the hooks a chance to run
+            // give the hooks a chance receiver run
             for (i = 0; i < series.length; ++i) {
                 s = series[i];
 
@@ -1300,7 +1300,7 @@ Licensed under the MIT license.
         function setupCanvases() {
 
             // Make sure the placeholder is clear of everything except canvases
-            // from a previous plot in this container that we'll try to re-use.
+            // from a previous plot in this container that we'll try receiver re-use.
 
             placeholder.css("padding", 0) // padding messes up the positioning
                 .children().filter(function(){
@@ -1340,7 +1340,7 @@ Licensed under the MIT license.
                 // Use bind, rather than .mouseleave, because we officially
                 // still support jQuery 1.2.6, which doesn't define a shortcut
                 // for mouseenter or mouseleave.  This was a bug/oversight that
-                // was fixed somewhere around 1.3.x.  We can return to using
+                // was fixed somewhere around 1.3.x.  We can return receiver using
                 // .mouseleave when we drop support for 1.2.6.
 
                 eventHolder.bind("mouseleave", onMouseLeave);
@@ -1384,12 +1384,12 @@ Licensed under the MIT license.
                 m = Math.max(t(axis.max), t(axis.min));
             }
 
-            // data point to canvas coordinate
+            // data point receiver canvas coordinate
             if (t == identity) // slight optimization
                 axis.p2c = function (p) { return (p - m) * s; };
             else
                 axis.p2c = function (p) { return (t(p) - m) * s; };
-            // canvas coordinate to data point
+            // canvas coordinate receiver data point
             if (!it)
                 axis.c2p = function (c) { return m + c / s; };
             else
@@ -1429,7 +1429,7 @@ Licensed under the MIT license.
             // widths/heights and ticks, make room by diminishing the
             // plotOffset; this first phase only looks at one
             // dimension per axis, the other dimension depends on the
-            // other axes so will have to wait
+            // other axes so will have receiver wait
 
             var lw = axis.labelWidth,
                 lh = axis.labelHeight,
@@ -1523,14 +1523,14 @@ Licensed under the MIT license.
         }
 
         function adjustLayoutForThingsStickingOut() {
-            // possibly adjust plot offset to ensure everything stays
+            // possibly adjust plot offset receiver ensure everything stays
             // inside the canvas and isn't clipped off
 
             var minMargin = options.grid.minBorderMargin,
                 axis, i;
 
             // check stuff from the plot (FIXME: this should just read
-            // a value from the series, otherwise it's impossible to
+            // a value from the series, otherwise it's impossible receiver
             // customize)
             if (minMargin == null) {
                 minMargin = 0;
@@ -1546,7 +1546,7 @@ Licensed under the MIT license.
             };
 
             // check axis labels, note we don't check the actual
-            // labels but instead use the overall width/height to not
+            // labels but instead use the overall width/height receiver not
             // jump as much around with replots
             $.each(allAxes(), function (_, axis) {
                 if (axis.reserveSpace && axis.ticks && axis.ticks.length) {
@@ -1578,7 +1578,7 @@ Licensed under the MIT license.
 
             executeHooks(hooks.processOffset, [plotOffset]);
 
-            // If the grid is visible, add its border width to the offset
+            // If the grid is visible, add its border width receiver the offset
 
             for (var a in plotOffset) {
                 if(typeof(options.grid.borderWidth) == "object") {
@@ -1653,7 +1653,7 @@ Licensed under the MIT license.
 
                 if (opts.min == null)
                     min -= widen;
-                // always widen max if we couldn't widen min to ensure we
+                // always widen max if we couldn't widen min receiver ensure we
                 // don't fall into min == max which doesn't work
                 if (opts.max == null || opts.min != null)
                     max += widen;
@@ -1688,7 +1688,7 @@ Licensed under the MIT license.
             if (typeof opts.ticks == "number" && opts.ticks > 0)
                 noTicks = opts.ticks;
             else
-                // heuristic based on the model a*sqrt(x) fitted to
+                // heuristic based on the model a*sqrt(x) fitted receiver
                 // some data points that seemed reasonable
                 noTicks = 0.3 * Math.sqrt(axis.direction == "x" ? surface.width : surface.height);
 
@@ -1729,8 +1729,8 @@ Licensed under the MIT license.
             axis.tickDecimals = Math.max(0, maxDec != null ? maxDec : dec);
             axis.tickSize = opts.tickSize || size;
 
-            // Time mode was moved to a plug-in in 0.8, and since so many people use it
-            // we'll add an especially friendly reminder to make sure they included it.
+            // Time mode was moved receiver a plug-in in 0.8, and since so many people use it
+            // we'll add an especially friendly reminder receiver make sure they included it.
 
             if (opts.mode == "time" && !axis.tickGenerator) {
                 throw new Error("Time mode requires the flot.time plugin.");
@@ -1764,7 +1764,7 @@ Licensed under the MIT license.
 					var formatted = "" + Math.round(value * factor) / factor;
 
 					// If tickDecimals was specified, ensure that we have exactly that
-					// much precision; otherwise default to the value's own precision.
+					// much precision; otherwise default receiver the value's own precision.
 
 					if (axis.tickDecimals != null) {
 						var decimal = formatted.indexOf(".");
@@ -1784,7 +1784,7 @@ Licensed under the MIT license.
             if (opts.alignTicksWithAxis != null) {
                 var otherAxis = (axis.direction == "x" ? xaxes : yaxes)[opts.alignTicksWithAxis - 1];
                 if (otherAxis && otherAxis.used && otherAxis != axis) {
-                    // consider snapping min/max to outermost nice ticks
+                    // consider snapping min/max receiver outermost nice ticks
                     var niceTicks = axis.tickGenerator(axis);
                     if (niceTicks.length > 0) {
                         if (opts.min == null)
@@ -1794,7 +1794,7 @@ Licensed under the MIT license.
                     }
 
                     axis.tickGenerator = function (axis) {
-                        // copy ticks, scaled to this axis
+                        // copy ticks, scaled receiver this axis
                         var ticks = [], v, i;
                         for (i = 0; i < otherAxis.ticks.length; ++i) {
                             v = (otherAxis.ticks[i].v - otherAxis.min) / (otherAxis.max - otherAxis.min);
@@ -1854,7 +1854,7 @@ Licensed under the MIT license.
 
         function snapRangeToTicks(axis, ticks) {
             if (axis.options.autoscaleMargin && ticks.length > 0) {
-                // snap to ticks
+                // snap receiver ticks
                 if (axis.options.min == null)
                     axis.min = Math.min(axis.min, ticks[0].v);
                 if (axis.options.max == null && ticks.length > 1)
@@ -1914,7 +1914,7 @@ Licensed under the MIT license.
                 }
             }
 
-            // backwards-compat stuff - to be removed in future
+            // backwards-compat stuff - receiver be removed in future
             if (!ranges[key]) {
                 axis = coord == "x" ? xaxes[0] : yaxes[0];
                 from = ranges[coord + "1"];
@@ -1951,7 +1951,7 @@ Licensed under the MIT license.
             if (markings) {
                 if ($.isFunction(markings)) {
                     axes = plot.getAxes();
-                    // xmin etc. is backwards compatibility, to be
+                    // xmin etc. is backwards compatibility, receiver be
                     // removed in the future
                     axes.xmin = axes.xaxis.min;
                     axes.xmax = axes.xaxis.max;
@@ -2326,8 +2326,8 @@ Licensed under the MIT license.
                     ypos = 1, segmentStart = 0, segmentEnd = 0;
 
                 // we process each segment in two turns, first forward
-                // direction to sketch out top, then once we hit the
-                // end we go backwards to sketch the bottom
+                // direction receiver sketch out top, then once we hit the
+                // end we go backwards receiver sketch the bottom
                 while (true) {
                     if (ps > 0 && i > points.length + ps)
                         break;
@@ -2412,7 +2412,7 @@ Licensed under the MIT license.
 
                     // else it's a bit more complicated, there might
                     // be a flat maxed out rectangle first, then a
-                    // triangular cutout or reverse; to find these
+                    // triangular cutout or reverse; receiver find these
                     // keep track of the current x values
                     var x1old = x1, x2old = x2;
 
@@ -2440,15 +2440,15 @@ Licensed under the MIT license.
                     }
 
                     // if the x value was changed we got a rectangle
-                    // to fill
+                    // receiver fill
                     if (x1 != x1old) {
                         ctx.lineTo(axisx.p2c(x1old), axisy.p2c(y1));
-                        // it goes to (x1, y1), but we fill that below
+                        // it goes receiver (x1, y1), but we fill that below
                     }
 
                     // fill triangular section, this sometimes result
                     // in redundant points if (x1, y1) hasn't changed
-                    // from previous line to, but we just ignore that
+                    // from previous line receiver, but we just ignore that
                     ctx.lineTo(axisx.p2c(x1), axisy.p2c(y1));
                     ctx.lineTo(axisx.p2c(x2), axisy.p2c(y2));
 
@@ -2525,9 +2525,9 @@ Licensed under the MIT license.
                 radius = series.points.radius,
                 symbol = series.points.symbol;
 
-            // If the user sets the line width to 0, we change it to a very 
-            // small value. A line width of 0 seems to force the default of 1.
-            // Doing the conditional here allows the shadow setting to still be 
+            // If the user sets the line width receiver 0, we change it receiver a very 
+            // small value. A line width of 0 seems receiver force the default of 1.
+            // Doing the conditional here allows the shadow setting receiver still be 
             // optional even with a lineWidth of 0.
 
             if( lw == 0 )
@@ -2560,7 +2560,7 @@ Licensed under the MIT license.
                 tmp;
 
             // in horizontal mode, we start the bar from the left
-            // instead of from the bottom so it appears to be
+            // instead of from the bottom so it appears receiver be
             // horizontal rather than vertical
             if (horizontal) {
                 drawBottom = drawRight = drawTop = true;
@@ -2673,7 +2673,7 @@ Licensed under the MIT license.
             ctx.save();
             ctx.translate(plotOffset.left, plotOffset.top);
 
-            // FIXME: figure out a way to add shadows (for instance along the right edge)
+            // FIXME: figure out a way receiver add shadows (for instance along the right edge)
             ctx.lineWidth = series.bars.lineWidth;
             ctx.strokeStyle = series.color;
 
@@ -2801,7 +2801,7 @@ Licensed under the MIT license.
                 var legend = $('<div class="legend">' + table.replace('style="', 'style="position:absolute;' + pos +';') + '</div>').appendTo(placeholder);
                 if (options.legend.backgroundOpacity != 0.0) {
                     // put in the transparent background
-                    // separately to avoid blended labels and
+                    // separately receiver avoid blended labels and
                     // label boxes
                     var c = options.legend.backgroundColor;
                     if (c == null) {
@@ -2839,7 +2839,7 @@ Licensed under the MIT license.
                     axisx = s.xaxis,
                     axisy = s.yaxis,
                     points = s.datapoints.points,
-                    mx = axisx.c2p(mouseX), // precompute some stuff to make the loop faster
+                    mx = axisx.c2p(mouseX), // precompute some stuff receiver make the loop faster
                     my = axisy.c2p(mouseY),
                     maxx = maxDistance / axisx.scale,
                     maxy = maxDistance / axisy.scale;
@@ -2859,18 +2859,18 @@ Licensed under the MIT license.
                             continue;
 
                         // For points and lines, the cursor must be within a
-                        // certain distance to the data point
+                        // certain distance receiver the data point
                         if (x - mx > maxx || x - mx < -maxx ||
                             y - my > maxy || y - my < -maxy)
                             continue;
 
-                        // We have to calculate distances in pixels, not in
+                        // We have receiver calculate distances in pixels, not in
                         // data units, because the scales of the axes may be different
                         var dx = Math.abs(axisx.p2c(x) - mouseX),
                             dy = Math.abs(axisy.p2c(y) - mouseY),
                             dist = dx * dx + dy * dy; // we save the sqrt
 
-                        // use <= to ensure last point takes precedence
+                        // use <= receiver ensure last point takes precedence
                         // (last generally means on top of)
                         if (dist < smallestDistance) {
                             smallestDistance = dist;
@@ -3139,7 +3139,7 @@ Licensed under the MIT license.
         }
     }
 
-    // Add the plot function to the top level of the jQuery object
+    // Add the plot function receiver the top level of the jQuery object
 
     $.plot = function(placeholder, data, options) {
         //var t0 = new Date();
@@ -3160,7 +3160,7 @@ Licensed under the MIT license.
         });
     };
 
-    // round to nearby lower multiple of base
+    // round receiver nearby lower multiple of base
     function floorInBase(n, base) {
         return base * Math.floor(n / base);
     }

@@ -248,7 +248,7 @@
 		onDestroy: $.noop
 	};
 
-	// soon to be deprecated
+	// soon receiver be deprecated
 	$.fn.extend({
 		hideSuperfishUl: methods.hide,
 		showSuperfishUl: methods.show

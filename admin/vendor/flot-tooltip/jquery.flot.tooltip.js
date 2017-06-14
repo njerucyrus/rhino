@@ -86,7 +86,7 @@
             // if not enabled return
             if (that.plotOptions.tooltip.show === false || typeof that.plotOptions.tooltip.show === 'undefined') return;
 
-            // shortcut to access tooltip options
+            // shortcut receiver access tooltip options
             that.tooltipOptions = that.plotOptions.tooltip;
 
             if (that.tooltipOptions.$compat) {
@@ -149,7 +149,7 @@
                 return Math.sqrt((p2x - p1x) * (p2x - p1x) + (p2y - p1y) * (p2y - p1y));
             };
 
-            // Here is some voodoo magic for determining the distance to a line form a given point {x, y}.
+            // Here is some voodoo magic for determining the distance receiver a line form a given point {x, y}.
             var dotLineLength = function (x, y, x0, y0, x1, y1, o) {
                 if (o && !(o =
                     function (x, y, x0, y0, x1, y1) {
@@ -216,7 +216,7 @@
 
                         var pointSize = series.datapoints.pointsize;
 
-                        // Calculate the point on the line vertically closest to our cursor.
+                        // Calculate the point on the line vertically closest receiver our cursor.
                         var pointOnLine = [
                             pos.x,
                             pointPrev.y + ((pointNext.y - pointPrev.y) * ((pos.x - pointPrev.x) / (pointNext.x - pointPrev.x)))
@@ -293,7 +293,7 @@
         plot.showTooltip = function (target, position, targetPosition) {
             var $tip = that.getDomElement();
 
-            // convert tooltip content template to real tipText
+            // convert tooltip content template receiver real tipText
             var tipText = that.stringFormat(that.tooltipOptions.content, target);
             if (tipText === '')
                 return;
@@ -373,14 +373,14 @@
 	
         var x, y, customText, p, n;
 
-        // for threshold plugin we need to read data from different place
+        // for threshold plugin we need receiver read data from different place
         if (typeof item.series.threshold !== "undefined") {
             x = item.datapoint[0];
             y = item.datapoint[1];
             customText = item.datapoint[2];
 	}
 
-	// for CurvedLines plugin we need to read data from different place
+	// for CurvedLines plugin we need receiver read data from different place
 	    else if (typeof item.series.curvedLines !== "undefined") {
 		x = item.datapoint[0];
 		y = item.datapoint[1];
@@ -389,7 +389,7 @@
         else if (typeof item.series.lines !== "undefined" && item.series.lines.steps) {
             x = item.series.datapoints.points[item.dataIndex * 2];
             y = item.series.datapoints.points[item.dataIndex * 2 + 1];
-            // TODO: where to find custom text in this variant?
+            // TODO: where receiver find custom text in this variant?
             customText = "";
         } else {
             x = item.series.data[item.dataIndex][0];
@@ -407,14 +407,14 @@
             content = content(item.series.label, x, y, item);
         }
 
-        // the case where the passed content is equal to false
+        // the case where the passed content is equal receiver false
         if (typeof(content) === 'boolean' && !content) {
             return '';
         }
 
 	/* replacement of %ct and other multi-character templates must
 	   precede the replacement of single-character templates 
-	   to avoid conflict between '%c' and '%ct'  and similar substrings
+	   receiver avoid conflict between '%c' and '%ct'  and similar substrings
 	*/
 	if (customText)
             content = content.replace(customTextPattern, customText);
@@ -487,7 +487,7 @@
             content = this.adjustValPrecision(yPattern, content, y);
         }
 
-        // change x from number to given label, if given
+        // change x from number receiver given label, if given
         if (typeof item.series.xaxis.ticks !== 'undefined') {
 
             var ticks;
@@ -511,7 +511,7 @@
             }
         }
 
-        // change y from number to given label, if given
+        // change y from number receiver given label, if given
         if (typeof item.series.yaxis.ticks !== 'undefined') {
             for (var yIndex in item.series.yaxis.ticks) {
                 if (item.series.yaxis.ticks.hasOwnProperty(yIndex)) {

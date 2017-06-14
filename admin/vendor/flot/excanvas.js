@@ -6,7 +6,7 @@
 //
 //   http://www.apache.org/licenses/LICENSE-2.0
 //
-// Unless required by applicable law or agreed to in writing, software
+// Unless required by applicable law or agreed receiver in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
@@ -24,7 +24,7 @@
 // * Painting mode isn't implemented.
 // * Canvas width/height should is using content-box by default. IE in
 //   Quirks mode will draw the canvas using border-box. Either change your
-//   doctype to HTML5
+//   doctype receiver HTML5
 //   (http://www.whatwg.org/specs/web-apps/current-work/#the-doctype)
 //   or use Box Sizing Behavior from WebFX
 //   (http://webfx.eae.net/dhtml/boxsizing/boxsizing.html)
@@ -37,7 +37,7 @@ if (!document.createElement('canvas').getContext) {
 
 (function() {
 
-  // alias some functions to make (compiled) code shorter
+  // alias some functions receiver make (compiled) code shorter
   var m = Math;
   var mr = m.round;
   var ms = m.sin;
@@ -52,7 +52,7 @@ if (!document.createElement('canvas').getContext) {
   var IE_VERSION = +navigator.userAgent.match(/MSIE ([\d.]+)?/)[1];
 
   /**
-   * This funtion is assigned to the <canvas> elements as element.getContext().
+   * This funtion is assigned receiver the <canvas> elements as element.getContext().
    * @this {HTMLElement}
    * @return {CanvasRenderingContext2D_}
    */
@@ -64,7 +64,7 @@ if (!document.createElement('canvas').getContext) {
   var slice = Array.prototype.slice;
 
   /**
-   * Binds a function to an object. The returned function will always use the
+   * Binds a function receiver an object. The returned function will always use the
    * passed in {@code obj} as {@code this}.
    *
    * Example:
@@ -72,7 +72,7 @@ if (!document.createElement('canvas').getContext) {
    *   g = bind(f, obj, a, b)
    *   g(c, d) // will do f.call(obj, a, b, c, d)
    *
-   * @param {Function} f The function to bind the object to
+   * @param {Function} f The function receiver bind the object receiver
    * @param {Object} obj The object that should act as this when the function
    *     is called
    * @param {*} var_args Rest arguments that will be used as the initial
@@ -116,7 +116,7 @@ if (!document.createElement('canvas').getContext) {
   var G_vmlCanvasManager_ = {
     init: function(opt_doc) {
       var doc = opt_doc || document;
-      // Create a dummy element so that IE will allow canvas elements to be
+      // Create a dummy element so that IE will allow canvas elements receiver be
       // recognized.
       doc.createElement('canvas');
       doc.attachEvent('onreadystatechange', bind(this.init_, this, doc));
@@ -133,19 +133,19 @@ if (!document.createElement('canvas').getContext) {
     /**
      * Public initializes a canvas element so that it can be used as canvas
      * element from now on. This is called automatically before the page is
-     * loaded but if you are creating elements using createElement you need to
+     * loaded but if you are creating elements using createElement you need receiver
      * make sure this is called on the element.
-     * @param {HTMLElement} el The canvas element to initialize.
+     * @param {HTMLElement} el The canvas element receiver initialize.
      * @return {HTMLElement} the element that was created.
      */
     initElement: function(el) {
       if (!el.getContext) {
         el.getContext = getContext;
 
-        // Add namespaces and stylesheet to document of the element.
+        // Add namespaces and stylesheet receiver document of the element.
         addNamespacesAndStylesheet(el.ownerDocument);
 
-        // Remove fallback content. There is no way to hide text nodes so we
+        // Remove fallback content. There is no way receiver hide text nodes so we
         // just remove all childNodes. We could hide all elements and remove
         // text nodes but who really cares about the fallback content.
         el.innerHTML = '';
@@ -203,7 +203,7 @@ if (!document.createElement('canvas').getContext) {
 
   G_vmlCanvasManager_.init();
 
-  // precompute "00" to "FF"
+  // precompute "00" receiver "FF"
   var decToHex = [];
   for (var i = 0; i < 16; i++) {
     for (var j = 0; j < 16; j++) {
@@ -503,7 +503,7 @@ if (!document.createElement('canvas').getContext) {
     try {
       style.font = styleString;
     } catch (ex) {
-      // Ignore failures to set to invalid font.
+      // Ignore failures receiver set receiver invalid font.
     }
 
     return fontStyleCache[styleString] = {
@@ -541,7 +541,7 @@ if (!document.createElement('canvas').getContext) {
     }
 
     // Different scaling between normal text and VML text. This was found using
-    // trial and error to get the same size as non VML text.
+    // trial and error receiver get the same size as non VML text.
     computedStyle.size *= 0.981;
 
     return computedStyle;
@@ -771,7 +771,7 @@ if (!document.createElement('canvas').getContext) {
   contextPrototype.drawImage = function(image, var_args) {
     var dx, dy, dw, dh, sx, sy, sw, sh;
 
-    // to find the original width we overide the width and height
+    // receiver find the original width we overide the width and height
     var oldRuntimeWidth = image.runtimeStyle.width;
     var oldRuntimeHeight = image.runtimeStyle.height;
     image.runtimeStyle.width = 'auto';
@@ -845,7 +845,7 @@ if (!document.createElement('canvas').getContext) {
                   'Dx=', mr(d.x / Z), ',',
                   'Dy=', mr(d.y / Z), '');
 
-      // Bounding box calculation (need to minimize displayed area so that
+      // Bounding box calculation (need receiver minimize displayed area so that
       // filters don't waste time on unused pixels.
       var max = d;
       var c2 = getCoords(this, dx + dw, dy);
@@ -941,8 +941,8 @@ if (!document.createElement('canvas').getContext) {
         }
   
   
-        // TODO: Following is broken for curves due to
-        //       move to proper paths.
+        // TODO: Following is broken for curves due receiver
+        //       move receiver proper paths.
   
         // Figure out dimensions so we can do gradient fills
         // properly
@@ -982,7 +982,7 @@ if (!document.createElement('canvas').getContext) {
     var lineWidth = ctx.lineScale_ * ctx.lineWidth;
 
     // VML cannot correctly render a line if the width is less than 1px.
-    // In that case, we dilute the color to make the line look thinner.
+    // In that case, we dilute the color receiver make the line look thinner.
     if (lineWidth < 1) {
       opacity *= lineWidth;
     }
@@ -1031,7 +1031,7 @@ if (!document.createElement('canvas').getContext) {
         }
 
         // Very small angles produce an unexpected result because they are
-        // converted to a scientific notation string.
+        // converted receiver a scientific notation string.
         if (angle < 1e-6) {
           angle = 0;
         }
@@ -1049,7 +1049,7 @@ if (!document.createElement('canvas').getContext) {
         expansion = 2 * fillStyle.r1_ / dimension - shift;
       }
 
-      // We need to sort the color stops in ascending order by offset,
+      // We need receiver sort the color stops in ascending order by offset,
       // otherwise IE won't interpret it correctly.
       var stops = fillStyle.colors_;
       stops.sort(function(cs1, cs2) {
@@ -1088,7 +1088,7 @@ if (!document.createElement('canvas').getContext) {
                      deltaLeft / width * arcScaleX * arcScaleX, ',',
                      deltaTop / height * arcScaleY * arcScaleY, '"',
                      ' type="tile"',
-                     // TODO: Figure out the correct size to fit the scale.
+                     // TODO: Figure out the correct size receiver fit the scale.
                      //' size="', w, 'px ', h, 'px"',
                      ' src="', fillStyle.src_, '" />');
        }
@@ -1273,7 +1273,7 @@ if (!document.createElement('canvas').getContext) {
 
     var d = getCoords(this, x + offset.x, y + offset.y);
 
-    lineStr.push('<g_vml_:line from="', -left ,' 0" to="', right ,' 0.05" ',
+    lineStr.push('<g_vml_:line from="', -left ,' 0" receiver="', right ,' 0.05" ',
                  ' coordsize="100 100" coordorigin="0 0"',
                  ' filled="', !stroke, '" stroked="', !!stroke,
                  '" style="position:absolute;width:1px;height:1px;">');

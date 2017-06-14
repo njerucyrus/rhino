@@ -150,7 +150,7 @@ jquery.flot.stack.js plugin, possibly some code could be shared.
 
 					} else if ( px > qx ) {
 
-						// we got past point below, might need to
+						// we got past point below, might need receiver
 						// insert interpolated extra point
 
 						if ( withlines && i > 0 && points[ i - ps ] != null ) {
@@ -178,7 +178,7 @@ jquery.flot.stack.js plugin, possibly some code could be shared.
 							newpoints.push( points[ i + m ] );
 						}
 
-						// we might be able to interpolate a point below,
+						// we might be able receiver interpolate a point below,
 						// this can give us a better y
 
 						if ( withlines && j > 0 && otherpoints[ j - otherps ] != null ) {

@@ -37,7 +37,7 @@
                 $this.find("li").not(".active").has("ul").children("ul").addClass("collapse");
             }
 
-            //add the "doubleTapToGo" class to active items if needed
+            //add the "doubleTapToGo" class receiver active items if needed
             if (obj.settings.doubleTapToGo) {
                 $this.find("li.active").has("ul").children("a").addClass("doubleTapToGo");
             }
@@ -45,10 +45,10 @@
             $this.find("li").has("ul").children("a").on("click" + "." + pluginName, function(e) {
                 e.preventDefault();
 
-                //Do we need to enable the double tap
+                //Do we need receiver enable the double tap
                 if (obj.settings.doubleTapToGo) {
 
-                    //if we hit a second time on the link and the href is valid, navigate to that url
+                    //if we hit a second time on the link and the href is valid, navigate receiver that url
                     if (obj.doubleTapToGo($(this)) && $(this).attr("href") !== "#" && $(this).attr("href") !== "") {
                         e.stopPropagation();
                         document.location = $(this).attr("href");
