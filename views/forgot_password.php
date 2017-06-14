@@ -40,44 +40,85 @@ if (!empty($_POST['email'])) {
 <html>
 <head>
     <title>Forgot Password</title>
+    <meta charset="utf-8">
+     <link rel="stylesheet" href="../public/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../public/assets/css/main.css">
+
+    <link rel="stylesheet" href="../public/assets/css/custom.css">
 </head>
 <body>
-<div class="row">
-    <div class="container-fluid">
-            <div class="col col-md-6 col-md-offset-2">
-                <div class="panel">
-                    <?php if ($error != ''): ?>
-                        <div class="has-error">
-                            <div class="alert alert-danger alert-dismissable">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <?php echo $error; ?>
+<section id="header" class="bg-color0">
+    <div class="container"><div class="row">
+
+            <a class="navbar-brand" href="#top"><img src="../public/assets/img/logo4.png" alt=""></a>
+
+            <div class="col-sm-12 mainmenu_wrap"><div class="main-menu-icon visible-xs"><span></span><span></span><span></span></div>
+                <?php
+                include_once 'header_menu_views.php';
+                ?>
+            </div>
+
+        </div></div>
+</section>
+
+<section id="services" class="grey_section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <br/>
+                <h1 class="block-header">Reset Password Step 1</h1>
+                <h3>Provide your email, to recover your email</h3>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="block col-sm-8 col-sm-offset-2">
+                <div class="row">
+                    <div class="container-fluid">
+                        <div class="col col-md-8 col-md-offset-2">
+                            <div >
+                                <?php if ($error != ''): ?>
+                                    <div class="has-error">
+                                        <div class="alert alert-danger alert-dismissable">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                            <?php echo $error; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+
+                                <?php if ($success != ''): ?>
+                                    <div>
+                                        <div class="alert alert-success alert-dismissable">
+                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                            <?php echo $success; ?>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+
+
+                                <div class="panel-body">
+                                    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post"
+                                          class="form-group">
+                                        <label for="email" class="control-label">Email</label>
+                                        <input type="email" name="email" id="email" placeholder="Enter the email you signed up with"
+                                               class="form-control" required>
+                                        <input type="submit" name="submit" style="margin-top: 10px" value="Submit" class="col-md-offset-3 btn btn-primary">
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    <?php endif; ?>
-
-                    <?php if ($success != ''): ?>
-                        <div>
-                            <div class="alert alert-success alert-dismissable">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                <?php echo $success; ?>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-
-                    <h3 class="panel-heading">Reset Password Step 1</h3>
-                    <div class="panel-body">
-                        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="post"
-                              class="form-group">
-                            <label for="email" class="control-label">Email</label>
-                            <input type="email" name="email" id="email" placeholder="Enter the email you signed up with"
-                                  class="form-control" required>
-                            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
-                        </form>
                     </div>
                 </div>
             </div>
+
+
+
+
         </div>
-</div>
+    </div>
+</section>
+<?php include_once 'contact_footer_views.php';?>
 <?php include 'footer_views.php'?>
 </body>
 </html>
