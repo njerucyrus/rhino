@@ -86,7 +86,7 @@ $counter=1;
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Date Paid</th>
-                                <th colspan="3">Actions</th>
+                                <th>Actions</th>
 
                             </tr>
                             </thead>
@@ -104,10 +104,8 @@ $counter=1;
                                 <td><?php echo $payment['email'];?></td>
                                 <td><?php echo $payment['datePaid'];?></td>
 
-                                <td colspan="3">
+                                <td>
                                     <button  class="btn btn-xs btn-success">Approve</button>
-
-
                                 </td>
 
 

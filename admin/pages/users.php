@@ -82,7 +82,7 @@ $counter=1;
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Status</th>
-                                <th colspan="3">Actions</th>
+                                <th>Actions</th>
 
                             </tr>
                             </thead>
@@ -98,7 +98,7 @@ $counter=1;
                                 <td><?php echo $user['email'];?></td>
 
                                 <td><?php echo $user['accountStatus'];?></td>
-                                <td colspan="3">
+                                <td >
                                     <button  class="btn btn-xs btn-success">Approve</button>
                                     <button  class="btn btn-xs btn-default">Block</button>
                                     <button  class="btn btn-xs btn-danger ">Delete</button>
