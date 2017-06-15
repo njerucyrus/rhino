@@ -270,5 +270,27 @@ class UserController implements UserInterface
         }
     }
 
+    public static function approve($userId, $status){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("UPDATE users SET accountStatus=:accountStatus WHERE id=:userId");
+            $stmt->bindParam(":userId", $userId);
+            $stmt->bindParam(":accountStatus",$status);
+            if($stmt->execute()){
+                $db->closeConnection();
+                return true;
+            }else{
+                $db->closeConnection();
+                return false;
+            }
+        } catch (\PDOException $e){
+
+            return [
+                "error"=>$e->getMessage()
+            ];
+        }
+    }
+
 
 }

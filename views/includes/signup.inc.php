@@ -81,13 +81,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->setPassword($password);
         $user->setFullName($fullName);
         $user->setCreatedAt(date('Y-m-d H:i:s'));
-        $user->setAccountStatus('active');
+        $user->setAccountStatus('pending');
         $user->setEmail($email);
         $user->setIdNo($idNo);
         $user->setLastLogin(date('Y-m-d H:i:s'));
         $user->setLoginIp($_SERVER['REMOTE_ADDR']);
         $user->setPhoneNumber($phoneNumber);
-        $user->setPaymentStatus('paid');
+        $user->setPaymentStatus('pending');
         $user->setUserReferralCode($_SESSION['referralCode']);
         $userCtrl = new UserController();
         $created = $userCtrl->create($user);
