@@ -13,9 +13,8 @@ $error = $success = $usernameErr = $fullNameErr = $idNoErr
     = $passwordErr = $confirmPasswordErr = $phoneNumberErr
     = $emailErr = $matchErr = '';
 $_SESSION['referralCode'] = ReferralTreeController::generateReferralCode();
- $fullName = $idNo = $username = $phoneNumber = $email =
+$fullName = $idNo = $username = $phoneNumber = $email =
 $password = $confirmPassword = '';
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($_POST['username'])) {
@@ -108,16 +107,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             unset($_SESSION['referralCode']);
             $success .= "Account created successfully";
             header('Refresh: 3; url=views/signup_success.php?status=200');
-        } else{
-            $error .="Error Internal Server error occurred. Account not Created";
+        } else {
+            $error .= "Error Internal Server error occurred. Account not Created";
         }
     }
 }
 
-function cleanInput($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}

@@ -19,7 +19,6 @@
 <div class="page-container">
 
     <div class="col-md-12 col-md-offset-2">
-        <?php //include 'header_menu_views.php' ?>
 
 
         <form role="form" class="form-horizontal form-groups-bordered" method="post"
@@ -81,9 +80,7 @@
                 <div class="col-sm-4">
                     <label for="password" class=" control-label">Password <span class="error">* <?php echo $passwordErr?></span></label>
 
-
-                    <input type="password" class="form-control" id='password' name="password"
-                           required>
+                    <input type="password" class="form-control" id='password' name="password" required>
                 </div>
                 <div class="col-sm-4">
                     <label for="confirmPassword" class="control-label">Confirm Password <span class="error">* <?php echo $confirmPasswordErr?></span></label>
@@ -94,14 +91,13 @@
 
                 </div>
             </div>
-            <div class="form-group">
 
+            <div class="form-group">
                 <div class="col-sm-4 col-sm-offset-2">
                     <span class="error"><?php echo $matchErr;?></span>
                     <input type="submit" name="submit" value="Join" class="btn btn-primary btn-lg btn-block "/>
                 </div>
             </div>
-
         </form>
 
     </div>
