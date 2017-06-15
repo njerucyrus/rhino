@@ -25,7 +25,7 @@ class Auth
     /**
      * @param $username
      * @param $password
-     * @return bool
+     * @return mixed
      */
     public static function authenticate($username, $password)
     {
@@ -40,11 +40,10 @@ class Auth
             if ($stmt->rowCount() == 1) {
 
                 $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-
-                return password_verify($password, $row['password']) ? true : false;
+                return $row;
 
             } else {
-                return false;
+                return [];
             }
         } catch (\PDOException $e) {
             echo $e->getMessage();
