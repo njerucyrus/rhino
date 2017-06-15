@@ -1,3 +1,20 @@
+<?php
+include_once '../../vendor/autoload.php';
+$userCounter=0;
+$siteCounter=0;
+$users =App\Controller\UserController::all();
+$sites=App\Controller\SiteController::all();
+ foreach ($users as $user):
+     $userCounter=$userCounter+1;
+ endforeach;
+
+foreach ($sites as $site):
+    $siteCounter=$siteCounter+1;
+endforeach;
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,15 +72,15 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
+                                    <i class="fa fa-users fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
+                                    <div class="huge"><?php echo $userCounter?></div>
+                                    <div>Registered users</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="users.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -80,12 +97,12 @@
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>New Tasks!</div>
+                                    <div class="huge"><?php echo $siteCounter?></div>
+                                    <div>E-learning Resources</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="../../views/home.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -99,15 +116,15 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                    <i class="fa fa-user-plus fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
+                                    <div class="huge">6</div>
+                                    <div>Pending users</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="users.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -121,11 +138,11 @@
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
+                                    <i class="fa fa-dollar fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Support Tickets!</div>
+                                    <div class="huge">5000</div>
+                                    <div>Amount Transacted</div>
                                 </div>
                             </div>
                         </div>

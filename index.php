@@ -9,6 +9,12 @@ session_start();
 require_once  'vendor/autoload.php';
 include "views/includes/signup.inc.php";
 include "views/includes/login.inc.php";
+function cleanInput($data){
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -23,7 +29,7 @@ include "views/includes/login.inc.php";
         <![endif]-->
 
 <section id="header" class="bg-color0">
-    <div class="container"><div class="row">
+    <div class="container navbar"><div class="row">
 
       <a class="navbar-brand" href="#top"><img src="public/assets/img/logo4.png" alt=""></a>
 
@@ -32,7 +38,7 @@ include "views/includes/login.inc.php";
           include_once 'views/header_menu.php';
           ?>
       </div>
-      
+
     </div></div>
 </section>
 

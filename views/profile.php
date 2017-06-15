@@ -139,25 +139,25 @@ $referralTree=ReferralTreeController::getCounts($user['userReferralCode']);
                                 <?php echo $referralTree['l2Count']; ?>
                             </h1>
                         </div>
-                        <div class="col-md-2 bs-callout bs-callout-warning">
+                        <div class="col-md-2 bs-callout bs-callout-info">
                             <h4 style="text-align: center;">Generation 3</h4>
                             <h1 style="text-align: center;">
                                 <?php echo $referralTree['l3Count']; ?>
                             </h1>
                         </div>
-                        <div class="col-md-2 bs-callout bs-callout-warning">
+                        <div class="col-md-2 bs-callout bs-callout-info">
                             <h4 style="text-align: center;">Generation 4</h4>
                             <h1 style="text-align: center;">
                                 <?php echo $referralTree['l4Count']; ?>
                             </h1>
                         </div>
-                        <div class="col-md-2 bs-callout bs-callout-info">
+                        <div class="col-md-2 bs-callout bs-callout-warning">
                             <h4 style="text-align: center;">Generation 5</h4>
                             <h1 style="text-align: center;">
                                 <?php echo $referralTree['l5Count']; ?>
                             </h1>
                         </div>
-                        <div class="col-md-2 bs-callout bs-callout-info">
+                        <div class="col-md-2 bs-callout bs-callout-warning">
                             <h4 style="text-align: center;">Generation 6</h4>
                             <h1 style="text-align: center;">
                                 <?php echo $referralTree['l6Count']; ?>

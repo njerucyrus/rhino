@@ -101,7 +101,7 @@ $counter=1;
                                 <td >
                                     <button  class="btn btn-xs btn-success">Approve</button>
                                     <button  class="btn btn-xs btn-default">Block</button>
-                                    <button  class="btn btn-xs btn-danger ">Delete</button>
+
 
 
                                 </td>
