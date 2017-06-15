@@ -7,9 +7,10 @@ session_start();
  * Time: 22:22
  */
 require_once  'vendor/autoload.php';
-include "views/includes/signup.inc.php";
 include "views/includes/login.inc.php";
-function cleanInput($data){
+include "views/includes/signup.inc.php";
+function cleanInput($data)
+{
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
@@ -29,7 +30,7 @@ function cleanInput($data){
         <![endif]-->
 
 <section id="header" class="bg-color0">
-    <div class="container navbar"><div class="row">
+    <div class="container"><div class="row">
 
       <a class="navbar-brand" href="#top"><img src="public/assets/img/logo4.png" alt=""></a>
 
@@ -38,7 +39,7 @@ function cleanInput($data){
           include_once 'views/header_menu.php';
           ?>
       </div>
-
+      
     </div></div>
 </section>
 
@@ -51,14 +52,20 @@ function cleanInput($data){
         <div class="row tagLogin mobile-hide">
             <div class="col-md-12">
 
-                <form class="form" role="form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" accept-charset="UTF-8" id="login-nav">
+                <form class="form" role="form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>" id="login-nav">
+                    <?php if($loginError != ''):?>
+                        <div class="alert alert-danger alert-dismissable" role="alert" style="margin-top: 5px;">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <?php echo $loginError; ?>
+                        </div>
+                    <?php endif;?>
                     <div class="form-group">
-                        <label class="sr-only" for="username">Username</label>
-                        <input type="text" class="form-control" name="username" id="username" required>
+                        <label class="sr-only" for="loginUsername">Username</label>
+                        <input type="text" class="form-control" name="loginUsername" id="loginUsername" required>
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" for="password">Password</label>
-                        <input type="password" name="username" class="form-control" id="password" required>
+                        <label class="sr-only" for="loginPassword">Password</label>
+                        <input type="password" name="loginPassword" class="form-control" id="loginPassword" required>
                         <div class="help-block text-right"><a href="views/forgot_password.php">Forgot the password ?</a></div>
                     </div>
                     <div class="form-group">
@@ -69,6 +76,7 @@ function cleanInput($data){
                             <input type="checkbox" name="keepLoggedIn" id="keepLoggedIn"> keep me logged-in
                         </label>
                     </div>
+
                 </form>
             </div>
             <div class="bottom text-center">
@@ -152,11 +160,6 @@ function cleanInput($data){
     
   </div>
 </section>
-
-
-
-
-
 
 <section id="services" class="grey_section">
   <div class="container">
@@ -344,14 +347,17 @@ function cleanInput($data){
 <div class="preloader">
   <div class="preloaderimg"></div>
 </div>
-
-  
-<!--footer scripts-->
+    <!--footer scripts-->
     <?php include_once 'views/footer.php';?>
-
     <script src="/public/assets/js/jquery-1.11.3.min.js"></script>
     <script src="/public/assets/js/bootstrap.min.js"></script>
-
+    <script>
+        $(document).ready(function (e) {
+         e.preventDefault;
+        });
+    </script>
+    <script>
+    </script>
        
     </body>
 </html>
