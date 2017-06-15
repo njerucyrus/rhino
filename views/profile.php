@@ -70,10 +70,10 @@ $referralTree=ReferralTreeController::getCounts($user['userReferralCode']);
                         </a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-key"></i>Change Password</a>
+                        <a href="forgot_password.php"><i class="fa fa-key"></i>Change Password</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-sign-out"></i> Log out</a>
+                        <a href="logout.php"><i class="fa fa-sign-out"></i> Log out</a>
                     </li>
 
 
