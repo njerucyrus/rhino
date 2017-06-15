@@ -47,7 +47,7 @@
             </div>
         </div></div>
 </section>
-<?php if(!isset($_SESSION['username'])):?>
+
 <section id="features" class="color_section">
     <div class="container">
 
@@ -73,7 +73,7 @@
 
     </div>
 </section>
-<?php endif;?>
+
 
 <section id="services" class="grey_section">
     <div class="container">
