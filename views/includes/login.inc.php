@@ -6,7 +6,7 @@
  * Time: 11:18 PM
  */
 use App\Auth\Auth;
-$username = $password = $error= '';
+$username = $password = $loginError= '';
 if(isset($_SESSION['username'])){
     header("Location: views/home.php");
 }
@@ -16,9 +16,9 @@ if(isset($_COOKIE['asili_username'])){
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-        $username = cleanInput($_POST['username']);
-        $password = cleanInput($_POST['password']);
+    if (isset($_POST['loginUsername']) && isset($_POST['loginPassword'])) {
+        $username = cleanInput($_POST['loginUsername']);
+        $password = cleanInput($_POST['loginPassword']);
         if(isset($_POST['keepLoggedIn'])){
             //login and set cookie
             $cookie_name = 'asili_username';
@@ -30,15 +30,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['username'] = $username;
             header("Location : views/home.php");
         }else{
-            $error = "Invalid username/password";
+            $loginError .= "Invalid username/password";
         }
 
-    }
-    function cleanInput($data)
-    {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
     }
 }

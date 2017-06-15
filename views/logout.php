@@ -8,5 +8,6 @@ session_start();
  */
 
 unset($_SESSION['username']);
+unset($_COOKIE['asili_username']);
 session_destroy();
 header('Location: index.php');
