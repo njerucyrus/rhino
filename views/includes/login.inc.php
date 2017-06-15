@@ -9,12 +9,9 @@ use App\Auth\Auth;
 
 $username = $password = $loginError = '';
 if (isset($_SESSION['username'])) {
-    header("Location: views/home.php");
+    header("Location: views/urls.php");
 }
 
-if (isset($_COOKIE['asili_username'])) {
-    header("Location: views/home.php");
-}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['loginUsername']) && isset($_POST['loginPassword'])) {
@@ -26,12 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $cookie_value = $username;
             setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
         }
-        $auth = Auth::autenticate($username, $password);
-        if (!empty($auth)) {
+        $auth = Auth::authenticate($username, $password);
+        if (!empty($auth['accountStatus'])) {
             if ($auth['accountStatus'] == 'active') {
                 $_SESSION['username'] = $username;
-                header("Location : views/home.php");
-
+                header("Location : views/url.php");
             } elseif ($auth['accountStatus'] == 'blocked') {
                 $loginError = "Your account has been blocked contact support@asilie-learning.co.ke for more info";
             } elseif ($auth['accountStatus'] == 'pending') {
