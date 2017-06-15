@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $cookie_value = $username;
             setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
         }
-        $auth = Auth::authenticate($username, $password);
+        $auth = Auth::autenticate($username, $password);
         if (!empty($auth)) {
             if ($auth['accountStatus'] == 'active') {
                 $_SESSION['username'] = $username;

@@ -12,7 +12,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 use \App\Controller\UserController;
 use \App\Controller\FundController;
 use \App\Controller\ReferralTreeController;
-$_SESSION['username']='sammmy';
+//$_SESSION['username']='sammmy';
 $userId = UserController::getUserId($_SESSION['username']);
 $profile = FundController::myEarning($userId);
 $user=UserController::getId($userId);
@@ -70,10 +70,10 @@ $referralTree=ReferralTreeController::getCounts($user['userReferralCode']);
                         </a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-key"></i>Change Password</a>
+                        <a href="forgot_password.php"><i class="fa fa-key"></i>Change Password</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-sign-out"></i> Log out</a>
+                        <a href="logout.php"><i class="fa fa-sign-out"></i> Log out</a>
                     </li>
 
 
@@ -139,25 +139,25 @@ $referralTree=ReferralTreeController::getCounts($user['userReferralCode']);
                                 <?php echo $referralTree['l2Count']; ?>
                             </h1>
                         </div>
-                        <div class="col-md-2 bs-callout bs-callout-warning">
+                        <div class="col-md-2 bs-callout bs-callout-info">
                             <h4 style="text-align: center;">Generation 3</h4>
                             <h1 style="text-align: center;">
                                 <?php echo $referralTree['l3Count']; ?>
                             </h1>
                         </div>
-                        <div class="col-md-2 bs-callout bs-callout-warning">
+                        <div class="col-md-2 bs-callout bs-callout-info">
                             <h4 style="text-align: center;">Generation 4</h4>
                             <h1 style="text-align: center;">
                                 <?php echo $referralTree['l4Count']; ?>
                             </h1>
                         </div>
-                        <div class="col-md-2 bs-callout bs-callout-info">
+                        <div class="col-md-2 bs-callout bs-callout-warning">
                             <h4 style="text-align: center;">Generation 5</h4>
                             <h1 style="text-align: center;">
                                 <?php echo $referralTree['l5Count']; ?>
                             </h1>
                         </div>
-                        <div class="col-md-2 bs-callout bs-callout-info">
+                        <div class="col-md-2 bs-callout bs-callout-warning">
                             <h4 style="text-align: center;">Generation 6</h4>
                             <h1 style="text-align: center;">
                                 <?php echo $referralTree['l6Count']; ?>
