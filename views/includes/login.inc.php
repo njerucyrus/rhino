@@ -6,31 +6,40 @@
  * Time: 11:18 PM
  */
 use App\Auth\Auth;
-$username = $password = $loginError= '';
-if(isset($_SESSION['username'])){
+
+$username = $password = $loginError = '';
+if (isset($_SESSION['username'])) {
     header("Location: views/home.php");
 }
 
-if(isset($_COOKIE['asili_username'])){
+if (isset($_COOKIE['asili_username'])) {
     header("Location: views/home.php");
 }
 
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['loginUsername']) && isset($_POST['loginPassword'])) {
         $username = cleanInput($_POST['loginUsername']);
         $password = cleanInput($_POST['loginPassword']);
-        if(isset($_POST['keepLoggedIn'])){
+        if (isset($_POST['keepLoggedIn'])) {
             //login and set cookie
             $cookie_name = 'asili_username';
             $cookie_value = $username;
             setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
         }
         $auth = Auth::authenticate($username, $password);
-        if($auth){
-            $_SESSION['username'] = $username;
-            header("Location : views/home.php");
-        }else{
-            $loginError .= "Invalid username/password";
+        if (isset($auth['accountStatus'])) {
+            if ($auth['accountStatus'] == 'active') {
+                $_SESSION['username'] = $username;
+                header("Location : views/home.php");
+            } elseif ($auth['accountStatus'] == 'blocked') {
+                $loginError = "Your account has been blocked contact support@asilie-learning.co.ke for more info";
+            } elseif ($auth['accountStatus'] == 'pending') {
+                $loginError = "Your account is not yet approved you will be notified via email once the approval process is complete";
+            } else {
+                $loginError = "Invalid username/password";
+            }
+        } else {
+            $loginError = "Invalid username/password";
         }
 
     }
