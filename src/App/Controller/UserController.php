@@ -12,6 +12,7 @@ namespace App\Controller;
 use App\AppInterface\UserInterface;
 use App\Entity\User;
 use App\DBManager\DB;
+use App\Mailer\SendEmail;
 
 class UserController implements UserInterface
 {
@@ -270,27 +271,111 @@ class UserController implements UserInterface
         }
     }
 
-    public static function approve($userId, $status){
+    public static function approveAccount($userId)
+    {
         $db = new DB();
         $conn = $db->connect();
-        try{
-            $stmt = $conn->prepare("UPDATE users SET accountStatus=:accountStatus WHERE id=:userId");
+        $status = "active";
+        $user = self::getId($userId);
+        $email = $user['email'];
+
+        try {
+            $stmt = $conn->prepare("UPDATE users SET accountStatus=:accountStatus WHERE id=:userId AND 
+                                    accountStatus='pending'");
             $stmt->bindParam(":userId", $userId);
-            $stmt->bindParam(":accountStatus",$status);
-            if($stmt->execute()){
+
+            $stmt->bindParam(":accountStatus", $status);
+            if ($stmt->execute()) {
                 $db->closeConnection();
+                //send email to user
+                $vendorEmail = "info@asilie-learning.co.ke";
+                $link = '';
+                $sendMail = new SendEmail($email, $vendorEmail);
+                $sendMail->setSubject("Account Approval");
+                $sendMail->setMessage("Your Asili Elearning Account has been approved.
+                visit {$link} to login. your Referral code is {$user['userReferralCode']}.
+                Share this referral code to others and Start earning");
                 return true;
-            }else{
+            } else {
                 $db->closeConnection();
                 return false;
             }
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
 
             return [
-                "error"=>$e->getMessage()
+                "error" => $e->getMessage()
             ];
         }
     }
 
+    public static function blockAccount($userId){
+        $db = new DB();
+        $conn = $db->connect();
+        $status = "blocked";
+        $user = self::getId($userId);
+        $email = $user['email'];
+
+        try {
+            $stmt = $conn->prepare("UPDATE users SET accountStatus=:accountStatus WHERE id=:userId AND 
+                                    accountStatus='active'");
+            $stmt->bindParam(":userId", $userId);
+
+            $stmt->bindParam(":accountStatus", $status);
+            if ($stmt->execute()) {
+                $db->closeConnection();
+                //send email to user
+                $vendorEmail = "info@asilie-learning.co.ke";
+                //$link = 'asilie-learning.co.ke';
+                $sendMail = new SendEmail($email, $vendorEmail);
+                $sendMail->setSubject("Account Blocked");
+                $sendMail->setMessage("Your Asili Elearning Account has been temporally blocked.
+                Contanct support@aslie-learning.co.ke For more information");
+                return true;
+            } else {
+                $db->closeConnection();
+                return false;
+            }
+        } catch (\PDOException $e) {
+
+            return [
+                "error" => $e->getMessage()
+            ];
+        }
+    }
+
+    public static function unblockAccount($userId){
+        $db = new DB();
+        $conn = $db->connect();
+        $status = "active";
+        $user = self::getId($userId);
+        $email = $user['email'];
+
+        try {
+            $stmt = $conn->prepare("UPDATE users SET accountStatus=:accountStatus WHERE id=:userId AND 
+                                    accountStatus='blocked'");
+            $stmt->bindParam(":userId", $userId);
+
+            $stmt->bindParam(":accountStatus", $status);
+            if ($stmt->execute()) {
+                $db->closeConnection();
+                //send email to user
+                $vendorEmail = "info@asilie-learning.co.ke";
+                //$link = 'asilie-learning.co.ke';
+                $sendMail = new SendEmail($email, $vendorEmail);
+                $sendMail->setSubject("Account Unblocked");
+                $sendMail->setMessage("Your Asili Elearning Account has been Unblocked.Welcome back
+                And enjoy our services");
+                return true;
+            } else {
+                $db->closeConnection();
+                return false;
+            }
+        } catch (\PDOException $e) {
+
+            return [
+                "error" => $e->getMessage()
+            ];
+        }
+    }
 
 }
