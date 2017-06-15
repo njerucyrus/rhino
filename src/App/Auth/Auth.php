@@ -40,14 +40,19 @@ class Auth
             if ($stmt->rowCount() == 1) {
 
                 $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-                return $row;
+
+                if(password_verify($password, $row['password'])){
+                    return $row;
+                }else{
+                    return [];
+                }
 
             } else {
                 return [];
             }
         } catch (\PDOException $e) {
             echo $e->getMessage();
-            return false;
+            return [];
         }
     }
 

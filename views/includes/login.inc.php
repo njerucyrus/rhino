@@ -27,10 +27,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/");
         }
         $auth = Auth::authenticate($username, $password);
-        if (isset($auth['accountStatus'])) {
+        if (!empty($auth)) {
             if ($auth['accountStatus'] == 'active') {
                 $_SESSION['username'] = $username;
                 header("Location : views/home.php");
+
             } elseif ($auth['accountStatus'] == 'blocked') {
                 $loginError = "Your account has been blocked contact support@asilie-learning.co.ke for more info";
             } elseif ($auth['accountStatus'] == 'pending') {
@@ -38,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 $loginError = "Invalid username/password";
             }
-        } else {
+        } elseif(empty($auth)) {
             $loginError = "Invalid username/password";
         }
 
