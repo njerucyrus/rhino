@@ -87,6 +87,7 @@ $sites = SiteController::all();
     </div>
 </section>
 
+<?php include_once 'about_inc.php'?>
 <?php include_once 'contact_footer_views.php';?>
 
 
