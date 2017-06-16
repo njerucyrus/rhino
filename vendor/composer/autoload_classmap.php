@@ -25,5 +25,5 @@ return array(
     'App\\Entity\\ReferralTree' => $baseDir . '/src/App/Entity/ReferralTree.php',
     'App\\Entity\\Site' => $baseDir . '/src/App/Entity/Site.php',
     'App\\Entity\\User' => $baseDir . '/src/App/Entity/User.php',
-    'App\\Services\\Mailer\\SendEmail' => $baseDir . '/src/App/Services/Mailer/SendEmail.php',
+    'App\\Services\\SendEmail' => $baseDir . '/src/App/Services/Mailer/SendEmail.php',
 );

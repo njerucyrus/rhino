@@ -276,9 +276,6 @@ class UserController implements UserInterface
         $db = new DB();
         $conn = $db->connect();
         $status = "active";
-        $user = self::getId($userId);
-        $email = $user['email'];
-
         try {
             $stmt = $conn->prepare("UPDATE users SET accountStatus=:accountStatus WHERE id=:userId AND 
                                     accountStatus='pending'");
@@ -287,14 +284,6 @@ class UserController implements UserInterface
             $stmt->bindParam(":accountStatus", $status);
             if ($stmt->execute()) {
                 $db->closeConnection();
-                //send email to user
-                $vendorEmail = "info@asilie-learning.co.ke";
-                $link = '';
-                $sendMail = new SendEmail($email, $vendorEmail);
-                $sendMail->setSubject("Account Approval");
-                $sendMail->setMessage("Your Asili Elearning Account has been approved.
-                visit {$link} to login. your Referral code is {$user['userReferralCode']}.
-                Share this referral code to others and Start earning");
                 return true;
             } else {
                 $db->closeConnection();
@@ -312,8 +301,6 @@ class UserController implements UserInterface
         $db = new DB();
         $conn = $db->connect();
         $status = "blocked";
-        $user = self::getId($userId);
-        $email = $user['email'];
 
         try {
             $stmt = $conn->prepare("UPDATE users SET accountStatus=:accountStatus WHERE id=:userId AND 
@@ -323,13 +310,6 @@ class UserController implements UserInterface
             $stmt->bindParam(":accountStatus", $status);
             if ($stmt->execute()) {
                 $db->closeConnection();
-                //send email to user
-                $vendorEmail = "info@asilie-learning.co.ke";
-                //$link = 'asilie-learning.co.ke';
-                $sendMail = new SendEmail($email, $vendorEmail);
-                $sendMail->setSubject("Account Blocked");
-                $sendMail->setMessage("Your Asili Elearning Account has been temporally blocked.
-                Contanct support@aslie-learning.co.ke For more information");
                 return true;
             } else {
                 $db->closeConnection();
@@ -358,13 +338,6 @@ class UserController implements UserInterface
             $stmt->bindParam(":accountStatus", $status);
             if ($stmt->execute()) {
                 $db->closeConnection();
-                //send email to user
-                $vendorEmail = "info@asilie-learning.co.ke";
-                //$link = 'asilie-learning.co.ke';
-                $sendMail = new SendEmail($email, $vendorEmail);
-                $sendMail->setSubject("Account Unblocked");
-                $sendMail->setMessage("Your Asili Elearning Account has been Unblocked.Welcome back
-                And enjoy our services");
                 return true;
             } else {
                 $db->closeConnection();
