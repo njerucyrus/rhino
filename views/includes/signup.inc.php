@@ -106,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ReferralTreeController::updateTotalEarning();
             unset($_SESSION['referralCode']);
             $success .= "Account created successfully";
-            header('Refresh: 3; url=views/signup_success.php?status=200');
+            header('Refresh: 1; url=signup_success.php?status=200');
         } else {
             $error .= "Error Internal Server error occurred. Account not Created";
         }

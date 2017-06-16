@@ -44,8 +44,7 @@ function cleanInput($data)
 </section>
 
 
-<section id="mainslider"   >
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<section id="mainslider1"   >
 
     <div class="containerLogin">
 
@@ -218,40 +217,6 @@ function cleanInput($data)
 </section>
 
 
-<section id="join_us" class="grey_section">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 text-center">
-          <h2 class="block-header">Join Us</h2>
-          <p>Please fill the information below to join us.</p>
-          <?php
-          if (empty($success) && !empty($error)) {
-              ?>
-              <div class="alert alert-danger alert-dismissable">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  <?php echo $error?>
-              </div>
-              <?php
-          } elseif (empty($error) and !empty($success)) {
-              ?>
-              <div class="alert alert-success alert-dismissable">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  <?php echo $success ?>
-              </div>
-
-              <?php
-          } else {
-              echo "";
-          }
-          ?>
-        </div>
-      </div>
-
-  <div class="row">
-      <?php include 'views/signup.php' ?>
-  </div>
-  </div>
-</section>
 
 
 
@@ -350,7 +315,7 @@ function cleanInput($data)
     <!--footer scripts-->
     <?php include_once 'views/footer.php';?>
     <script src="/public/assets/js/jquery-1.11.3.min.js"></script>
-    <script src="/public/assets/js/bootstrap.min.js"></script>
+    <script src="/public/assets/js/bootstrap.js"></script>
     <script>
         $(document).ready(function (e) {
          e.preventDefault;

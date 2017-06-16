@@ -8,13 +8,13 @@
 use App\Auth\Auth;
 
 $username = $password = $loginError = '';
-if (isset($_SESSION['username'])) {
-    header("Location: views/urls.php");
+if (isset($_SESSION['username'])|| isset($_COOKIE['asili_username'])) {
+    header("Location: views/home.php");
 }
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (isset($_POST['loginUsername']) && isset($_POST['loginPassword'])) {
+    if (!empty($_POST['loginUsername']) && !empty($_POST['loginPassword'])) {
         $username = cleanInput($_POST['loginUsername']);
         $password = cleanInput($_POST['loginPassword']);
         if (isset($_POST['keepLoggedIn'])) {
@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (!empty($auth['accountStatus'])) {
             if ($auth['accountStatus'] == 'active') {
                 $_SESSION['username'] = $username;
-                header("Location : views/url.php");
+
+                header("Location: views/home.php");
             } elseif ($auth['accountStatus'] == 'blocked') {
                 $loginError = "Your account has been blocked contact support@asilie-learning.co.ke for more info";
             } elseif ($auth['accountStatus'] == 'pending') {
