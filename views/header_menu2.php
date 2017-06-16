@@ -1,3 +1,5 @@
+
+
 <?php
 /**
  * Created by PhpStorm.
@@ -22,24 +24,27 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse" id="navigationbar">
             <ul class="nav navbar-nav   menu sf-menu responsive-menu superfish">
                 <li class="">
-                    <a href="home.php"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Home</a>
+                    <a href="#"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Home</a>
                 </li>
                 <li class="">
-                    <a href="home.php#title_about" style="font-size: 15px;  padding: 20px 10px 5px 10px;">About</a>
+                    <a href="../index.php#title_about"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">About</a>
                 </li>
 
 
                 <li class="">
-                    <a href="home.php#contact" style="font-size: 15px;  padding: 20px 10px 5px 10px;">Contact</a>
+                    <a href="../index.php#contact"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Contact</a>
                 </li>
                 <li class="">
-                    <a href="profile.php" style="font-size: 15px;  padding: 20px 10px 5px 10px;">Profile</a>
+                    <a href="#"><button class="joinBtn">Join Us</button></a>
                 </li>
 
                 <li>
-                    <a href="logout.php" class="dropdown-toggle" data-toggle="dropdown"><button class="loginBtn">Login out</button> </a>
+                    <a href="../index.php"><button class="loginBtn">Login</button>
                 </li>
+
+
             </ul>
         </div>
     </div>
 </nav>
+

@@ -41,42 +41,19 @@ function cleanInput($data)
 
 
 
-
 <section id="header" class="bg-color0">
     <div class="container"><div class="row">
 
-            <a class="navbar-brand" href="#top"><img src="../public/assets/img/logo4.png" alt=""></a>
+            <a class="navbar-brand" href="#top"><img src="public/assets/img/logo4.png" alt=""></a>
 
             <div class="col-sm-12 mainmenu_wrap"><div class="main-menu-icon visible-xs"><span></span><span></span><span></span></div>
-                <ul id="mainmenu" class="nav menu sf-menu responsive-menu superfish">
-                    <li class="">
-                        <a href="#"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Home</a>
-                    </li>
-                    <li class="">
-                        <a href="../index.php#title_about"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">About</a>
-                    </li>
-
-
-                    <li class="">
-                        <a href="../index.php#contact"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Contact</a>
-                    </li>
-                    <li class="">
-                        <a href="#"><button class="joinBtn">Join Us</button></a>
-                    </li>
-
-                    <li>
-                        <a href="../index.php"><button class="loginBtn">Login</button>
-                    </li>
-
-
-                </ul>
+                <?php
+                include_once 'header_menu2.php';
+                ?>
             </div>
 
         </div></div>
 </section>
-
-
-
 
 <section id="join_us" class="grey_section" style="padding-top: 7%;">
     <div class="container">

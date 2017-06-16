@@ -74,8 +74,7 @@ include_once 'contactus.php';
                     <a class="socialico-facebook" href="#" title="Facebook">#</a>
                     <a class="socialico-google" href="#" title="Google">#</a>
                     <a class="socialico-linkedin" href="#" title="Lindedin">#</a>
-                    <a class="socialico-tumblr" href="#" title="tumblr">#</a>
-                    <a class="socialico-rss" href="#" title="Rss">#</a>
+
                 </p>
             </div>
 

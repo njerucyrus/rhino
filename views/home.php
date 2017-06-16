@@ -30,7 +30,7 @@ $sites = SiteController::all();
 <section id="header" class="bg-color0">
     <div class="container"><div class="row">
 
-            <a class="navbar-brand" href="#top"><img src="../public/assets/img/logo4.png" alt=""></a>
+
 
             <div class="col-sm-12 mainmenu_wrap"><div class="main-menu-icon visible-xs"><span></span><span></span><span></span></div>
                 <?php
@@ -200,6 +200,9 @@ $sites = SiteController::all();
         </div>
     </div>
 </section>
+
+<script src="../public/assets/js/jquery-1.11.3.min.js"></script>
+<script src="../public/assets/js/bootstrap.js"></script>
 <?php include_once 'contact_footer_views.php';?>
 
 
