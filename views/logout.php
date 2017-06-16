@@ -8,6 +8,11 @@ session_start();
  */
 
 unset($_SESSION['username']);
-unset($_COOKIE['asili_username']);
+
+
+$cookie_name = 'asili_username';
+$cookie_value = "";
+setcookie($cookie_name, $cookie_value, time() - (86400 * 30), "/");
+
 session_destroy();
 header('Location: ../index.php');

@@ -40,7 +40,7 @@
                         </li>
 
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button class="loginBtn">Login out</button> </a>
+                            <a href="logout.php" class="dropdown-toggle" data-toggle="dropdown"><button class="loginBtn">Login out</button> </a>
                         </li>
                     </ul>
                 </div><!-- /.navbar-collapse -->

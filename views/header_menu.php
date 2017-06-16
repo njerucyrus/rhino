@@ -19,11 +19,11 @@
         <a href="#contact"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Contact</a>
     </li>
     <li class="">
-        <a href="#join_us"><button class="joinBtn">Join Us</button></a>
+        <a href="views/signup.php"><button class="joinBtn">Join Us</button></a>
     </li>
 
     <li>
-        <a href="#mainslider"><button class="loginBtn">Login</button>
+        <a href="#"><button class="loginBtn">Login</button>
     </li>
 
 

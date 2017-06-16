@@ -12,7 +12,7 @@ require_once __DIR__.'/../vendor/autoload.php';
 use \App\Controller\UserController;
 use \App\Controller\FundController;
 use \App\Controller\ReferralTreeController;
-$_SESSION['username']='sammmy';
+
 $userId = UserController::getUserId($_SESSION['username']);
 $profile = FundController::myEarning($userId);
 $user=UserController::getId($userId);
