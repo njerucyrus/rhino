@@ -18,18 +18,18 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="contact-form">
-                    <form class="contact-form" method="post" action="/">
+                    <form class="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
                         <p class="contact-form-name">
-                            <label for="name">Name <span class="required">*</span></label>
-                            <input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="Name">
+                            <label for="contactName">Name <span class="required">*</span></label>
+                            <input type="text" aria-required="true" size="30" value="" name="contactName" id="contactName" class="form-control" placeholder="Name">
                         </p>
                         <p class="contact-form-email">
-                            <label for="email">Email <span class="required">*</span></label>
-                            <input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="Email">
+                            <label for="contactEmail">Email <span class="required">*</span></label>
+                            <input type="email" aria-required="true" size="30" value="" name="contactEmail" id="contactEmail" class="form-control" placeholder="Email">
                         </p>
                         <p class="contact-form-message">
-                            <label for="message">Message</label>
-                            <textarea aria-required="true" rows="8" cols="45" name="message" id="message" class="form-control" placeholder="Message"></textarea>
+                            <label for="contactMessage">Message</label>
+                            <textarea aria-required="true" rows="8" cols="45" name="contactMessage" id="contactMessage" class="form-control" placeholder="Message"></textarea>
                         </p>
                         <p class="contact-form-submit text-center vertical-margin-81">
                             <input type="submit" value="Send" id="contact_form_submit" name="contact_submit" class="theme_btn">

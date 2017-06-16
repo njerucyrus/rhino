@@ -6,6 +6,9 @@ session_start();
  * Date: 06/05/2017
  * Time: 22:22
  */
+if (isset($_SESSION['username']) || isset($_COOKIE['asili_username'])) {
+    header("Location: views/urls.php");
+}
 require_once  'vendor/autoload.php';
 include "views/includes/login.inc.php";
 include "views/includes/signup.inc.php";
@@ -61,15 +64,15 @@ function cleanInput($data)
                     <?php endif;?>
                     <div class="form-group">
                         <label class="sr-only" for="loginUsername">Username</label>
-                        <input type="text" class="form-control" name="loginUsername" id="loginUsername" required>
+                        <input type="text" class="form-control" name="loginUsername" id="loginUsername" placeholder="username" required>
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="loginPassword">Password</label>
-                        <input type="password" name="loginPassword" class="form-control" id="loginPassword" required>
+                        <input type="password" name="loginPassword" class="form-control" id="loginPassword" placeholder="your password" required>
                         <div class="help-block text-right"><a href="views/forgot_password.php">Forgot the password ?</a></div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" class="btn btn-primary btn-block" value="Sign in">
+                        <input type="submit" name="submit" class="btn btn-primary btn-block" value="Sign in">
                     </div>
                     <div class="checkbox">
                         <label for="keepLoggedIn">
@@ -351,11 +354,6 @@ function cleanInput($data)
     <?php include_once 'views/footer.php';?>
     <script src="/public/assets/js/jquery-1.11.3.min.js"></script>
     <script src="/public/assets/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function (e) {
-         e.preventDefault;
-        });
-    </script>
     <script>
     </script>
        

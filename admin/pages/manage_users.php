@@ -7,6 +7,9 @@
  */
 require_once __DIR__.'/../../vendor/autoload.php';
 use \App\Controller\UserController;
+use \App\Services\SendEmail;
+
+$vendorEmail = "asilie-learning.co.ke";
 
 $data = json_decode(file_get_contents('php://input'), true);
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
@@ -34,6 +37,13 @@ function approveAccount(){
             "statusCode"=>200,
             "message"=>"Account Approved successfully"
         )));
+        $user = UserController::getId($data['userId']);
+        global $vendorEmail;
+        $mail = new SendEmail($user['email'], $vendorEmail);
+        $mail->setSubject("Asili Africa Account Approval");
+        $mail->setMessage("Your Asili Africa E-learning Account has been approved visit www.asilie-learning.co.ke ");
+        $mail->setVendor("Asili Elearning");
+        $mail->send();
     }else{
         print_r(json_encode(array(
             "statusCode"=>500,
@@ -49,6 +59,13 @@ function blockAccount(){
             "statusCode"=>200,
             "message"=>"Account Blocked "
         )));
+        $user = UserController::getId($data['userId']);
+        global $vendorEmail;
+        $mail = new SendEmail($user['email'], $vendorEmail);
+        $mail->setSubject("Account Blocked");
+        $mail->setMessage("Dear {$user['fullName']}, Your Asili Africa E-learning Account has been Blocked Contact support@asilie-learning.co.ke for any queries");
+        $mail->setVendor("Asili Elearning");
+        $mail->send();
     }else{
         print_r(json_encode(array(
             "statusCode"=>500,
@@ -64,6 +81,14 @@ function unblockAccount(){
             "statusCode"=>200,
             "message"=>"Account Unblocked "
         )));
+
+        $user = UserController::getId($data['userId']);
+        global $vendorEmail;
+        $mail = new SendEmail($user['email'], $vendorEmail);
+        $mail->setSubject("Account Reactivated");
+        $mail->setMessage("Hello {$user['fullName']} We are glad to inform you that your Asili Africa E-learning Account has been Reactivated. Welcome back");
+        $mail->setVendor("Asili Elearning");
+        $mail->send();
     }else{
         print_r(json_encode(array(
             "statusCode"=>500,
