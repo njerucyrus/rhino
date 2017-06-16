@@ -24,6 +24,7 @@ class User
     private $lastLogin;
     private $loginIp;
     private $createdAt;
+    private $isAdmin;
 
     /**
      * @return mixed
@@ -233,5 +234,8 @@ class User
     {
         $this->createdAt = $createdAt;
     }
+
+
+
 
 }

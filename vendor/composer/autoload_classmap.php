@@ -12,6 +12,7 @@ return array(
     'App\\AppInterface\\ReferralTreeInterface' => $baseDir . '/src/App/AppInterface/ReferralTreeInterface.php',
     'App\\AppInterface\\SiteInterface' => $baseDir . '/src/App/AppInterface/SiteInterface.php',
     'App\\AppInterface\\UserInterface' => $baseDir . '/src/App/AppInterface/UserInterface.php',
+    'App\\Auth\\Auth' => $baseDir . '/src/App/Auth/Auth.php',
     'App\\Controller\\FundController' => $baseDir . '/src/App/Controller/FundController.php',
     'App\\Controller\\PaymentController' => $baseDir . '/src/App/Controller/PaymentController.php',
     'App\\Controller\\ReferralTreeController' => $baseDir . '/src/App/Controller/ReferralTreeController.php',
@@ -24,5 +25,5 @@ return array(
     'App\\Entity\\ReferralTree' => $baseDir . '/src/App/Entity/ReferralTree.php',
     'App\\Entity\\Site' => $baseDir . '/src/App/Entity/Site.php',
     'App\\Entity\\User' => $baseDir . '/src/App/Entity/User.php',
-    'App\\Mailer\\SendEmail' => $baseDir . '/src/App/Mailer/SendEmail.php',
+    'App\\Services\\SendEmail' => $baseDir . '/src/App/Services/Mailer/SendEmail.php',
 );
