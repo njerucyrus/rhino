@@ -6,7 +6,7 @@
  * Time: 9:34 AM
  */
 
-namespace App\Services;
+namespace App\Services\Mailer;
 
 
 class SendEmail

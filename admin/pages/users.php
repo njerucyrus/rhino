@@ -228,6 +228,7 @@ $counter = 1;
                         contentType: 'application/json;charset=utf-8;',
                         traditional: true,
                         success: function (response) {
+                            console.log(response);
                             if (response.statusCode == 200) {
                                 console.log(response);
                                 $('#confirmFeedback1').removeClass('alert alert-danger')
@@ -244,6 +245,9 @@ $counter = 1;
                                         '<strong>Error! </strong> ' + response.message + '</div>')
 
                             }
+                        },
+                        error: function (e) {
+                            console.log(e);
                         }
                     }
                 )
@@ -270,6 +274,7 @@ $counter = 1;
                         contentType: 'application/json;charset=utf-8;',
                         traditional: true,
                         success: function (response) {
+                            console.log(response);
                             if (response.statusCode == 200) {
                                 console.log(response);
                                 $('#confirmFeedback2').removeClass('alert alert-danger')
@@ -286,6 +291,9 @@ $counter = 1;
                                         '<strong>Error! </strong> ' + response.message + '</div>')
 
                             }
+                        },
+                        error: function (e) {
+                            console.log(e);
                         }
                     }
                 )
@@ -312,6 +320,7 @@ $counter = 1;
                         contentType: 'application/json;charset=utf-8;',
                         traditional: true,
                         success: function (response) {
+                            console.log(response);
                             if (response.statusCode == 200) {
                                 console.log(response);
                                 $('#confirmFeedback3').removeClass('alert alert-danger')
@@ -328,7 +337,11 @@ $counter = 1;
                                         '<strong>Error! </strong> ' + response.message + '</div>')
 
                             }
+                        },
+                        error: function (e) {
+                            console.log(e);
                         }
+
                     }
                 )
             })

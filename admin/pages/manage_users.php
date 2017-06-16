@@ -6,8 +6,8 @@
  * Time: 3:09 PM
  */
 require_once __DIR__.'/../../vendor/autoload.php';
-use \App\Controller\UserController;
-use \App\Services\SendEmail;
+
+use \App\Services\Mailer\SendEmail;
 
 $vendorEmail = "asilie-learning.co.ke";
 
@@ -31,9 +31,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 function approveAccount(){
     global $data;
-    $approved  = UserController::approveAccount($data['userId']);
+    $approved  = App\Controller\UserController::approveAccount($data['userId']);
     if($approved === true){
-        $user = UserController::getId($data['userId']);
+        $user = App\Controller\UserController::getId($data['userId']);
         global $vendorEmail;
         $mail = new SendEmail($user['email'], $vendorEmail);
         $mail->setSubject("Asili Africa Account Approval");
@@ -55,9 +55,9 @@ function approveAccount(){
 }
 function blockAccount(){
     global $data;
-    $blocked  = UserController::blockAccount($data['userId']);
+    $blocked  = \App\Controller\UserController::blockAccount($data['userId']);
     if($blocked === true){
-        $user = UserController::getId($data['userId']);
+        $user = \App\Controller\UserController::getId($data['userId']);
 
         global $vendorEmail;
         $mail = new SendEmail($user['email'], $vendorEmail);
@@ -80,14 +80,14 @@ function blockAccount(){
 }
 function unblockAccount(){
     global $data;
-    $unblocked  = UserController::unblockAccount($data['userId']);
+    $unblocked  = \App\Controller\UserController::unblockAccount($data['userId']);
     if($unblocked === true){
         print_r(json_encode(array(
             "statusCode"=>200,
             "message"=>"Account Unblocked "
         )));
 
-        $user = UserController::getId($data['userId']);
+        $user = \App\Controller\UserController::getId($data['userId']);
         global $vendorEmail;
         $mail = new SendEmail($user['email'], $vendorEmail);
         $mail->setSubject("Account Reactivated");
