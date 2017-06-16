@@ -27,6 +27,7 @@ class ComposerStaticInitf2e6d16bb2124dc086289decd86c5fb5
         'App\\AppInterface\\ReferralTreeInterface' => __DIR__ . '/../..' . '/src/App/AppInterface/ReferralTreeInterface.php',
         'App\\AppInterface\\SiteInterface' => __DIR__ . '/../..' . '/src/App/AppInterface/SiteInterface.php',
         'App\\AppInterface\\UserInterface' => __DIR__ . '/../..' . '/src/App/AppInterface/UserInterface.php',
+        'App\\Auth\\Auth' => __DIR__ . '/../..' . '/src/App/Auth/Auth.php',
         'App\\Controller\\FundController' => __DIR__ . '/../..' . '/src/App/Controller/FundController.php',
         'App\\Controller\\PaymentController' => __DIR__ . '/../..' . '/src/App/Controller/PaymentController.php',
         'App\\Controller\\ReferralTreeController' => __DIR__ . '/../..' . '/src/App/Controller/ReferralTreeController.php',
@@ -39,7 +40,7 @@ class ComposerStaticInitf2e6d16bb2124dc086289decd86c5fb5
         'App\\Entity\\ReferralTree' => __DIR__ . '/../..' . '/src/App/Entity/ReferralTree.php',
         'App\\Entity\\Site' => __DIR__ . '/../..' . '/src/App/Entity/Site.php',
         'App\\Entity\\User' => __DIR__ . '/../..' . '/src/App/Entity/User.php',
-        'App\\Mailer\\SendEmail' => __DIR__ . '/../..' . '/src/App/Mailer/SendEmail.php',
+        'App\\Services\\SendEmail' => __DIR__ . '/../..' . '/src/App/Services/Mailer/SendEmail.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

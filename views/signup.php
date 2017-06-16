@@ -61,11 +61,11 @@ function cleanInput($data)
                         <a href="../index.php#contact"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Contact</a>
                     </li>
                     <li class="">
-                        <a href="#"><button class="views/logout.php">Join Us</button></a>
+                        <a href="#"><button class="joinBtn">Join Us</button></a>
                     </li>
 
                     <li>
-                        <a href="../index.php#mainslider1"><button class="loginBtn">Login</button>
+                        <a href="../index.php"><button class="loginBtn">Login</button>
                     </li>
 
 

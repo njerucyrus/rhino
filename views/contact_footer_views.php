@@ -4,7 +4,9 @@
  * User: New LAptop
  * Date: 14/06/2017
  * Time: 11:14
- */?>
+ */
+include_once 'contactus.php';
+?>
 
 
 <section id="contact" class="darkgrey_section">
@@ -17,19 +19,39 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
+                <?php
+                if (empty($success) && !empty($error)) {
+                    ?>
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?php echo $error?>
+                    </div>
+                    <?php
+                } elseif (empty($error) and !empty($success)) {
+                    ?>
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?php echo $success ?>
+                    </div>
+
+                    <?php
+                } else {
+                    echo "";
+                }
+                ?>
                 <div class="contact-form">
-                    <form class="contact-form" method="post" action="/">
+                    <form class="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
                         <p class="contact-form-name">
-                            <label for="name">Name <span class="required">*</span></label>
-                            <input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="Name">
+                            <label for="contactName">Name <span class="required">*</span></label>
+                            <input type="text" aria-required="true" size="30" value="" name="contactName" id="contactName" class="form-control" placeholder="Name">
                         </p>
                         <p class="contact-form-email">
-                            <label for="email">Email <span class="required">*</span></label>
-                            <input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="Email">
+                            <label for="contactEmail">Email <span class="required">*</span></label>
+                            <input type="email" aria-required="true" size="30" value="" name="contactEmail" id="contactEmail" class="form-control" placeholder="Email">
                         </p>
                         <p class="contact-form-message">
-                            <label for="message">Comment</label>
-                            <textarea aria-required="true" rows="8" cols="45" name="message" id="message" class="form-control" placeholder="Message"></textarea>
+                            <label for="contactMessage">Message</label>
+                            <textarea aria-required="true" rows="8" cols="45" name="contactMessage" id="contactMessage" class="form-control" placeholder="Message"></textarea>
                         </p>
                         <p class="contact-form-submit text-center vertical-margin-81">
                             <input type="submit" value="Send" id="contact_form_submit" name="contact_submit" class="theme_btn">
@@ -40,12 +62,12 @@
 
             <div class="block widget_text col-sm-3">
                 <h3>About Us</h3>
-                <p>Company Name.<br>
-                    City, Street str., ZIP<br>
+                <p>Asili Africa E-learning Centre<br>
+                    Nairobi<br>
                     <span><strong>Phone:</strong> </span>(123) 456-7890<br>
                     <span><strong>Email:</strong> </span>
-                    <a href="#">info@company.com</a><br>
-                    We provide original, quality, attractive and functional design.
+                    <a href="#">info@asilie-learning.com</a><br>
+                   We campaign, create awareness, partner and offer consultancy services for the E-learning services.
                 </p>
                 <p>
                     <a class="socialico-twitter" href="#" title="Twitter">#</a>
@@ -62,7 +84,7 @@
                 <ul class="nav menu">
                     <li><a href="#title_about">About Us</a></li>
                     <li><a href="#join_us">Join Us</a></li>
-                    <li><a href="#mainslider">Login Us</a></li>
+                    <li><a href="#mainslider">Login In</a></li>
 
                 </ul>
             </div>

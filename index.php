@@ -149,7 +149,7 @@ function cleanInput($data)
               <i class="rt-icon-megaphone"></i>
           </div>
           <div class="single_teaser_right">
-              <h3>You are new here? Create an account Now  <a href="#join_us" class="joinBtn" style="color: white;">Join US</h3></a></div>
+              <h3>You are new here? Create an account Now  <a href="views/signup.php" class="joinBtn" style="color: white;">Join US</h3></a></div>
         </div>
       </div>
 
@@ -217,50 +217,13 @@ function cleanInput($data)
 </section>
 
 
-<section id="join_us" class="grey_section">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 text-center">
-          <h2 class="block-header">Join Us</h2>
-          <p>Please fill the information below to join us.</p>
-          <?php
-          if (empty($success) && !empty($error)) {
-              ?>
-              <div class="alert alert-danger alert-dismissable">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  <?php echo $error?>
-              </div>
-              <?php
-          } elseif (empty($error) and !empty($success)) {
-              ?>
-              <div class="alert alert-success alert-dismissable">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  <?php echo $success ?>
-              </div>
-
-              <?php
-          } else {
-              echo "";
-          }
-          ?>
-        </div>
-      </div>
-
-  <div class="row">
-      <?php //include 'views/signup.php' ?>
-  </div>
-  </div>
-</section>
-
-
-
 <section class="title_section color_section">
   <div class="container"><div class="row">
     <div class="col-sm-8">
       <h3>“The education delivery approach in Africa has to shift from one that is highly dependent on physical infrastructure such as schools and colleges, physical learning materials, and in class education delivery to one that makes extensive use of interactive education technology.” Ambient Insight</h3>
      </div>
     <div class="col-sm-4">
-      <a href="#" class="theme_btn"><i class="rt-icon-ok"></i> Join Us</a>
+      <a href="views/signup.php" class="theme_btn"><i class="rt-icon-ok"></i> Join Us</a>
     </div>
   </div></div>
 </section>
