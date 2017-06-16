@@ -12,7 +12,6 @@ namespace App\Controller;
 use App\AppInterface\UserInterface;
 use App\Entity\User;
 use App\DBManager\DB;
-use App\Mailer\SendEmail;
 
 class UserController implements UserInterface
 {
