@@ -28,6 +28,7 @@ class UserController implements UserInterface
         $accountStatus = $user->getAccountStatus();
         $loginIp = $user->getLoginIp();
         $createdAt = $user->getCreatedAt();
+        $isAdmin = $user->getIsAdmin();
         try {
             $db = new DB();
             $conn = $db->connect();
@@ -43,7 +44,8 @@ class UserController implements UserInterface
                                                         paymentStatus,
                                                         accountStatus,   
                                                         loginIp, 
-                                                        createdAt
+                                                        createdAt,
+                                                        isAdmin
                                                         ) 
                                                   VALUES(
                                                         :userReferralCode,
@@ -56,7 +58,8 @@ class UserController implements UserInterface
                                                         :paymentStatus,
                                                         :accountStatus,
                                                         :loginIp, 
-                                                        :createdAt
+                                                        :createdAt,
+                                                        :isAdmin
                                                         ) 
                                                   ");
             $stmt->bindParam(":userReferralCode", $userReferralCode);
@@ -70,6 +73,7 @@ class UserController implements UserInterface
             $stmt->bindParam(":accountStatus", $accountStatus);
             $stmt->bindParam(":loginIp", $loginIp);
             $stmt->bindParam(":createdAt", $createdAt);
+            $stmt->bindParam(":isAdmin", $isAdmin);
             $query = $stmt->execute();
             if ($query) {
                 $db->closeConnection();
@@ -98,6 +102,7 @@ class UserController implements UserInterface
         $accountStatus = $user->getAccountStatus();
         $loginIp = $user->getLoginIp();
         $createdAt = $user->getCreatedAt();
+        $isAdmin = $user->getIsAdmin();
         try {
 
             $db = new DB();
@@ -114,7 +119,8 @@ class UserController implements UserInterface
                                                     paymentStatus=:paymentStatus,
                                                     accountStatus=:accountStatus,   
                                                     loginIp=:loginIp, 
-                                                    createdAt=:createdAt
+                                                    createdAt=:createdAt,
+                                                    isAdmin=:isAdmin
                                               WHERE id=:id");
 
             $stmt->bindParam(":id", $id);
@@ -129,6 +135,7 @@ class UserController implements UserInterface
             $stmt->bindParam(":accountStatus", $accountStatus);
             $stmt->bindParam(":loginIp", $loginIp);
             $stmt->bindParam(":createdAt", $createdAt);
+            $stmt->bindParam(":isAdmin", $isAdmin);
             $query = $stmt->execute();
             if ($query) {
                 $db->closeConnection();
@@ -222,6 +229,25 @@ class UserController implements UserInterface
                 $id = $row['id'];
             }
             return $id;
+        } catch (\PDOException $exception) {
+            echo $exception->getMessage();
+            return null;
+        }
+    }
+
+
+    public static function getUserByUsername($username)
+    {
+        $db = new DB();
+        $conn = $db->connect();
+        try {
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username=:username LIMIT 1");
+            $stmt->bindParam(":username", $username);
+            $row = null;
+            if ($stmt->execute() && $stmt->rowCount() == 1) {
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+            }
+            return $row;
         } catch (\PDOException $exception) {
             echo $exception->getMessage();
             return null;

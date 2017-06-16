@@ -1,3 +1,21 @@
+<?php
+session_start();
+require_once __DIR__.'/../../vendor/autoload.php';
+use \App\Controller\UserController;
+
+if(isset($_SESSION['username'])){
+ $user = UserController::getUserByUsername($_SESSION['username']);
+ if($user['isAdmin'] == 0){
+     header('Location: ../../index.php');
+ }
+}else{
+    header('Location: ../../index.php');
+}
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
