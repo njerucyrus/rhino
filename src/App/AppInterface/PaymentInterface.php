@@ -14,6 +14,4 @@ use App\Entity\Payment;
 interface PaymentInterface extends BaseInterface
 {
     public function create(Payment $payment);
-    public function update(Payment $payment, $id);
-
 }

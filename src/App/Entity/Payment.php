@@ -18,6 +18,9 @@ class Payment
     private $phoneNumber;
     private $email;
     private $paymentMethod;
+    private $status;
+    private $datePaid;
+
 
     /**
      * @return mixed
@@ -129,6 +132,38 @@ class Payment
     public function setPaymentMethod($paymentMethod)
     {
         $this->paymentMethod = $paymentMethod;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDatePaid()
+    {
+        return $this->datePaid;
+    }
+
+    /**
+     * @param mixed $datePaid
+     */
+    public function setDatePaid($datePaid)
+    {
+        $this->datePaid = $datePaid;
     }
 
 }

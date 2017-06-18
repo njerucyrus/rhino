@@ -24,6 +24,8 @@ class PaymentController implements PaymentInterface
         $amount = $payment->getAmount();
         $phoneNumber = $payment->getPhoneNumber();
         $email = $payment->getEmail();
+        $status = $payment->getStatus();
+        $datePaid = $payment->getDatePaid();
 
         try{
            $db =  new DB();
@@ -34,7 +36,9 @@ class PaymentController implements PaymentInterface
                                                         paymentMethod,
                                                         amount,
                                                         phoneNumber, 
-                                                        email
+                                                        email,
+                                                        status,
+                                                        datePaid
                                                         )
                                                 VALUES (
                                                 :transactionId,
@@ -42,7 +46,10 @@ class PaymentController implements PaymentInterface
                                                 :paymentMethod, 
                                                 :amount,
                                                 :phoneNumber,
-                                                :email)
+                                                :email,
+                                                :status,
+                                                :datePaid
+                                                )
                                                 ");
            $stmt->bindParam(":transactionId", $transactionId);
            $stmt->bindParam(":userId", $userId);
@@ -50,6 +57,8 @@ class PaymentController implements PaymentInterface
            $stmt->bindParam(":amount", $amount);
            $stmt->bindParam(":phoneNumber", $phoneNumber);
            $stmt->bindParam(":email", $email);
+           $stmt->bindParam(":status", $status);
+           $stmt->bindParam(":datePaid", $datePaid);
            $query = $stmt->execute();
            if ($query) {
                return true;
@@ -61,45 +70,6 @@ class PaymentController implements PaymentInterface
             echo $e->getMessage();
             return false;
 
-        }
-    }
-
-    public function update(Payment $payment, $id)
-    {
-        $transactionId = $payment->getTransactionId();
-        $userId = $payment->getUserId();
-        $paymentMethod = $payment->getPaymentMethod();
-        $amount = $payment->getAmount();
-        $phoneNumber = $payment->getPhoneNumber();
-        $email = $payment->getEmail();
-
-        try{
-            $db = new DB();
-            $conn = $db->connect();
-            $stmt = $conn->prepare("UPDATE payments SET
-                                                        paymentMethod=:paymentMethod,
-                                                        amount=:amount,
-                                                        phoneNumber=:phoneNumber,
-                                                        email=:email
-                                                    WHERE 
-                                                        id=:id
-                                                        ");
-
-            $stmt->bindParam(":id", $id);
-            $stmt->bindParam(":paymentMethod", $paymentMethod);
-            $stmt->bindParam(":amount", $amount);
-            $stmt->bindParam(":phoneNumber", $phoneNumber);
-            $stmt->bindParam(":email", $email);
-            $query = $stmt->execute();
-            if ($query) {
-                $db->closeConnection();
-                return true;
-            } else{
-                return false;
-            }
-        } catch (\PDOException $e){
-            echo $e->getMessage();
-            return false;
         }
     }
 
@@ -205,6 +175,26 @@ class PaymentController implements PaymentInterface
         }catch (\PDOException $e){
             echo $e->getMessage();
             return [];
+        }
+    }
+
+    public static function completeTxn($transactionId, $status='success'){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("UPDATE payments SET `status`=:status WHERE transactionId=:transactionId");
+            $stmt->bindParam(":transactionId", $transactionId);
+            $stmt->bindParam(":status", $status);
+            if($stmt->execute()){
+                $db->closeConnection();
+                return true;
+            }else{
+                $db->closeConnection();
+                return false;
+            }
+        }catch (\PDOException $e){
+            echo $e->getMessage();
+            return false;
         }
     }
 
