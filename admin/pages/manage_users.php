@@ -101,3 +101,7 @@ function unblockAccount(){
         )));
     }
 }
+//do later
+function makeAdmin(){
+    global $data;
+}

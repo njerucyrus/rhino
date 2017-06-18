@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 /**
  * Created by PhpStorm.
  * User: hudutech
@@ -12,7 +11,6 @@ require_once __DIR__.'/../vendor/autoload.php';
 use \App\Controller\UserController;
 use \App\Controller\FundController;
 use \App\Controller\ReferralTreeController;
-$_SESSION['username']='sammmy';
 $userId = UserController::getUserId($_SESSION['username']);
 $profile = FundController::myEarning($userId);
 $user=UserController::getId($userId);
@@ -221,11 +219,8 @@ $referralTree=ReferralTreeController::getCounts($user['userReferralCode']);
                 </div>
             </div>
             <!-- resume -->
-
         </div>
     </div>
-
-
 </section>
 <?php include_once 'contact_footer_views.php';?>
 

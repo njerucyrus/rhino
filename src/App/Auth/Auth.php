@@ -32,8 +32,9 @@ class Auth
         $db = new DB();
         $conn = $db->connect();
         try {
-            $stmt = $conn->prepare("SELECT * FROM users WHERE username=:username");
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username=:username OR email=:email LIMIT 1");
             $stmt->bindParam(":username", $username);
+            $stmt->bindParam(":email", $username);
 
             $stmt->execute();
 

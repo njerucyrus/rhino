@@ -89,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->setPhoneNumber($phoneNumber);
         $user->setPaymentStatus('pending');
         $user->setUserReferralCode($_SESSION['referralCode']);
+        $user->setIsAdmin(0);
         $userCtrl = new UserController();
         $created = $userCtrl->create($user);
         if ($created) {

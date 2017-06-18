@@ -395,7 +395,7 @@ class ReferralTreeController implements ReferralTreeInterface
         }
     }
 
-    public function updateEarning($referralCode, $levelEarning, $amount)
+    public static function updateEarning($referralCode, $levelEarning, $amount)
     {
         $db = new DB();
         $conn = $db->connect();
