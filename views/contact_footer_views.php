@@ -4,7 +4,9 @@
  * User: New LAptop
  * Date: 14/06/2017
  * Time: 11:14
- */?>
+ */
+include_once 'contactus.php';
+?>
 
 
 <section id="contact" class="darkgrey_section">
@@ -17,6 +19,26 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
+                <?php
+                if (empty($success) && !empty($error)) {
+                    ?>
+                    <div class="alert alert-danger alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?php echo $error?>
+                    </div>
+                    <?php
+                } elseif (empty($error) and !empty($success)) {
+                    ?>
+                    <div class="alert alert-success alert-dismissable">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <?php echo $success ?>
+                    </div>
+
+                    <?php
+                } else {
+                    echo "";
+                }
+                ?>
                 <div class="contact-form">
                     <form class="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
                         <p class="contact-form-name">
@@ -52,8 +74,7 @@
                     <a class="socialico-facebook" href="#" title="Facebook">#</a>
                     <a class="socialico-google" href="#" title="Google">#</a>
                     <a class="socialico-linkedin" href="#" title="Lindedin">#</a>
-                    <a class="socialico-tumblr" href="#" title="tumblr">#</a>
-                    <a class="socialico-rss" href="#" title="Rss">#</a>
+
                 </p>
             </div>
 

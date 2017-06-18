@@ -12,10 +12,21 @@ if(isset($_SESSION['username'])){
     header('Location: ../../index.php');
 }
 
+$userCounter=0;
+$siteCounter=0;
+$users =App\Controller\UserController::all();
+$sites=App\Controller\SiteController::all();
+ foreach ($users as $user):
+     $userCounter=$userCounter+1;
+ endforeach;
+
+foreach ($sites as $site):
+    $siteCounter=$siteCounter+1;
+endforeach;
+
 
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +39,17 @@ if(isset($_SESSION['username'])){
     <meta name="author" content="">
 
     <title>Admin</title>
+
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -73,15 +95,15 @@ if(isset($_SESSION['username'])){
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
+                                    <i class="fa fa-users fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
+                                    <div class="huge"><?php echo $userCounter?></div>
+                                    <div>Registered users</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="users.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -98,12 +120,12 @@ if(isset($_SESSION['username'])){
                                     <i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>New Tasks!</div>
+                                    <div class="huge"><?php echo $siteCounter?></div>
+                                    <div>E-learning Resources</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="../../views/home.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -117,15 +139,15 @@ if(isset($_SESSION['username'])){
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                    <i class="fa fa-user-plus fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
+                                    <div class="huge">6</div>
+                                    <div>Pending users</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#">
+                        <a href="users.php">
                             <div class="panel-footer">
                                 <span class="pull-left">View Details</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -139,11 +161,11 @@ if(isset($_SESSION['username'])){
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
+                                    <i class="fa fa-dollar fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Support Tickets!</div>
+                                    <div class="huge">5000</div>
+                                    <div>Amount Transacted</div>
                                 </div>
                             </div>
                         </div>

@@ -19,7 +19,16 @@ include_once '../../views/includes/add_website.inc.php';
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Add website</title>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -86,7 +95,7 @@ include_once '../../views/includes/add_website.inc.php';
                             <form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
                                 <div class="form-group">
                                     <label>Enter website url</label>
-                                    <input class="form-control" type="text" name="url" placeholder="Enter url e.g www.google.com">
+                                    <input class="form-control" type="text" name="url" placeholder="Enter url e.g http://www.google.com">
                                 </div>
 
                                 <div class="form-group">

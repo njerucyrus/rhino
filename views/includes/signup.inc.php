@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         // check if name only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z ]*$/", $_POST['fullName'])) {
-            $nameErr = "Only letters and white space allowed";
+            $fullNameErr = "Only letters and white space allowed";
         } else {
             $fullName = cleanInput($_POST['fullName']);
         }
@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             ReferralTreeController::updateTotalEarning();
             unset($_SESSION['referralCode']);
             $success .= "Account created successfully";
-            header('Refresh: 1; url=views/signup_success.php?status=200');
+            header('Refresh: 1; url=signup_success.php?status=200');
         } else {
             $error .= "Error Internal Server error occurred. Account not Created";
         }

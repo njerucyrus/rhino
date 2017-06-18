@@ -30,7 +30,7 @@ $message = '';
 
             <div class="col-sm-12 mainmenu_wrap"><div class="main-menu-icon visible-xs"><span></span><span></span><span></span></div>
                 <?php
-                include_once 'header_menu_views.php';
+                include_once 'header_menu2.php';
                 ?>
             </div>
 
