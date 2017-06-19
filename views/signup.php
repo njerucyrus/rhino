@@ -55,7 +55,7 @@ function cleanInput($data)
         </div></div>
 </section>
 
-<section id="join_us" class="grey_section" style="padding-top: 7%;">
+<section id="join" class="grey_section" style="padding-top: 7%;">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -108,7 +108,7 @@ function cleanInput($data)
 
                             <div class="col-sm-4">
                                 <label for="fullName" class=" control-label">Full Name <span class="error"> * <?php echo $fullNameErr?></span></label>
-                                <input type="text" class="form-control" name="fullName" id="username" required>
+                                <input type="text" class="form-control" name="fullName" id="fullName" required>
 
                             </div>
                         </div>

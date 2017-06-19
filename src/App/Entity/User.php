@@ -24,6 +24,7 @@ class User
     private $lastLogin;
     private $loginIp;
     private $createdAt;
+    private $isAdmin;
 
     /**
      * @return mixed
@@ -233,5 +234,22 @@ class User
     {
         $this->createdAt = $createdAt;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIsAdmin()
+    {
+        return $this->isAdmin;
+    }
+
+    /**
+     * @param mixed $isAdmin
+     */
+    public function setIsAdmin($isAdmin)
+    {
+        $this->isAdmin = $isAdmin;
+    }
+
 
 }

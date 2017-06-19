@@ -12,7 +12,6 @@ namespace App\Controller;
 use App\AppInterface\UserInterface;
 use App\Entity\User;
 use App\DBManager\DB;
-use App\Mailer\SendEmail;
 
 class UserController implements UserInterface
 {
@@ -29,6 +28,7 @@ class UserController implements UserInterface
         $accountStatus = $user->getAccountStatus();
         $loginIp = $user->getLoginIp();
         $createdAt = $user->getCreatedAt();
+        $isAdmin = $user->getIsAdmin();
         try {
             $db = new DB();
             $conn = $db->connect();
@@ -44,7 +44,8 @@ class UserController implements UserInterface
                                                         paymentStatus,
                                                         accountStatus,   
                                                         loginIp, 
-                                                        createdAt
+                                                        createdAt,
+                                                        isAdmin
                                                         ) 
                                                   VALUES(
                                                         :userReferralCode,
@@ -57,7 +58,8 @@ class UserController implements UserInterface
                                                         :paymentStatus,
                                                         :accountStatus,
                                                         :loginIp, 
-                                                        :createdAt
+                                                        :createdAt,
+                                                        :isAdmin
                                                         ) 
                                                   ");
             $stmt->bindParam(":userReferralCode", $userReferralCode);
@@ -71,6 +73,7 @@ class UserController implements UserInterface
             $stmt->bindParam(":accountStatus", $accountStatus);
             $stmt->bindParam(":loginIp", $loginIp);
             $stmt->bindParam(":createdAt", $createdAt);
+            $stmt->bindParam(":isAdmin", $isAdmin);
             $query = $stmt->execute();
             if ($query) {
                 $db->closeConnection();
@@ -99,6 +102,7 @@ class UserController implements UserInterface
         $accountStatus = $user->getAccountStatus();
         $loginIp = $user->getLoginIp();
         $createdAt = $user->getCreatedAt();
+        $isAdmin = $user->getIsAdmin();
         try {
 
             $db = new DB();
@@ -115,7 +119,8 @@ class UserController implements UserInterface
                                                     paymentStatus=:paymentStatus,
                                                     accountStatus=:accountStatus,   
                                                     loginIp=:loginIp, 
-                                                    createdAt=:createdAt
+                                                    createdAt=:createdAt,
+                                                    isAdmin=:isAdmin
                                               WHERE id=:id");
 
             $stmt->bindParam(":id", $id);
@@ -130,6 +135,7 @@ class UserController implements UserInterface
             $stmt->bindParam(":accountStatus", $accountStatus);
             $stmt->bindParam(":loginIp", $loginIp);
             $stmt->bindParam(":createdAt", $createdAt);
+            $stmt->bindParam(":isAdmin", $isAdmin);
             $query = $stmt->execute();
             if ($query) {
                 $db->closeConnection();
@@ -229,6 +235,25 @@ class UserController implements UserInterface
         }
     }
 
+
+    public static function getUserByUsername($username)
+    {
+        $db = new DB();
+        $conn = $db->connect();
+        try {
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username=:username LIMIT 1");
+            $stmt->bindParam(":username", $username);
+            $row = null;
+            if ($stmt->execute() && $stmt->rowCount() == 1) {
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+            }
+            return $row;
+        } catch (\PDOException $exception) {
+            echo $exception->getMessage();
+            return null;
+        }
+    }
+
     public static function getObject($id)
     {
         try {
@@ -276,9 +301,6 @@ class UserController implements UserInterface
         $db = new DB();
         $conn = $db->connect();
         $status = "active";
-        $user = self::getId($userId);
-        $email = $user['email'];
-
         try {
             $stmt = $conn->prepare("UPDATE users SET accountStatus=:accountStatus WHERE id=:userId AND 
                                     accountStatus='pending'");
@@ -287,14 +309,6 @@ class UserController implements UserInterface
             $stmt->bindParam(":accountStatus", $status);
             if ($stmt->execute()) {
                 $db->closeConnection();
-                //send email to user
-                $vendorEmail = "info@asilie-learning.co.ke";
-                $link = '';
-                $sendMail = new SendEmail($email, $vendorEmail);
-                $sendMail->setSubject("Account Approval");
-                $sendMail->setMessage("Your Asili Elearning Account has been approved.
-                visit {$link} to login. your Referral code is {$user['userReferralCode']}.
-                Share this referral code to others and Start earning");
                 return true;
             } else {
                 $db->closeConnection();
@@ -312,8 +326,6 @@ class UserController implements UserInterface
         $db = new DB();
         $conn = $db->connect();
         $status = "blocked";
-        $user = self::getId($userId);
-        $email = $user['email'];
 
         try {
             $stmt = $conn->prepare("UPDATE users SET accountStatus=:accountStatus WHERE id=:userId AND 
@@ -323,13 +335,6 @@ class UserController implements UserInterface
             $stmt->bindParam(":accountStatus", $status);
             if ($stmt->execute()) {
                 $db->closeConnection();
-                //send email to user
-                $vendorEmail = "info@asilie-learning.co.ke";
-                //$link = 'asilie-learning.co.ke';
-                $sendMail = new SendEmail($email, $vendorEmail);
-                $sendMail->setSubject("Account Blocked");
-                $sendMail->setMessage("Your Asili Elearning Account has been temporally blocked.
-                Contanct support@aslie-learning.co.ke For more information");
                 return true;
             } else {
                 $db->closeConnection();
@@ -358,13 +363,6 @@ class UserController implements UserInterface
             $stmt->bindParam(":accountStatus", $status);
             if ($stmt->execute()) {
                 $db->closeConnection();
-                //send email to user
-                $vendorEmail = "info@asilie-learning.co.ke";
-                //$link = 'asilie-learning.co.ke';
-                $sendMail = new SendEmail($email, $vendorEmail);
-                $sendMail->setSubject("Account Unblocked");
-                $sendMail->setMessage("Your Asili Elearning Account has been Unblocked.Welcome back
-                And enjoy our services");
                 return true;
             } else {
                 $db->closeConnection();

@@ -24,7 +24,7 @@
         <div class="collapse navbar-collapse navbar-ex1-collapse" id="navigationbar">
             <ul class="nav navbar-nav   menu sf-menu responsive-menu superfish">
                 <li class="">
-                    <a href="#"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Home</a>
+                    <a href="../index.php"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Home</a>
                 </li>
                 <li class="">
                     <a href="../index.php#title_about"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">About</a>
@@ -35,12 +35,9 @@
                     <a href="../index.php#contact"  style="font-size: 15px;  padding: 20px 10px 5px 10px;">Contact</a>
                 </li>
                 <li class="">
-                    <a href="#"><button class="joinBtn">Join Us</button></a>
+                    <a href="../index.php"><button class="joinBtn">Sign In</button></a>
                 </li>
 
-                <li>
-                    <a href="../index.php"><button class="loginBtn">Login</button>
-                </li>
 
 
             </ul>

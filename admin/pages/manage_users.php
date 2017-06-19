@@ -32,11 +32,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 function approveAccount(){
     global $data;
     $approved  = UserController::approveAccount($data['userId']);
-    if($approved === TRUE){
-        print_r(json_encode(array(
-            "statusCode"=>200,
-            "message"=>"Account Approved successfully"
-        )));
+    if($approved === true){
         $user = UserController::getId($data['userId']);
         global $vendorEmail;
         $mail = new SendEmail($user['email'], $vendorEmail);
@@ -44,6 +40,12 @@ function approveAccount(){
         $mail->setMessage("Your Asili Africa E-learning Account has been approved visit www.asilie-learning.co.ke ");
         $mail->setVendor("Asili Elearning");
         $mail->send();
+
+        print_r(json_encode(array(
+            "statusCode"=>200,
+            "message"=>"Account Approved successfully"
+        )));
+
     }else{
         print_r(json_encode(array(
             "statusCode"=>500,
@@ -54,18 +56,21 @@ function approveAccount(){
 function blockAccount(){
     global $data;
     $blocked  = UserController::blockAccount($data['userId']);
-    if($blocked === TRUE){
-        print_r(json_encode(array(
-            "statusCode"=>200,
-            "message"=>"Account Blocked "
-        )));
+    if($blocked === true){
         $user = UserController::getId($data['userId']);
+
         global $vendorEmail;
         $mail = new SendEmail($user['email'], $vendorEmail);
         $mail->setSubject("Account Blocked");
         $mail->setMessage("Dear {$user['fullName']}, Your Asili Africa E-learning Account has been Blocked Contact support@asilie-learning.co.ke for any queries");
         $mail->setVendor("Asili Elearning");
         $mail->send();
+
+        print_r(json_encode(array(
+            "statusCode"=>200,
+            "message"=>"Account Blocked "
+        )));
+
     }else{
         print_r(json_encode(array(
             "statusCode"=>500,
@@ -76,7 +81,7 @@ function blockAccount(){
 function unblockAccount(){
     global $data;
     $unblocked  = UserController::unblockAccount($data['userId']);
-    if($unblocked === TRUE){
+    if($unblocked === true){
         print_r(json_encode(array(
             "statusCode"=>200,
             "message"=>"Account Unblocked "

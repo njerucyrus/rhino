@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         // check if name only contains letters and whitespace
         if (!preg_match("/^[a-zA-Z ]*$/", $_POST['fullName'])) {
-            $nameErr = "Only letters and white space allowed";
+            $fullNameErr = "Only letters and white space allowed";
         } else {
             $fullName = cleanInput($_POST['fullName']);
         }
@@ -89,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->setPhoneNumber($phoneNumber);
         $user->setPaymentStatus('pending');
         $user->setUserReferralCode($_SESSION['referralCode']);
+        $user->setIsAdmin(0);
         $userCtrl = new UserController();
         $created = $userCtrl->create($user);
         if ($created) {

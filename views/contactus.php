@@ -17,7 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset($_POST['contactName'])){
             $vendor = clean($_POST['contactName']);
         }
-        $mail = new SendEmail($email,$vendorEmail);
+        $mail = new SendEmail($vendorEmail,$email);
         $mail->setVendor($vendor);
         $mail->setSubject("Contact Message");
         $mail->setMessage($message);

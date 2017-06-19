@@ -33,7 +33,7 @@ function cleanInput($data)
 <section id="header" class="bg-color0">
     <div class="container"><div class="row">
 
-      <a class="navbar-brand" href="#top"><img src="public/assets/img/logo4.png" alt=""></a>
+     
 
       <div class="col-sm-12 mainmenu_wrap"><div class="main-menu-icon visible-xs"><span></span><span></span><span></span></div>
           <?php
@@ -80,7 +80,7 @@ function cleanInput($data)
                 </form>
             </div>
             <div class="bottom text-center">
-                New here ? <a href="#join_us"><b>Join Us</b></a>
+                New here ? <a href="views/signup.php"><b>Join Us</b></a>
             </div>
         </div>
         <div class="tagIntro mobile-hide-intro">
@@ -316,7 +316,7 @@ function cleanInput($data)
 <section id="copyright" class="dark_section">
   <div class="container"><div class="row">
     
-    <div class="col-sm-12"><p class="text-center">&copy; Copyright 2017. Developed by <a href="http://hudutech.com" target="_blank">Hudutech Solutions</a></p></div>
+    <div class="col-sm-12"><p class="text-center">&copy; Copyright 2017. Asili Africa E-learning Centre</p></div>
 
   </div></div>
 </section>

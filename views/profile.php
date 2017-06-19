@@ -25,6 +25,15 @@ $referralTree=ReferralTreeController::getCounts($user['userReferralCode']);
 <head>
     <meta charset="utf-8">
     <title>Profile</title>
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+    
     <link rel="stylesheet" href="../public/assets/css/bootstrap.css">
     <link rel="stylesheet" href="../public/assets/css/main.css">
 
@@ -115,6 +124,7 @@ $referralTree=ReferralTreeController::getCounts($user['userReferralCode']);
                                     <ul class="list-group">
                                         <li class="list-group-item"> <b>Referral Code :</b> <?php echo $user['userReferralCode'] ?></li>
                                         <li class="list-group-item"> <b>Name :</b> <?php echo $profile['fullName'] ?></li>
+                                        <li class="list-group-item"> <b>Username :</b> <?php echo $profile['username'] ?></li>
                                         <li class="list-group-item"> <b>Phone Number:</b> <?php echo $profile['phoneNumber']?></li>
                                         <li class="list-group-item"> <b>Email:</b> <?php echo $profile['email']?></li>
                                         <li class="list-group-item"> <b>Date Joined:</b> <?php echo $profile['createdAt']?></li>

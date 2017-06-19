@@ -10,7 +10,7 @@ session_start();
 unset($_SESSION['username']);
 
 
-$cookie_name = 'asili_username';
+$cookie_name = md5('asili_username');
 $cookie_value = "";
 setcookie($cookie_name, $cookie_value, time() - (86400 * 30), "/");
 
