@@ -7,6 +7,9 @@ session_start();
  * Time: 22:22
  */
 require_once  'vendor/autoload.php';
+require_once 'views/config.php';
+require_once 'views/AfricasTalkingGateway.php';
+
 include "views/includes/login.inc.php";
 include "views/includes/signup.inc.php";
 include_once 'views/contactus.php';
