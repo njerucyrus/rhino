@@ -263,7 +263,7 @@ class ReferralTreeController implements ReferralTreeInterface
                     "l5" => isset($row['l5']) ? $row['l5'] : null
                 );
             } else {
-                return ['empty'];
+                return [];
             }
         } catch (\PDOException $e) {
             echo $e->getMessage();
@@ -582,5 +582,4 @@ class ReferralTreeController implements ReferralTreeInterface
 
         }
     }
-
 }

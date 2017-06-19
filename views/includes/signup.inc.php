@@ -5,9 +5,12 @@
  * Date: 6/12/17
  * Time: 10:40 PM
  */
+
 use \App\Entity\User;
+use \App\Entity\Payment;
 use \App\Controller\UserController;
 use \App\Controller\ReferralTreeController;
+use \App\Controller\PaymentController;
 
 $error = $success = $usernameErr = $fullNameErr = $idNoErr
     = $passwordErr = $confirmPasswordErr = $phoneNumberErr
@@ -94,18 +97,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $created = $userCtrl->create($user);
         if ($created) {
             $id = ReferralTreeController::getUserId($_SESSION['referralCode']);
-            if (isset($_POST['referralCode'])) {
-                $refTree = ReferralTreeController::createReferralTree($id, $_SESSION['referralCode'], cleanInput($_POST['referralCode']));
-            } elseif (!isset($_POST['referralCode'])) {
-                $refTree = ReferralTreeController::createReferralTree($id, $_SESSION['referralCode']);
-            }
-            ReferralTreeController::createReferralCodeEarning($id, $_SESSION['referralCode']);
-            ReferralTreeController::createReferralCodeCounts($_SESSION['referralCode']);
+            try {
 
-            $updated = ReferralTreeController::updateReferralTree($_SESSION['referralCode']);
-            ReferralTreeController::debitAccounts($_SESSION['referralCode']);
-            ReferralTreeController::updateTotalEarning();
-            unset($_SESSION['referralCode']);
+                $metadata = array(
+                    "userId" => $id,
+                    "userReferralCode" => $_SESSION['referralCode'],
+                    "referralCodePosted"=>isset($_POST['referralCode']) ? $_POST['referralCode'] : null
+                );
+
+                $phoneNumber = cleanInput($_POST['phoneNumber']);
+                $gateway = new AfricasTalkingGateway(constant('API_USERNAME'), constant('API_KEY'), "sandbox");
+                $transactionId = $gateway->initiateMobilePaymentCheckout(
+                    constant('MOBILE_PRODUCT'),
+                    $phoneNumber,
+                    constant('CURRENCY_CODE'),
+                    (float)constant('AMOUNT'),
+                    $metadata
+                );
+                $payment = new Payment();
+                $payment->setEmail(null);
+                $payment->setUserId(null);
+                $payment->setAmount((float)constant('AMOUNT'));
+                $payment->setDatePaid(date('Y-m-d H:i:s'));
+                $payment->setTransactionId($transactionId);
+                $paymentCtrl = new PaymentController();
+                $paymentCtrl->create($payment);
+            } catch (AfricasTalkingGatewayException $e) {
+                echo $e->getMessage();
+            }
+
             $success .= "Account created successfully";
             header('Refresh: 1; url=signup_success.php?status=200');
         } else {

@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 /**
  * Created by PhpStorm.
  * User: New LAptop
@@ -12,7 +13,7 @@ use \App\Controller\UserController;
 
 $userId = UserController::getUserId($_SESSION['username']);
 
-$user=UserController::getId($userId);
+$user = UserController::getId($userId);
 
 
 ?>
