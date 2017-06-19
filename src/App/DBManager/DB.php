@@ -12,11 +12,11 @@ class DB
     /**
      * @var string
      */
-    private $databaseName = 'asiliele_db';
+    private $databaseName = 'referral_db';
     /**
      * @var string
      */
-    private $password = 'asili123..';
+    private $password = '';
     /**
      * @var string
      */
@@ -24,7 +24,7 @@ class DB
     /**
      * @var string
      */
-    private $databaseUser = 'asiliele_admin';
+    private $databaseUser = 'root';
     /**
      * @var
      */

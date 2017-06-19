@@ -6,12 +6,10 @@ session_start();
  * Date: 06/05/2017
  * Time: 22:22
  */
-if (isset($_SESSION['username']) || isset($_COOKIE['asili_username'])) {
-    header("Location: views/urls.php");
-}
 require_once  'vendor/autoload.php';
 include "views/includes/login.inc.php";
 include "views/includes/signup.inc.php";
+include_once 'views/contactus.php';
 function cleanInput($data)
 {
     $data = trim($data);
@@ -35,7 +33,7 @@ function cleanInput($data)
 <section id="header" class="bg-color0">
     <div class="container"><div class="row">
 
-      <a class="navbar-brand" href="#top"><img src="public/assets/img/logo4.png" alt=""></a>
+     
 
       <div class="col-sm-12 mainmenu_wrap"><div class="main-menu-icon visible-xs"><span></span><span></span><span></span></div>
           <?php
@@ -47,8 +45,7 @@ function cleanInput($data)
 </section>
 
 
-<section id="mainslider"   >
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<section id="mainslider" style="margin-top: 50px"  >
 
     <div class="containerLogin">
 
@@ -64,15 +61,15 @@ function cleanInput($data)
                     <?php endif;?>
                     <div class="form-group">
                         <label class="sr-only" for="loginUsername">Username</label>
-                        <input type="text" class="form-control" name="loginUsername" id="loginUsername" placeholder="username" required>
+                        <input type="text" class="form-control" name="loginUsername" id="loginUsername" required>
                     </div>
                     <div class="form-group">
                         <label class="sr-only" for="loginPassword">Password</label>
-                        <input type="password" name="loginPassword" class="form-control" id="loginPassword" placeholder="your password" required>
+                        <input type="password" name="loginPassword" class="form-control" id="loginPassword" required>
                         <div class="help-block text-right"><a href="views/forgot_password.php">Forgot the password ?</a></div>
                     </div>
                     <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-primary btn-block" value="Sign in">
+                        <input type="submit" class="btn btn-primary btn-block" value="Sign in">
                     </div>
                     <div class="checkbox">
                         <label for="keepLoggedIn">
@@ -83,7 +80,7 @@ function cleanInput($data)
                 </form>
             </div>
             <div class="bottom text-center">
-                New here ? <a href="#join_us"><b>Join Us</b></a>
+                New here ? <a href="views/signup.php"><b>Join Us</b></a>
             </div>
         </div>
         <div class="tagIntro mobile-hide-intro">
@@ -153,7 +150,7 @@ function cleanInput($data)
               <i class="rt-icon-megaphone"></i>
           </div>
           <div class="single_teaser_right">
-              <h3>You are new here? Create an account Now  <a href="#join_us" class="joinBtn" style="color: white;">Join US</h3></a></div>
+              <h3>You are new here? Create an account Now  <a href="views/signup.php" class="joinBtn" style="color: white;">Join US</h3></a></div>
         </div>
       </div>
 
@@ -221,124 +218,105 @@ function cleanInput($data)
 </section>
 
 
-<section id="join_us" class="grey_section">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 text-center">
-          <h2 class="block-header">Join Us</h2>
-          <p>Please fill the information below to join us.</p>
-          <?php
-          if (empty($success) && !empty($error)) {
-              ?>
-              <div class="alert alert-danger alert-dismissable">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  <?php echo $error?>
-              </div>
-              <?php
-          } elseif (empty($error) and !empty($success)) {
-              ?>
-              <div class="alert alert-success alert-dismissable">
-                  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                  <?php echo $success ?>
-              </div>
-
-              <?php
-          } else {
-              echo "";
-          }
-          ?>
-        </div>
-      </div>
-
-  <div class="row">
-      <?php include 'views/signup.php' ?>
-  </div>
-  </div>
-</section>
-
-
-
 <section class="title_section color_section">
   <div class="container"><div class="row">
     <div class="col-sm-8">
       <h3>“The education delivery approach in Africa has to shift from one that is highly dependent on physical infrastructure such as schools and colleges, physical learning materials, and in class education delivery to one that makes extensive use of interactive education technology.” Ambient Insight</h3>
      </div>
     <div class="col-sm-4">
-      <a href="#" class="theme_btn"><i class="rt-icon-ok"></i> Join Us</a>
+      <a href="views/signup.php" class="theme_btn"><i class="rt-icon-ok"></i> Join Us</a>
     </div>
   </div></div>
 </section>
 
 
-<section id="contact" class="darkgrey_section">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 text-center">
-        <h2 class="block-header">Contact Us</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, doloremque rerum molestias veritatis dolor nostrum omnis ullam voluptatem fugit velit! Inventore, ullam omnis itaque fuga optio beatae esse odio vero?</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-6">
-        <div class="contact-form">
-          <form class="contact-form" method="post" action="/">
-            <p class="contact-form-name">
-              <label for="name">Name <span class="required">*</span></label>
-              <input type="text" aria-required="true" size="30" value="" name="name" id="name" class="form-control" placeholder="Name">
-            </p>
-            <p class="contact-form-email">
-              <label for="email">Email <span class="required">*</span></label>
-              <input type="email" aria-required="true" size="30" value="" name="email" id="email" class="form-control" placeholder="Email">
-            </p>
-            <p class="contact-form-message">
-              <label for="message">Comment</label>
-              <textarea aria-required="true" rows="8" cols="45" name="message" id="message" class="form-control" placeholder="Message"></textarea>
-            </p>
-            <p class="contact-form-submit text-center vertical-margin-81">
-              <input type="submit" value="Send" id="contact_form_submit" name="contact_submit" class="theme_btn">
-            </p>
-          </form>
+    <section id="contact" class="darkgrey_section">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <h2 class="block-header">Contact Us</h2>
+                    <p>You can contact us through the form below</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <?php
+                    if (empty($success) && !empty($error)) {
+                        ?>
+                        <div class="alert alert-danger alert-dismissable">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <?php echo $error?>
+                        </div>
+                        <?php
+                    } elseif (empty($error) and !empty($success)) {
+                        ?>
+                        <div class="alert alert-success alert-dismissable">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <?php echo $success ?>
+                        </div>
+
+                        <?php
+                    } else {
+                        echo "";
+                    }
+                    ?>
+                    <div class="contact-form">
+                        <form class="contact-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
+                            <p class="contact-form-name">
+                                <label for="contactName">Name <span class="required">*</span></label>
+                                <input type="text" aria-required="true" size="30" value="" name="contactName" id="contactName" class="form-control" placeholder="Name">
+                            </p>
+                            <p class="contact-form-email">
+                                <label for="contactEmail">Email <span class="required">*</span></label>
+                                <input type="email" aria-required="true" size="30" value="" name="contactEmail" id="contactEmail" class="form-control" placeholder="Email">
+                            </p>
+                            <p class="contact-form-message">
+                                <label for="contactMessage">Message</label>
+                                <textarea aria-required="true" rows="8" cols="45" name="contactMessage" id="contactMessage" class="form-control" placeholder="Message"></textarea>
+                            </p>
+                            <p class="contact-form-submit text-center vertical-margin-81">
+                                <input type="submit" value="Send" id="contact_form_submit" name="contact_submit" class="theme_btn">
+                            </p>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="block widget_text col-sm-3">
+                    <h3>About Us</h3>
+                    <p>Asili Africa E-learning Centre<br>
+                        Nairobi<br>
+                        <span><strong>Phone:</strong> </span>(123) 456-7890<br>
+                        <span><strong>Email:</strong> </span>
+                        <a href="#">info@asilie-learning.com</a><br>
+                        We campaign, create awareness, partner and offer consultancy services for the E-learning services.
+                    </p>
+                    <p>
+                        <a class="socialico-twitter" href="#" title="Twitter">#</a>
+                        <a class="socialico-facebook" href="#" title="Facebook">#</a>
+                        <a class="socialico-google" href="#" title="Google">#</a>
+                        <a class="socialico-linkedin" href="#" title="Lindedin">#</a>
+
+                    </p>
+                </div>
+
+                <div class="block widget_nav_menu col-sm-3">
+                    <h3>Useful Links</h3>
+                    <ul class="nav menu">
+                        <li><a href="#title_about">About Us</a></li>
+                        <li><a href="#join_us">Join Us</a></li>
+                        <li><a href="#mainslider">Login In</a></li>
+
+                    </ul>
+                </div>
+
+
+            </div>
         </div>
-      </div>
-
-      <div class="block widget_text col-sm-3">
-        <h3>About Us</h3>
-        <p>Company Name.<br> 
-          City, Street str., ZIP<br> 
-          <span><strong>Phone:</strong> </span>(123) 456-7890<br>
-          <span><strong>Email:</strong> </span>
-          <a href="#">info@company.com</a><br>
-          We provide original, quality, attractive and functional design.
-        </p>
-        <p>
-          <a class="socialico-twitter" href="#" title="Twitter">#</a>
-          <a class="socialico-facebook" href="#" title="Facebook">#</a>
-          <a class="socialico-google" href="#" title="Google">#</a>
-          <a class="socialico-linkedin" href="#" title="Lindedin">#</a>
-          <a class="socialico-tumblr" href="#" title="tumblr">#</a>
-          <a class="socialico-rss" href="#" title="Rss">#</a>
-        </p>
-      </div>
-
-      <div class="block widget_nav_menu col-sm-3">
-        <h3>Useful Links</h3>
-        <ul class="nav menu">
-          <li><a href="#title_about">About Us</a></li>
-          <li><a href="#join_us">Join Us</a></li>
-          <li><a href="#mainslider">Login Us</a></li>
-
-        </ul>
-      </div>
-      
-
-    </div>
-  </div>
-</section>
-
+    </section>
 <section id="copyright" class="dark_section">
   <div class="container"><div class="row">
     
-    <div class="col-sm-12"><p class="text-center">&copy; Copyright 2017. Developed by <a href="http://hudutech.com" target="_blank">Hudutech Solutions</a></p></div>
+    <div class="col-sm-12"><p class="text-center">&copy; Copyright 2017. Asili Africa E-learning Centre</p></div>
 
   </div></div>
 </section>
@@ -353,7 +331,12 @@ function cleanInput($data)
     <!--footer scripts-->
     <?php include_once 'views/footer.php';?>
     <script src="/public/assets/js/jquery-1.11.3.min.js"></script>
-    <script src="/public/assets/js/bootstrap.min.js"></script>
+    <script src="/public/assets/js/bootstrap.js"></script>
+    <script>
+        $(document).ready(function (e) {
+         e.preventDefault;
+        });
+    </script>
     <script>
     </script>
        
