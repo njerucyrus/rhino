@@ -13,6 +13,7 @@ return array(
     'App\\AppInterface\\SiteInterface' => $baseDir . '/src/App/AppInterface/SiteInterface.php',
     'App\\AppInterface\\UserInterface' => $baseDir . '/src/App/AppInterface/UserInterface.php',
     'App\\Auth\\Auth' => $baseDir . '/src/App/Auth/Auth.php',
+    'App\\Auth\\PasswordValidator' => $baseDir . '/src/App/Auth/PasswordValidator.php',
     'App\\Controller\\FundController' => $baseDir . '/src/App/Controller/FundController.php',
     'App\\Controller\\PaymentController' => $baseDir . '/src/App/Controller/PaymentController.php',
     'App\\Controller\\ReferralTreeController' => $baseDir . '/src/App/Controller/ReferralTreeController.php',
