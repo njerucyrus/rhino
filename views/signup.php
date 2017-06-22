@@ -5,8 +5,9 @@
  * Date: 06/05/2017
  * Time: 22:22
  */
-require_once  '../vendor/autoload.php';
-
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once 'AfricasTalkingGateway.php';
+require_once 'config.php';
 include "includes/signup.inc.php";
 function cleanInput($data)
 {
@@ -27,8 +28,8 @@ function cleanInput($data)
 
     <link rel="stylesheet" href="../public/assets/css/custom.css">
     <style>
-        .error{
-            color: rgba(206,25,17,0.82);
+        .error {
+            color: rgba(206, 25, 17, 0.82);
             font-size: 16px;
             font-weight: bold;
         }
@@ -36,23 +37,27 @@ function cleanInput($data)
 </head>
 <body>
 <!--[if lt IE 7]>
-<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to
+    improve your experience.</p>
 <![endif]-->
 
 
-
 <section id="header" class="bg-color0">
-    <div class="container"><div class="row">
+    <div class="container">
+        <div class="row">
 
             <a class="navbar-brand" href="#top"><img src="public/assets/img/logo4.png" alt=""></a>
 
-            <div class="col-sm-12 mainmenu_wrap"><div class="main-menu-icon visible-xs"><span></span><span></span><span></span></div>
+            <div class="col-sm-12 mainmenu_wrap">
+                <div class="main-menu-icon visible-xs"><span></span><span></span><span></span></div>
                 <?php
                 include_once 'header_menu2.php';
                 ?>
             </div>
 
-        </div></div>
+        </div>
+    </div>
 </section>
 
 <section id="join" class="grey_section" style="padding-top: 7%;">
@@ -68,7 +73,7 @@ function cleanInput($data)
                     ?>
                     <div class="alert alert-danger alert-dismissable">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <?php echo $error?>
+                        <?php echo $error ?>
                     </div>
                     <?php
                 } elseif (empty($error) and !empty($success)) {
@@ -93,7 +98,7 @@ function cleanInput($data)
 
 
                     <form role="form" class="form-horizontal form-groups-bordered" method="post"
-                          action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
+                          action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
 
 
                         <!-- Text input-->
@@ -107,7 +112,8 @@ function cleanInput($data)
                             </div>
 
                             <div class="col-sm-4">
-                                <label for="fullName" class=" control-label">Full Name <span class="error"> * <?php echo $fullNameErr?></span></label>
+                                <label for="fullName" class=" control-label">Full Name <span
+                                            class="error"> * <?php echo $fullNameErr ?></span></label>
                                 <input type="text" class="form-control" name="fullName" id="fullName" required>
 
                             </div>
@@ -117,28 +123,32 @@ function cleanInput($data)
                         <div class="form-group">
 
                             <div class="col-sm-4">
-                                <label for="username" class="control-label">Username <span class="error">* <?php echo $usernameErr?></span></label>
+                                <label for="username" class="control-label">Username <span
+                                            class="error">* <?php echo $usernameErr ?></span></label>
 
                                 <input type="text" class="form-control" name="username" id="username" required>
                             </div>
 
                             <div class="col-sm-4">
-                                <label for="idNo" class="control-label">ID Number <span class="error">* <?php echo $idNoErr?></span></label>
-                                <input type="number" class="form-control" name="idNo" id="idNo"  required>
+                                <label for="idNo" class="control-label">ID Number <span
+                                            class="error">* <?php echo $idNoErr ?></span></label>
+                                <input type="number" class="form-control" name="idNo" id="idNo" required>
                             </div>
                         </div>
 
                         <!-- Text input-->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="phoneNumber" class="control-label">Phone Number <span class="error">* <?php echo $phoneNumberErr?></span></label>
+                                <label for="phoneNumber" class="control-label">Phone Number <span
+                                            class="error">* <?php echo $phoneNumberErr ?></span></label>
 
                                 <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" required>
 
 
                             </div>
                             <div class="col-sm-4">
-                                <label for="email" class="control-label">Email <span class="error">* <?php echo $emailErr?></span></label>
+                                <label for="email" class="control-label">Email <span
+                                            class="error">* <?php echo $emailErr ?></span></label>
                                 <input type="email" class="form-control" name="email" id="email" required/>
 
 
@@ -149,12 +159,13 @@ function cleanInput($data)
                         <!--text input-->
                         <div class="form-group">
                             <div class="col-sm-4">
-                                <label for="password" class=" control-label">Password <span class="error">* <?php echo $passwordErr?></span></label>
+                                <label for="password" class=" control-label">Password <span
+                                            class="error">* <?php echo $passwordErr ?></span></label>
 
                                 <input type="password" class="form-control" id='password' name="password" required>
                             </div>
                             <div class="col-sm-4">
-                                <label for="confirmPassword" class="control-label">Confirm Password <span class="error">* <?php echo $confirmPasswordErr?></span></label>
+                                <label for="confirmPassword" class="control-label">Confirm Password <span class="error">* <?php echo $confirmPasswordErr ?></span></label>
 
 
                                 <input type="password" class="form-control" name="confirmPassword"
@@ -165,8 +176,9 @@ function cleanInput($data)
 
                         <div class="form-group">
                             <div class="col-sm-4 col-sm-offset-2">
-                                <span class="error"><?php echo $matchErr;?></span>
-                                <input type="submit" name="submit" value="Join" class="btn btn-primary btn-lg btn-block "/>
+                                <span class="error"><?php echo $matchErr; ?></span>
+                                <input type="submit" name="submit" value="Checkout"
+                                       class="btn btn-info btn-lg btn-block "/>
                             </div>
                         </div>
                     </form>
@@ -178,10 +190,33 @@ function cleanInput($data)
 </section>
 
 
+<?php include_once 'contact_footer_views.php'; ?>
 
+<script>
+    $(document).ready(function (e) {
+        e.preventDefault;
+        checkIpnStatus();
+    })
+</script>
 
-<?php include_once 'contact_footer_views.php';?>
-
+<script>
+    function checkIpnStatus() {
+        var url = "ipn.php";
+        $.ajax(
+            {
+                type: 'GET',
+                url: url,
+                dataType: 'json',
+                contentType: 'application/json; charset=utf-8',
+                success: function (response) {
+                    if(response.statusCode == 200){
+                        location.href = "signup_success.php?status=200";
+                    }
+                }
+            }
+        )
+    }
+</script>
 
 
 </body>

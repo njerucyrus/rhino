@@ -95,7 +95,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->setIsAdmin(0);
         $userCtrl = new UserController();
         $created = $userCtrl->create($user);
-        if ($created) {
+        //print_r($user);
+        print_r($created);
+        if ($created===TRUE) {
             $id = ReferralTreeController::getUserId($_SESSION['referralCode']);
             try {
 
@@ -115,21 +117,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $metadata
                 );
                 $payment = new Payment();
-                $payment->setEmail(null);
-                $payment->setUserId(null);
+                $payment->setEmail($email);
+                $payment->setUserId($id);
                 $payment->setAmount((float)constant('AMOUNT'));
                 $payment->setDatePaid(date('Y-m-d H:i:s'));
                 $payment->setTransactionId($transactionId);
+                $payment->setStatus("pending");
+                $payment->setPhoneNumber($phoneNumber);
+                $payment->setPaymentMethod("Mpesa");
                 $paymentCtrl = new PaymentController();
                 $paymentCtrl->create($payment);
             } catch (AfricasTalkingGatewayException $e) {
                 echo $e->getMessage();
             }
 
-            $success .= "Account created successfully";
-            header('Refresh: 1; url=signup_success.php?status=200');
-        } else {
-            $error .= "Error Internal Server error occurred. Account not Created";
+            $success .= "Checkout initiated successfully please confirm the payment sent in your phone to complete Sign Up process";
+        } elseif(array_key_exists('error', $created)) {
+            $error .= "Error Internal Server error occurred. Account not Created {$created['error']}";
+        } elseif($created === FALSE){
+            $error .="Error occurred";
         }
     }
 }

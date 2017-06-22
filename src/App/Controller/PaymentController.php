@@ -63,7 +63,8 @@ class PaymentController implements PaymentInterface
            if ($query) {
                return true;
            } else{
-               return false;
+
+               return ["error"=>$stmt->errorInfo()];
            }
 
         } catch (\PDOException $e) {

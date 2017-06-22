@@ -45,11 +45,20 @@ $message = '';
                 <div class="alert alert-success " style="text-align: center;">
                      <h2>Account created successfully</h2>
                     <br>
-                    <h4>You will receive a confirmation email once your account is approved</h4>
+                    <h4>You will receive a confirmation email once your account is approved (check in the spam folder)</h4>
                     <a href="../index.php" class="theme_btn" style="padding: 10px;"><i class="rt-icon-ok"></i> Back to Home </a>
 
                 </div>
 
+                <?php
+                }elseif(isset($_GET['status']) && $_GET['status']==500){
+                    ?>
+                    <div class="alert alert-success " style="text-align: center;">
+                        <h2>Error!</h2>
+                        <br>
+                        <h4>Transaction Failed to complete try again later</h4>
+
+                    </div>
                 <?php
                 }
                 ?></div>

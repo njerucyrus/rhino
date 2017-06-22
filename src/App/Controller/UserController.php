@@ -29,6 +29,7 @@ class UserController implements UserInterface
         $loginIp = $user->getLoginIp();
         $createdAt = $user->getCreatedAt();
         $isAdmin = $user->getIsAdmin();
+        //print_r($user);
         try {
             $db = new DB();
             $conn = $db->connect();
@@ -80,12 +81,15 @@ class UserController implements UserInterface
                 return true;
             } else {
                 $db->closeConnection();
-                return false;
+                return [
+                    "error"=>"STMT ERROR 0".$stmt->errorInfo()[0]."1 ".$stmt->errorInfo()['1']." 2 ".$stmt->errorInfo()['2']
+                ];
             }
 
         } catch (\PDOException $e) {
-            echo $e->getMessage();
-            return false;
+            return [
+                "error"=>$e->getMessage()
+            ];
         }
     }
 

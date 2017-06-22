@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Created by PhpStorm.
  * User: hudutech
@@ -17,30 +18,32 @@ if(strtolower($data['status']) == 'success'){
     $id = $data['requestMetaData']['userId'];
     $completed = PaymentController::completeTxn($data['transactionId']);
     if (!is_null($data['requestMetaData']['referralCodePosted'])) {
-        $refTree = ReferralTreeController::createReferralTree($id, $_SESSION['referralCode'], cleanInput($_POST['referralCode']));
+        $refTree = ReferralTreeController::createReferralTree($id, $_SESSION['referralCode'], $data['requestMetaData']['referralCodePosted']);
     } elseif (is_null($data['requestMetaData']['referralCodePosted'])) {
-        $refTree = ReferralTreeController::createReferralTree($id, $_SESSION['referralCode']);
+        $refTree = ReferralTreeController::createReferralTree($id, $data['requestMetaData']['userReferralCode']);
     }
-    ReferralTreeController::createReferralCodeEarning($id, $_SESSION['referralCode']);
-    ReferralTreeController::createReferralCodeCounts($_SESSION['referralCode']);
+    ReferralTreeController::createReferralCodeEarning($id, $data['requestMetaData']['userReferralCode']);
+    ReferralTreeController::createReferralCodeCounts($data['requestMetaData']['userReferralCode']);
 
-    $updated = ReferralTreeController::updateReferralTree($_SESSION['referralCode']);
-    ReferralTreeController::debitAccounts($_SESSION['referralCode']);
+    $updated = ReferralTreeController::updateReferralTree($data['requestMetaData']['userReferralCode']);
+    ReferralTreeController::debitAccounts($data['requestMetaData']['userReferralCode']);
     ReferralTreeController::updateTotalEarning();
     unset($_SESSION['referralCode']);
 
 
     if($completed){
         print_r(json_encode(array(
-            "statusCode"=>200,
-            "message"=>"Your transaction was completed successfully."
+            "statusCode"=>200
         )));
+        header('Location: signup_success.php?status=200');
+        echo "<script> window.location.href='signup_success.php?status=200'</script>";
     }else{
         print_r(json_decode(array(
             "statusCode"=>500,
             "message"=>"Error occurred while processing your request, Please wait for 5 minutes before
             making payment again."
         )));
+        header('Location: signup_success.php?status=500');
     }
 }elseif (strtolower($data['status']) == 'failed'){
     $id = $data['requestMetaData']['userId'];
@@ -52,4 +55,5 @@ if(strtolower($data['status']) == 'success'){
          )));
      }
 
+    header('Location: signup_success.php?status=500');
 }

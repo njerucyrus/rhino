@@ -17,6 +17,7 @@ use App\DBManager\DB;
  */
 class Auth
 {
+    use PasswordValidator;
     /**
      * @var string
      */
