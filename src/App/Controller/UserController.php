@@ -385,9 +385,8 @@ class UserController implements UserInterface
         $conn = $db->connect();
         try{
             $stmt = $conn->prepare("UPDATE users SET paymentStatus='{$status}'
-                                    WHERE id='{$userId}'");
+                                    WHERE id={$userId}");
             $stmt->execute();
-
         }catch (\PDOException $e){
             echo $e->getMessage();
         }

@@ -15,30 +15,6 @@ use App\Entity\Fund;
 
 class FundController implements FundInterface
 {
-    public function create(Fund $fund){
-        $userId = $fund->getUserId();
-        $totalEarning = $fund->getAmountEarning();
-        $balance = $fund->getBalance();
-        $db = new DB();
-        $conn = $db->connect();
-        try{
-            $stmt = $conn->prepare("INSERT INTO earning_account(userId, totalEarning, balance)
-                                    VALUES(:userId, :totalEarning, :balance)");
-            $stmt->bindParam(":userId", $userId);
-            $stmt->bindParam(":totalEarning", $totalEarning);
-            $stmt->bindParam(":balance", $balance);
-            if($stmt->execute()){
-                $db->closeConnection();
-                return true;
-            } else{
-                $db->closeConnection();
-                return false;
-            }
-        } catch (\PDOException $e){
-            echo $e->getMessage();
-            return false;
-        }
-    }
     public static function updateAccountEarning($userId, $amount)
     {
         $db = new DB();
@@ -81,28 +57,6 @@ class FundController implements FundInterface
         }
     }
 
-
-    public static function checkBalance($userId)
-    {
-        try {
-            $db = new DB();
-            $conn = $db->connect();
-            $stmt = $conn->prepare("SELECT balance FROM earning_account WHERE userId=:userId");
-            $stmt->bindParam(":userId", $userId);
-            if ($stmt->execute() && $stmt->rowCount() == 1) {
-                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
-                $db->closeConnection();
-                return $row['balance'];
-            } else {
-                $db->closeConnection();
-                return 0;
-            }
-        } catch (\PDOException $e) {
-            echo $e->getMessage();
-            return 0;
-        }
-    }
-
     public static function withDraw($userId, $amount)
     {
         $db = new DB();
@@ -132,6 +86,26 @@ class FundController implements FundInterface
         }
     }
 
+    public static function checkBalance($userId)
+    {
+        try {
+            $db = new DB();
+            $conn = $db->connect();
+            $stmt = $conn->prepare("SELECT balance FROM earning_account WHERE userId=:userId");
+            $stmt->bindParam(":userId", $userId);
+            if ($stmt->execute() && $stmt->rowCount() == 1) {
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $row['balance'];
+            } else {
+                $db->closeConnection();
+                return 0;
+            }
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return 0;
+        }
+    }
 
     public static function delete($id)
     {
@@ -158,34 +132,36 @@ class FundController implements FundInterface
         // TODO: Implement all() method.
     }
 
-    public static function showAllEarnings(){
+    public static function showAllEarnings()
+    {
         $db = new DB();
         $conn = $db->connect();
-        try{
+        try {
             $stmt = $conn->prepare("SELECT DISTINCT u.userReferralCode,
                                     u.fullName, u.idNo, u.email, u.phoneNumber,
                                     t.totalEarning, t.balance
                                     FROM users u , earning_account t
                                     INNER JOIN users ur ON t.userId=ur.id
                                     WHERE t.userId=u.id AND t.totalEarning !=0");
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
                 $db->closeConnection();
                 return $rows;
-            } else{
+            } else {
                 $db->closeConnection();
                 return [];
             }
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return [];
         }
     }
 
-    public static function myEarning($userId){
+    public static function myEarning($userId)
+    {
         $db = new DB();
         $conn = $db->connect();
-        try{
+        try {
             $stmt = $conn->prepare("SELECT DISTINCT u.userReferralCode,u.username,
                                     u.fullName, u.idNo, u.email, u.phoneNumber,
                                     u.createdAt, t.totalEarning, t.balance
@@ -194,18 +170,103 @@ class FundController implements FundInterface
                                     WHERE t.userId=u.id  AND
                                     t.userId=:userId LIMIT 1");
             $stmt->bindParam(":userId", $userId);
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 $row = $stmt->fetch(\PDO::FETCH_ASSOC);
                 $db->closeConnection();
                 return $row;
-            } else{
+            } else {
                 $db->closeConnection();
                 return [];
             }
-        } catch (\PDOException $e){
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return [];
         }
     }
 
+    public static function setNewBalance()
+    {
+        $lists = self::getPayoutList();
+        $db = new DB();
+        $conn = $db->connect();
+        try {
+
+            foreach ($lists as $list) {
+                $stmt = $conn->prepare("UPDATE earning_account SET balance=balance-{$list['balance']}
+                WHERE userId='{$list['userId']}'");
+                $stmt->execute();
+            }
+            return true;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function getPayoutList()
+    {
+        $db = new DB();
+        $conn = $db->connect();
+
+        try {
+            $stmt = $conn->prepare("SELECT * FROM earning_account WHERE balance>0");
+            $row = [];
+            if ($stmt->execute() && $stmt->rowCount() > 0) {
+                $row = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            }
+            return $row;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return [];
+        }
+    }
+
+    public static function createTransactionLog()
+    {
+        $lists = self::getPayoutList();
+        $db = new DB();
+        $conn = $db->connect();
+        try {
+
+            $description = "Referral Earning Payout";
+            $stmt = $conn->prepare("INSERT INTO transaction_logs(userId, amount, description)
+                                        VALUES (:userId, :amount, :description)");
+            foreach ($lists as $list) {
+                $stmt->bindParam(":userId", $list['userId']);
+                $stmt->bindParam(":amount", $list['balance']);
+                $stmt->bindParam(":description", $description);
+                $stmt->execute();
+            }
+            return true;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public function create(Fund $fund)
+    {
+        $userId = $fund->getUserId();
+        $totalEarning = $fund->getAmountEarning();
+        $balance = $fund->getBalance();
+        $db = new DB();
+        $conn = $db->connect();
+        try {
+            $stmt = $conn->prepare("INSERT INTO earning_account(userId, totalEarning, balance)
+                                    VALUES(:userId, :totalEarning, :balance)");
+            $stmt->bindParam(":userId", $userId);
+            $stmt->bindParam(":totalEarning", $totalEarning);
+            $stmt->bindParam(":balance", $balance);
+            if ($stmt->execute()) {
+                $db->closeConnection();
+                return true;
+            } else {
+                $db->closeConnection();
+                return false;
+            }
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return false;
+        }
+    }
 }

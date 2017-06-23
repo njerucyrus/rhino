@@ -11,10 +11,11 @@ use \App\Entity\Payment;
 use \App\Controller\UserController;
 use \App\Controller\ReferralTreeController;
 use \App\Controller\PaymentController;
+use \App\Auth\PasswordValidator;
 
 $error = $success = $usernameErr = $fullNameErr = $idNoErr
     = $passwordErr = $confirmPasswordErr = $phoneNumberErr
-    = $emailErr = $matchErr = '';
+    = $emailErr = $matchErr = $strengthErr= '';
 $_SESSION['referralCode'] = ReferralTreeController::generateReferralCode();
 $fullName = $idNo = $username = $phoneNumber = $email =
 $password = $confirmPassword = '';
@@ -59,6 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $phoneNumber = cleanInput($_POST['phoneNumber']);
     }
 
+    if(PasswordValidator::passwordValidator($_POST['password']) === false){
+        $strengthErr = "Password Must Contain both Uppercase and lowercase letters and at least 1 special character";
+    }
     if (empty($_POST['password'])) {
         $passwordErr = "Password Required";
     } else {
@@ -73,10 +77,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $matchErr = 'Password Did not Match';
         $error .= 'Error! Password Did not Match';
     }
+
     if ($usernameErr == '' && $fullNameErr == '' &&
         $idNoErr == '' && $passwordErr == '' &&
         $confirmPasswordErr == '' && $phoneNumberErr == '' &&
-        $emailErr == '' && $matchErr == ''
+        $emailErr == '' && $matchErr == ''&& $strengthErr == ''
     ) {
 
         $user = new User();
@@ -96,7 +101,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $userCtrl = new UserController();
         $created = $userCtrl->create($user);
         //print_r($user);
-        print_r($created);
+        //print_r($created);
         if ($created===true) {
             $id = ReferralTreeController::getUserId($_SESSION['referralCode']);
             try {
@@ -135,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $success .= "Checkout initiated successfully please confirm the payment sent in your phone to complete Sign Up process";
         } elseif(array_key_exists('error', $created)) {
             $error .= "Error Internal Server error occurred. Account not Created {$created['error']}";
-        } elseif($created === FALSE){
+        } elseif($created === false){
             $error .="Error occurred";
         }
     }

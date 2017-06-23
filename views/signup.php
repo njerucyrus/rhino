@@ -97,7 +97,7 @@ function cleanInput($data)
 
                 <div class="col-md-12 col-md-offset-2">
 
-
+                    <div><span class="error"><?php echo $strengthErr;?></span></div>
                     <form role="form" class="form-horizontal form-groups-bordered" method="post"
                           action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>">
 
@@ -108,14 +108,14 @@ function cleanInput($data)
                                 <label for="referralCode" class="control-label">Referral Code</label>
 
 
-                                <input type="text" class="form-control " name="referralCode" id="referralCode">
+                                <input type="text" class="form-control " name="referralCode" id="referralCode" value="<?php echo isset($_POST['referralCode']) ? $_POST['referralCode']: '' ?>">
 
                             </div>
 
                             <div class="col-sm-4">
                                 <label for="fullName" class=" control-label">Full Name <span
                                             class="error"> * <?php echo $fullNameErr ?></span></label>
-                                <input type="text" class="form-control" name="fullName" id="fullName" required>
+                                <input type="text" class="form-control" name="fullName" id="fullName" value="<?php echo isset($_POST['fullName']) ? $_POST['fullName']: '' ?>" required>
 
                             </div>
                         </div>
@@ -127,13 +127,13 @@ function cleanInput($data)
                                 <label for="username" class="control-label">Username <span
                                             class="error">* <?php echo $usernameErr ?></span></label>
 
-                                <input type="text" class="form-control" name="username" id="username" required>
+                                <input type="text" class="form-control" name="username" id="username" value="<?php echo isset($_POST['username']) ? $_POST['username']: '' ?>" required>
                             </div>
 
                             <div class="col-sm-4">
                                 <label for="idNo" class="control-label">ID Number <span
                                             class="error">* <?php echo $idNoErr ?></span></label>
-                                <input type="number" class="form-control" name="idNo" id="idNo" required>
+                                <input type="number" class="form-control" name="idNo" id="idNo" value="<?php echo isset($_POST['idNo']) ? $_POST['idNo']: '' ?>" required>
                             </div>
                         </div>
 
@@ -143,16 +143,14 @@ function cleanInput($data)
                                 <label for="phoneNumber" class="control-label">Phone Number <span
                                             class="error">* <?php echo $phoneNumberErr ?></span></label>
 
-                                <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" required>
+                                <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" value="<?php echo isset($_POST['phoneNumber']) ? $_POST['phoneNumber']: '' ?>" required>
 
 
                             </div>
                             <div class="col-sm-4">
                                 <label for="email" class="control-label">Email <span
                                             class="error">* <?php echo $emailErr ?></span></label>
-                                <input type="email" class="form-control" name="email" id="email" required/>
-
-
+                                <input type="email" class="form-control" name="email" id="email" value="<?php echo isset($_POST['email']) ? $_POST['email']: '' ?>" required/>
                             </div>
                         </div>
 
@@ -163,14 +161,14 @@ function cleanInput($data)
                                 <label for="password" class=" control-label">Password <span
                                             class="error">* <?php echo $passwordErr ?></span></label>
 
-                                <input type="password" class="form-control" id='password' name="password" required>
+                                <input type="password" class="form-control" id='password' name="password" value="<?php echo isset($_POST['password']) ? $_POST['password']: '' ?>" required>
                             </div>
                             <div class="col-sm-4">
                                 <label for="confirmPassword" class="control-label">Confirm Password <span class="error">* <?php echo $confirmPasswordErr ?></span></label>
 
 
                                 <input type="password" class="form-control" name="confirmPassword"
-                                       id="confirmPassword" required/>
+                                       id="confirmPassword" value="<?php echo isset($_POST['confirmPassword']) ? $_POST['confirmPassword']: '' ?>" required/>
 
                             </div>
                         </div>

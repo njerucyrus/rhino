@@ -34,8 +34,10 @@ if (strtolower($json['status']) == 'success') {
         print_r(json_encode(array(
             "statusCode"=>200
         )));
-        echo "<script>window.location.href='signup_success.php?status=200'</script>";
-        header("Location: signup_success.php?status=200");
+        if(true) {
+            echo "<script>window.location.href='signup_success.php?status=200'</script>";
+            header("Location: signup_success.php?status=200");
+        }
 
 
     } elseif ($completed === false) {
@@ -56,6 +58,6 @@ if (strtolower($json['status']) == 'success') {
             "message" => "Transaction failed.{$json['description']}"
         )));
     }
-    echo "<script>window.location.href='signup_success.php?status=500'</script>";
+    echo "<script> window.location.href='signup_success.php?status=500'</script>";
     header("Location: signup_success.php?status=500");
 }

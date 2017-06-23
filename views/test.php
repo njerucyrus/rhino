@@ -6,10 +6,13 @@
  * Time: 9:57 AM
  */
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once 'config.php';
+require_once 'php-excel.class.php';
 use \App\Entity\Payment;
 use \App\Controller\PaymentController;
+use \App\Controller\FundController;
+
 //
 //$payment = new Payment();
 //$payment = new Payment();
@@ -29,8 +32,37 @@ use \App\Controller\PaymentController;
 //    print_r($paymentCtrl->create($payment));
 //}
 
-$data = file_get_contents('test.json');
-$json = json_decode($data, true);
-if($json['status']=='Success'){
-    echo "<script>window.location.href='signup_success.php?status=200'</script>";
+$data = FundController::showAllEarnings();
+//print_r($array);
+
+
+
+function filterData(&$str)
+{
+    $str = preg_replace("/\t/", "\\t", $str);
+    $str = preg_replace("/\r?\n/", "\\n", $str);
+    if (strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
 }
+
+// file name for download
+$fileName = "asili_payment" . date('Ymd') . ".xls";
+
+// headers for download
+header("Content-Disposition: attachment; filename=\"$fileName\"");
+header("Content-Type: application/vnd.ms-excel");
+
+$flag = false;
+foreach ($data as $row) {
+    if (!$flag) {
+        // display column names as first row
+        echo implode("\t", array_keys($row)) . "\n";
+        $flag = true;
+    }
+    // filter data
+    array_walk($row, 'filterData');
+    echo implode("\t", array_values($row)) . "\n";
+
+}
+
+exit;
+?>
