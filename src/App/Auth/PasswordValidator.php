@@ -12,7 +12,7 @@ namespace App\Auth;
 trait PasswordValidator
 {
 
-    public static function validator($password, $length = 8)
+    public static function passwordValidator($password, $length = 8)
     {
         $isValid = true;
         if (strlen($password) < $length) {

@@ -29,11 +29,8 @@ use \App\Controller\PaymentController;
 //    print_r($paymentCtrl->create($payment));
 //}
 
-$arr = array(
-    "code"=>array(
-        "codeName"=>"name",
-        "test"=>"test1"
-    )
-);
-print_r(json_encode($arr));
-print $arr['code']['codeName'];
+$data = file_get_contents('test.json');
+$json = json_decode($data, true);
+if($json['status']=='Success'){
+    echo "<script>window.location.href='signup_success.php?status=200'</script>";
+}

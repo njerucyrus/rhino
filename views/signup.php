@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Created by PhpStorm.
  * User: New LAptop
@@ -191,34 +192,38 @@ function cleanInput($data)
 
 
 <?php include_once 'contact_footer_views.php'; ?>
+<script src="../public/assets/js/jquery-1.11.3.min.js"></script>
 
 <script>
     $(document).ready(function (e) {
-        e.preventDefault;
-        checkIpnStatus();
+       e.preventDefault;
+       checkIpn();
+       
     })
 </script>
-
 <script>
-    function checkIpnStatus() {
-        var url = "ipn.php";
+    function checkIpn() {
+        var url = 'ipn.php';
         $.ajax(
             {
-                type: 'GET',
+               type: 'GET',
                 url: url,
                 dataType: 'json',
                 contentType: 'application/json; charset=utf-8',
-                success: function (response) {
-                    if(response.statusCode == 200){
-                        location.href = "signup_success.php?status=200";
-                    }
-                }
+                async: false
+
             }
-        )
+        ).success(function (response) {
+            console.log(response);
+            if(response.statusCode == 200){
+                window.location.href = 'signup_success.php?status=200';
+            }
+            setTimeout(function () {
+                checkIpn()
+            },500);
+        })
     }
 </script>
-
-
 </body>
 </html>
 

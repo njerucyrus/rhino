@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $created = $userCtrl->create($user);
         //print_r($user);
         print_r($created);
-        if ($created===TRUE) {
+        if ($created===true) {
             $id = ReferralTreeController::getUserId($_SESSION['referralCode']);
             try {
 
@@ -127,6 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $payment->setPaymentMethod("Mpesa");
                 $paymentCtrl = new PaymentController();
                 $paymentCtrl->create($payment);
+                unset($_SESSION['referralCode']);
             } catch (AfricasTalkingGatewayException $e) {
                 echo $e->getMessage();
             }

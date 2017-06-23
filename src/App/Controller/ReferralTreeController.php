@@ -487,7 +487,6 @@ class ReferralTreeController implements ReferralTreeInterface
 
         } catch (\PDOException $e) {
             echo $e->getMessage();
-            return false;
         }
     }
 

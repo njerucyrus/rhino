@@ -82,7 +82,7 @@ class UserController implements UserInterface
             } else {
                 $db->closeConnection();
                 return [
-                    "error"=>"STMT ERROR 0".$stmt->errorInfo()[0]."1 ".$stmt->errorInfo()['1']." 2 ".$stmt->errorInfo()['2']
+                    "error"=>"User already exists"
                 ];
             }
 
@@ -377,6 +377,19 @@ class UserController implements UserInterface
             return [
                 "error" => $e->getMessage()
             ];
+        }
+    }
+
+    public static function updatePaymentStatus($userId, $status='paid'){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("UPDATE users SET paymentStatus='{$status}'
+                                    WHERE id='{$userId}'");
+            $stmt->execute();
+
+        }catch (\PDOException $e){
+            echo $e->getMessage();
         }
     }
 

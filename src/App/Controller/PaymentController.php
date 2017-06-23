@@ -187,10 +187,10 @@ class PaymentController implements PaymentInterface
             $stmt->bindParam(":transactionId", $transactionId);
             $stmt->bindParam(":status", $status);
             if($stmt->execute()){
-                $db->closeConnection();
+                //$db->closeConnection();
                 return true;
             }else{
-                $db->closeConnection();
+                //$db->closeConnection();
                 return false;
             }
         }catch (\PDOException $e){
