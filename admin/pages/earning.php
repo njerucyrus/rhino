@@ -66,7 +66,13 @@ $counter=1;
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">User Earnings</h1>
+                <div class="btn btn-primary pull-right" style="margin-bottom: 5px;" onclick="exportExcel()">Export Payout to Excel</div>
             </div>
+            <?php if(isset($_GET['status']) && $_GET['status'] == 200): ?>
+            <div class="alert alert-success">
+                <p>Payout created successfully check your download folder</p>
+            </div>
+            <?php endif;?>
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
@@ -90,8 +96,6 @@ $counter=1;
                                 <th>Email</th>
                                 <th>Total Earning</th>
                                 <th>Balance</th>
-
-
                             </tr>
                             </thead>
                             <tbody>
@@ -126,6 +130,27 @@ $counter=1;
                 responsive: true
             });
         });
+    </script>
+    <script>
+        function exportExcel() {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'payout_endpoint.php', true);
+            setTimeout(function () {
+                xhr.send();
+            }, 100);
+
+            xhr.onreadystatechange = function () {
+
+                    window.location.href='earning.php?status=200';
+
+                setTimeout(function () {
+                    window.location.href='earning.php?status=100';
+                },1000);
+
+            }
+
+
+        }
     </script>
 </body>
 </html>

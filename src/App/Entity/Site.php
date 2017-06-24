@@ -11,10 +11,28 @@ namespace App\Entity;
 
 class Site
 {
-
+    private $urlName;
     private $url;
     private $category;
     private $description;
+
+    /**
+     * @return mixed
+     */
+    public function getUrlName()
+    {
+        return $this->urlName;
+    }
+
+    /**
+     * @param mixed $urlName
+     */
+    public function setUrlName($urlName)
+    {
+        $this->urlName = $urlName;
+    }
+
+
 
     /**
      * @return mixed

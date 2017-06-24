@@ -157,6 +157,31 @@ class FundController implements FundInterface
         }
     }
 
+    public static function showPayoutList(){
+        $db = new DB();
+        $conn = $db->connect();
+        try {
+            $stmt = $conn->prepare("SELECT DISTINCT u.userReferralCode AS ReferralCode,
+                                    u.fullName  as FullName,  u.idNo AS IDNO,  u.email AS Email,
+                                    u.phoneNumber AS PhoneNumber,
+                                    t.balance AS Amount
+                                    FROM users u , earning_account t
+                                    INNER JOIN users ur ON t.userId=ur.id
+                                    WHERE t.userId=u.id AND t.totalEarning !=0");
+            if ($stmt->execute()) {
+                $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $rows;
+            } else {
+                $db->closeConnection();
+                return [];
+            }
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return [];
+        }
+    }
+
     public static function myEarning($userId)
     {
         $db = new DB();
@@ -241,6 +266,28 @@ class FundController implements FundInterface
         } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
+        }
+    }
+
+    public static function showTxnLogs()
+    {
+        $db = new DB();
+        $conn = $db->connect();
+        try {
+            $stmt = $conn->prepare("SELECT DISTINCT u.fullName, u.email, u.phoneNumber, t.amount,
+                                    t.description, t.txnDate FROM users u ,transaction_logs t
+                                     INNER JOIN users usr ON usr.id= t.userId WHERE u.id = t.userId
+                                  ");
+            $rows = [];
+            if($stmt->execute() && $stmt->rowCount() > 0){
+              $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+            }
+            return $rows;
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+            return [
+                "error" => $e->getMessage()
+            ];
         }
     }
 

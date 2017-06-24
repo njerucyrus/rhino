@@ -17,6 +17,7 @@ class SiteController implements SiteInterface
 {
     public function createSingle(Site $site)
     {
+        $name = $site->getUrlName();
         $url = $site->getUrl();
         $category = $site->getCategory();
         $description = $site->getDescription();
@@ -25,7 +26,8 @@ class SiteController implements SiteInterface
             $db = new DB();
             $conn = $db->connect();
 
-            $stmt = $conn->prepare("INSERT INTO sites(url, category, description) VALUES (:url, :category, :description)");
+            $stmt = $conn->prepare("INSERT INTO sites(urlName, url, category, description) VALUES (:urlName, :url, :category, :description)");
+            $stmt->bindParam(":urlName", $name);
             $stmt->bindParam(":url", $url);
             $stmt->bindParam(":category", $category);
             $stmt->bindParam(":description", $description);
@@ -49,9 +51,10 @@ class SiteController implements SiteInterface
             $db = new DB();
             $conn = $db->connect();
 
-            $stmt = $conn->prepare("INSERT INTO sites(url, category, description) VALUES (:url, :category, :description)");
+            $stmt = $conn->prepare("INSERT INTO sites(urlName, url, category, description) VALUES (:urlName, :url, :category, :description)");
 
             foreach ($sites as $site) {
+                $stmt->bindParam(":urlName", $site['urlName']);
                 $stmt->bindParam(":url", $site['url']);
                 $stmt->bindParam(":category", $site['category']);
                 $stmt->bindParam(":description", $site['description']);
@@ -68,6 +71,7 @@ class SiteController implements SiteInterface
 
     public function updateSingle(Site $site, $id)
     {
+        $urlName = $site->getUrlName();
         $url = $site->getUrl();
         $category = $site->getCategory();
         $description = $site->getDescription();
@@ -76,8 +80,9 @@ class SiteController implements SiteInterface
             $db = new DB();
             $conn = $db->connect();
 
-            $stmt = $conn->prepare("UPDATE sites SET url=:url, category=:category, description=:description WHERE id=:id");
+            $stmt = $conn->prepare("UPDATE sites SET urlName=:urlName, url=:url, category=:category, description=:description WHERE id=:id");
             $stmt->bindParam(":id", $id);
+            $stmt->bindParam(":urlName", $urlName);
             $stmt->bindParam(":url", $url);
             $stmt->bindParam(":category", $category);
             $stmt->bindParam(":description", $description);
@@ -101,10 +106,11 @@ class SiteController implements SiteInterface
             $db = new DB();
             $conn = $db->connect();
 
-            $stmt = $conn->prepare("UPDATE sites SET url=:url, category=:category, description=:description WHERE id=:id");
+            $stmt = $conn->prepare("UPDATE sites SET urlName=:urlName, url=:url, category=:category, description=:description WHERE id=:id");
 
             foreach ($sites as $site) {
                 $stmt->bindParam(":id", $site['id']);
+                $stmt->bindParam(":urlName", $site['urlName']);
                 $stmt->bindParam(":url", $site['url']);
                 $stmt->bindParam(":category", $site['category']);
                 $stmt->bindParam(":description", $site['description']);
