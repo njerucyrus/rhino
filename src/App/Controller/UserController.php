@@ -386,9 +386,37 @@ class UserController implements UserInterface
         try{
             $stmt = $conn->prepare("UPDATE users SET paymentStatus='{$status}'
                                     WHERE id={$userId}");
-            $stmt->execute();
+            return $stmt->execute()? true : false;
         }catch (\PDOException $e){
             echo $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function makeAdmin($username){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("UPDATE users SET isAdmin=1
+                                    WHERE username=:username");
+            $stmt->bindParam(":username", $username);
+            return $stmt->execute() ? true : false;
+        }catch (\PDOException $e){
+            echo $e->getMessage();
+            return false;
+        }
+    }
+    public static function removeAdmin($username){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("UPDATE users SET isAdmin=0
+                                    WHERE username=:username");
+            $stmt->bindParam(":username", $username);
+            return $stmt->execute() ? true : false;
+        }catch (\PDOException $e){
+            echo $e->getMessage();
+            return false;
         }
     }
 

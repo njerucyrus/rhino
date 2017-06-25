@@ -20,11 +20,11 @@ class SettingController implements SettingInterface
         $db = new DB();
         $conn = $db->connect();
 
-        try{
+        try {
             $stmt = $conn->prepare("DELETE FROM settings WHERE id=:id");
             $stmt->bindParam(":id", $id);
-            return $stmt->execute() ? true :false;
-        }catch (\PDOException $e){
+            return $stmt->execute() ? true : false;
+        } catch (\PDOException $e) {
             echo $e->getMessage();
             return false;
         }
@@ -57,7 +57,7 @@ class SettingController implements SettingInterface
 
         try {
             $stmt = $conn->prepare("SELECT * FROM settings WHERE id=:id");
-            $stmt->setFetchMode(\PDO::FETCH_CLASS |\PDO::FETCH_PROPS_LATE, Setting::class);
+            $stmt->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, Setting::class);
             return $stmt->execute() ? $stmt->fetch() : null;
         } catch (\PDOException $e) {
             echo $e->getMessage();
@@ -107,6 +107,12 @@ class SettingController implements SettingInterface
             echo $e->getMessage();
             return false;
         }
+    }
+
+    public static function getPayoutDate()
+    {
+        //TODO: implement getPayoutDate() method
+
     }
 
 }
