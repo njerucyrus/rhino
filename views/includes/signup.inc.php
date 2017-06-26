@@ -12,6 +12,7 @@ use \App\Controller\UserController;
 use \App\Controller\ReferralTreeController;
 use \App\Controller\PaymentController;
 use \App\Auth\PasswordValidator;
+use \App\Services\PhoneNumber;
 
 $error = $success = $usernameErr = $fullNameErr = $idNoErr
     = $passwordErr = $confirmPasswordErr = $phoneNumberErr
@@ -36,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $fullName = cleanInput($_POST['fullName']);
         }
     }
+
     if (empty($_POST['email'])) {
         $emailErr = "Email Required";
     } else {
@@ -84,6 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $emailErr == '' && $matchErr == ''&& $strengthErr == ''
     ) {
 
+        $cleanPhone = new PhoneNumber($phoneNumber);
+        $phoneNumber = $cleanPhone->addPrefix();
         $user = new User();
         $user->setUsername($username);
         $user->setPassword($password);
@@ -100,8 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $user->setIsAdmin(0);
         $userCtrl = new UserController();
         $created = $userCtrl->create($user);
-        //print_r($user);
-        //print_r($created);
+
         if ($created===true) {
             $id = ReferralTreeController::getUserId($_SESSION['referralCode']);
             try {

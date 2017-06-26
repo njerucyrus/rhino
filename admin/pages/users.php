@@ -86,7 +86,7 @@ $counter = 1;
                                 <tr>
                                     <th>#</th>
                                     <th>Referral Code</th>
-                                    <th>Fullname</th>
+                                    <th>FullName</th>
                                     <th>username</th>
                                     <th>Id No</th>
                                     <th>Phone</th>
@@ -100,9 +100,9 @@ $counter = 1;
                                 <?php foreach ($users as $user): ?>
                                     <tr class="odd gradeX">
                                         <td><?php echo $counter++ ?></td>
-                                        <td><?php echo $user['userReferralCode']; ?></td>
+                                        <td style="font-weight: bolder; color:<?php if($user['isAdmin']==1): echo 'red';endif;?>"><?php echo $user['userReferralCode']; ?></td>
                                         <td><?php echo $user['fullName']; ?></td>
-                                        <td><?php echo $user['username']; ?></td>
+                                        <td><a href="user_profile.php?q=<?php echo $user['username']?>" class="btn btn-link"><?php echo $user['username']; ?></a></td>
                                         <td><?php echo $user['idNo']; ?></td>
                                         <td><?php echo $user['phoneNumber']; ?></td>
                                         <td><?php echo $user['email']; ?></td>

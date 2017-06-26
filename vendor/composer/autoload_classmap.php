@@ -29,5 +29,6 @@ return array(
     'App\\Entity\\Setting' => $baseDir . '/src/App/Entity/Setting.php',
     'App\\Entity\\Site' => $baseDir . '/src/App/Entity/Site.php',
     'App\\Entity\\User' => $baseDir . '/src/App/Entity/User.php',
+    'App\\Services\\PhoneNumber' => $baseDir . '/src/App/Services/PhoneNumber.php',
     'App\\Services\\SendEmail' => $baseDir . '/src/App/Services/Mailer/SendEmail.php',
 );

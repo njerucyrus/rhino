@@ -44,6 +44,7 @@ class ComposerStaticInitf2e6d16bb2124dc086289decd86c5fb5
         'App\\Entity\\Setting' => __DIR__ . '/../..' . '/src/App/Entity/Setting.php',
         'App\\Entity\\Site' => __DIR__ . '/../..' . '/src/App/Entity/Site.php',
         'App\\Entity\\User' => __DIR__ . '/../..' . '/src/App/Entity/User.php',
+        'App\\Services\\PhoneNumber' => __DIR__ . '/../..' . '/src/App/Services/PhoneNumber.php',
         'App\\Services\\SendEmail' => __DIR__ . '/../..' . '/src/App/Services/Mailer/SendEmail.php',
     );
 
