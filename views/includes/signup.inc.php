@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     if(PasswordValidator::passwordValidator($_POST['password']) === false){
-        $strengthErr = "Password Must Contain both Uppercase and lowercase letters and at least 1 special character";
+        $strengthErr = "Password Must Contain both Uppercase and lowercase letters, a number and at least 1 special character";
     }
     if (empty($_POST['password'])) {
         $passwordErr = "Password Required";
@@ -105,46 +105,57 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $userCtrl = new UserController();
         $created = $userCtrl->create($user);
 
-        if ($created===true) {
+        if ($created === true) {
+
             $id = ReferralTreeController::getUserId($_SESSION['referralCode']);
-            try {
+            UserController::createMpesaConfirmation(array(
+                "userId" => $id,
+                "phoneNumber" => $phoneNumber,
+                "referredBy"=>isset($_POST['referralCode']) ? $_POST['referralCode'] : null
+            ));
 
-                $metadata = array(
-                    "userId" => $id,
-                    "userReferralCode" => $_SESSION['referralCode'],
-                    "referralCodePosted"=>isset($_POST['referralCode']) ? $_POST['referralCode'] : null
-                );
-
-                $phoneNumber = cleanInput($_POST['phoneNumber']);
-                $gateway = new AfricasTalkingGateway(constant('API_USERNAME'), constant('API_KEY'), "sandbox");
-                $transactionId = $gateway->initiateMobilePaymentCheckout(
-                    constant('MOBILE_PRODUCT'),
-                    $phoneNumber,
-                    constant('CURRENCY_CODE'),
-                    (float)constant('AMOUNT'),
-                    $metadata
-                );
-                $payment = new Payment();
-                $payment->setEmail($email);
-                $payment->setUserId($id);
-                $payment->setAmount((float)constant('AMOUNT'));
-                $payment->setDatePaid(date('Y-m-d H:i:s'));
-                $payment->setTransactionId($transactionId);
-                $payment->setStatus("pending");
-                $payment->setPhoneNumber($phoneNumber);
-                $payment->setPaymentMethod("Mpesa");
-                $paymentCtrl = new PaymentController();
-                $paymentCtrl->create($payment);
-                unset($_SESSION['referralCode']);
-            } catch (AfricasTalkingGatewayException $e) {
-                echo $e->getMessage();
-            }
-
-            $success .= "Checkout initiated successfully please confirm the payment sent in your phone to complete Sign Up process";
-        } elseif(array_key_exists('error', $created)) {
-            $error .= "Error Internal Server error occurred. Account not Created {$created['error']}";
-        } elseif($created === false){
-            $error .="Error occurred";
+//            try {
+//
+//                $metadata = array(
+//                    "userId" => $id,
+//                    "userReferralCode" => $_SESSION['referralCode'],
+//                    "referralCodePosted"=>isset($_POST['referralCode']) ? $_POST['referralCode'] : null
+//                );
+//
+//                $phoneNumber = cleanInput($_POST['phoneNumber']);
+//                $gateway = new AfricasTalkingGateway(constant('API_USERNAME'), constant('API_KEY'), "sandbox");
+//                $transactionId = $gateway->initiateMobilePaymentCheckout(
+//                    constant('MOBILE_PRODUCT'),
+//                    $phoneNumber,
+//                    constant('CURRENCY_CODE'),
+//                    (float)constant('AMOUNT'),
+//                    $metadata
+//                );
+//                $payment = new Payment();
+//                $payment->setEmail($email);
+//                $payment->setUserId($id);
+//                $payment->setAmount((float)constant('AMOUNT'));
+//                $payment->setDatePaid(date('Y-m-d H:i:s'));
+//                $payment->setTransactionId($transactionId);
+//                $payment->setStatus("pending");
+//                $payment->setPhoneNumber($phoneNumber);
+//                $payment->setPaymentMethod("Mpesa");
+//                $paymentCtrl = new PaymentController();
+//                $paymentCtrl->create($payment);
+//                unset($_SESSION['referralCode']);
+//            } catch (AfricasTalkingGatewayException $e) {
+//                echo $e->getMessage();
+//            }
+//
+//            $success .= "Checkout initiated successfully please confirm the payment sent in your phone to complete Sign Up process";
+//        } elseif(array_key_exists('error', $created)) {
+//            $error .= "Error Internal Server error occurred. Account not Created {$created['error']}";
+//        } elseif($created === false){
+//            $error .="Error occurred";
+//        }
+            $success .= "Account created Successfully";
+        }else{
+            $error .="Error Occurred";
         }
     }
 }

@@ -167,7 +167,7 @@ class FundController implements FundInterface
                                     t.balance AS Amount
                                     FROM users u , earning_account t
                                     INNER JOIN users ur ON t.userId=ur.id
-                                    WHERE t.userId=u.id AND t.totalEarning !=0");
+                                    WHERE t.userId=u.id AND t.balance!=0");
             if ($stmt->execute()) {
                 $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
                 $db->closeConnection();

@@ -81,7 +81,7 @@ function cleanInput($data)
                     ?>
                     <div class="alert alert-success alert-dismissable">
                         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <?php echo $success ?>
+                        <?php echo $success ?> Click <a href="mpesa_payment.php" class="btn btn-primary">Here</a> To Checkout Using Mpesa And Activate your account
                     </div>
 
                     <?php

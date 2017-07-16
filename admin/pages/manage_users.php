@@ -9,7 +9,7 @@ require_once __DIR__.'/../../vendor/autoload.php';
 use \App\Controller\UserController;
 use \App\Services\SendEmail;
 
-$vendorEmail = "asilie-learning.co.ke";
+$vendorEmail = "info@asilie-learning.co.ke";
 
 $data = json_decode(file_get_contents('php://input'), true);
 if($_SERVER['REQUEST_METHOD'] == 'POST'){

@@ -9,7 +9,7 @@
 require_once '../../vendor/autoload.php';
 use \App\Controller\UserController;
 use \App\Controller\PaymentController;
-$payments = PaymentController::all();
+$payments = PaymentController::showMpesaPayments();
 $counter=1;
 
 
@@ -27,14 +27,14 @@ $counter=1;
     <meta name="author" content="">
 
     <title>Payments</title>
-    
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/manifest.json">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-<meta name="theme-color" content="#ffffff">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -82,51 +82,114 @@ $counter=1;
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <div class="table-responsive">
-                        <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Transaction ID</th>
+                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>MpesaCode</th>
+                                    <th>Full Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Date Paid</th>
+                                    <th>Actions</th>
 
-                                <th>Full Name</th>
-                                <th>Method</th>
-                                <th>Amount</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Date Paid</th>
-                                <th>Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php foreach ($payments as $payment): ?>
+                                    <tr class="odd gradeX">
 
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($payments as $payment): ?>
-                            <tr class="odd gradeX">
+                                        <td><?php echo $counter++ ?></td>
+                                        <td><?php echo $payment['mpesaCode'];?></td>
 
-                                <td><?php echo $counter++ ?></td>
-                                <td><?php echo $payment['transactionId'];?></td>
+                                        <td><?php echo UserController::getId($payment['userId'])['fullName'] ;?></td>
+                                        <td><?php echo $payment['paymentMethod'];?></td>
+                                        <td><?php echo $payment['phoneNumber'];?></td>
+                                        <td><?php echo UserController::getId($payment['userId'])['email'];?></td>
+                                        <td><?php echo $payment['txnDate'];?></td>
 
-                                <td><?php echo UserController::getId($payment['userId'])['fullName'] ;?></td>
-                                <td><?php echo $payment['paymentMethod'];?></td>
-                                <td><?php echo $payment['amount'];?></td>
-                                <td><?php echo $payment['phoneNumber'];?></td>
-                                <td><?php echo $payment['email'];?></td>
-                                <td><?php echo $payment['datePaid'];?></td>
-
-                                <td>
-                                    <button  class="btn btn-xs btn-success">Approve</button>
-                                </td>
+                                        <td>
+                                            <button  class="btn btn-xs btn-success" id="btnApprove" onclick="showConfirmModal('<?php $payment['id']?>', '<?php $payment['phoneNumber'] ?>')">Approve</button>
+                                        </td>
 
 
-                            </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
+                                    </tr>
+                                <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </div>
-<?php include_once 'footer.php'?>
+
+<!-- Modal 4 (Confirm)-->
+<div class="modal fade" id="confirm" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-title">Confirm Approve Payment</h4>
+                <div id="confirmFeedback">
+
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <p style="font-size: 16px;"> Click Continue to Confirm Action</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id='btnConfirm' class="btn btn-info">Continue</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end-->
+    <?php include_once 'footer.php'?>
+    <script>
+        $(document).ready(function (e) {
+            e.preventDefault();
+
+        });
+    </script>
+
+    <script>
+        function showConfirmModal(id, phoneNumber) {
+            $('#confirm').modal('show');
+            var url = 'approve_mpesa_endpoint.php';
+            $('#btnConfirm').on('click', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: url,
+                    data: JSON.stringify({id:id}),
+                    success: function (response) {
+
+                        if (response.statusCode == 200) {
+                            console.log(response);
+                            $('#confirmFeedback').removeClass('alert alert-danger')
+                                .addClass('alert alert-success')
+                                .text(response.message);
+                            setTimeout(function () {
+                                window.location.href = 'users.php';
+                            }, 1000);
+                        }
+                        if (response.statusCode == 500) {
+                            $('#confirmFeedback').removeClass('alert alert-success')
+                                .html('<div class="alert alert-danger alert-dismissable">' +
+                                    '<a href="#" class="close"  data-dismiss="alert" aria-label="close">&times;</a>' +
+                                    '<strong>Error! </strong> ' + response.message + '</div>')
+
+                        }
+
+                    }
+
+                });
+            })
+        }
+    </script>
 </body>
 </html>

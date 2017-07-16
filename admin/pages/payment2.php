@@ -7,8 +7,11 @@
  */
 
 require_once '../../vendor/autoload.php';
-$earnings = \App\Controller\FundController::showAllEarnings();
+use \App\Controller\UserController;
+use \App\Controller\PaymentController;
+$payments = PaymentController::all();
 $counter=1;
+
 
 ?>
 
@@ -23,7 +26,7 @@ $counter=1;
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Earnings</title>
+    <title>Payments</title>
     
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
@@ -65,24 +68,8 @@ $counter=1;
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">User Earnings</h1>
-                <a href="payout_endpoint.php" class="btn btn-primary btn-lg pull-right" style="margin-bottom: 10px;">Export Payout to Excel</a>
+                <h1 class="page-header">Payments</h1>
             </div>
-            <?php if(isset($_GET['status']) && $_GET['status'] == 200): ?>
-            <div class="alert alert-success">
-                <p>Payout created successfully check your download folder</p>
-                <a href="earning.php" class="btn btn-warning">Reload</a
-
-            </div>
-            <?php endif;?>
-
-            <?php if(isset($_GET['status']) && $_GET['status'] == 500): ?>
-                <div class="alert alert-danger">
-                    <p>Error: No client found with minimum balance to create payout</p>
-                    <a href="earning.php" class="btn btn-info">Try Again</a>
-                </div>
-            <?php endif;?>
-
             <!-- /.col-lg-12 -->
         </div>
         <!-- /.row -->
@@ -90,7 +77,7 @@ $counter=1;
             <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                       Recorded Earning
+                        Recorded Payments
                     </div>
                     <!-- /.panel-heading -->
                     <div class="panel-body">
@@ -99,26 +86,36 @@ $counter=1;
                             <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Referral Code</th>
-                                <th>Full name</th>
-                                <th>Id No</th>
+                                <th>Transaction ID</th>
+
+                                <th>Full Name</th>
+                                <th>Method</th>
+                                <th>Amount</th>
                                 <th>Phone</th>
                                 <th>Email</th>
-                                <th>Total Earning</th>
-                                <th>Balance</th>
+                                <th>Date Paid</th>
+                                <th>Actions</th>
+
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($earnings as $earning): ?>
+                            <?php foreach ($payments as $payment): ?>
                             <tr class="odd gradeX">
+
                                 <td><?php echo $counter++ ?></td>
-                                <td><?php echo $earning['userReferralCode'];?></td>
-                                <td><?php echo $earning['fullName'];?></td>
-                                <td><?php echo $earning['idNo'];?></td>
-                                <td><?php echo $earning['phoneNumber'];?></td>
-                                <td><?php echo $earning['email'];?></td>
-                                <td><?php echo $earning['totalEarning'];?></td>
-                                <td><?php echo $earning['balance'];?></td>
+                                <td><?php echo $payment['transactionId'];?></td>
+
+                                <td><?php echo UserController::getId($payment['userId'])['fullName'] ;?></td>
+                                <td><?php echo $payment['paymentMethod'];?></td>
+                                <td><?php echo $payment['amount'];?></td>
+                                <td><?php echo $payment['phoneNumber'];?></td>
+                                <td><?php echo $payment['email'];?></td>
+                                <td><?php echo $payment['datePaid'];?></td>
+
+                                <td>
+                                    <button  class="btn btn-xs btn-success">Approve</button>
+                                </td>
+
 
                             </tr>
                             <?php endforeach; ?>
@@ -130,36 +127,6 @@ $counter=1;
             </div>
         </div>
 </div>
-<script src="../../public/assets/js/jquery-1.11.3.min.js"></script>
 <?php include_once 'footer.php'?>
-
-    <script>
-        $(document).ready(function() {
-            $('#dataTables-example').DataTable({
-                responsive: true
-            });
-        });
-    </script>
-    <script>
-        function exportExcel() {
-            var url = 'payout_endpoint.php';
-            $.ajax(
-                {
-                    type: 'GET',
-                    url: url,
-                    dataType: 'json',
-                    contentType: 'application/json',
-                    success: function (response) {
-                        console.log(response);
-                        if(response.statusCode == 200){
-                            window.location.href = 'earning.php?status=200';
-                        }else{
-                            alert('ERROR OCCURRED');
-                        }
-                    }
-                }
-            )
-        }
-    </script>
 </body>
 </html>

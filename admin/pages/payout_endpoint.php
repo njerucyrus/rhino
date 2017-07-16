@@ -5,41 +5,25 @@
  * Date: 6/24/17
  * Time: 12:16 AM
  */
-require_once __DIR__.'/../../vendor/autoload.php';
-use \App\Controller\FundController;
-if($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $data = FundController::showPayoutList();
+require_once __DIR__ . '/../../vendor/autoload.php';
 
-    function filterData(&$str)
-    {
-        $str = preg_replace("/\t/", "\\t", $str);
-        $str = preg_replace("/\r?\n/", "\\n", $str);
-        if (strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
-    }
+use App\Services\FileManager;
+use App\Controller\FundController;
 
-// file name for download
-    $fileName = "asili_payment" . date('Ymd') . ".xls";
+$data = FundController::showPayoutList();
 
-// headers for download
-    header("Content-Disposition: attachment; filename=\"$fileName\"");
-    header("Content-Type: application/vnd.ms-excel");
-
-    $flag = false;
-    foreach ($data as $row) {
-        if (!$flag) {
-            // display column names as first row
-            echo implode("\t", array_keys($row)) . "\n";
-            $flag = true;
-        }
-        // filter data
-        array_walk($row, 'filterData');
-        echo implode("\t", array_values($row)) . "\n";
-
-    }
-    $logged = FundController::createTransactionLog();
-    $balUpdated = FundController::setNewBalance();
-    if ($logged == true && $balUpdated == true) {
-        header("Location: earning.php?status=200");
-    }
-    exit;
+if(!empty($data)){
+    $fileM = new FileManager();
+    $csv = $fileM->createCsv();
+    $url = "earning.php?status=200";
+    header("Refresh:3; url={$url}");
+}else{
+    header('Location: earning.php?status=500');
 }
+
+
+
+
+
+
+

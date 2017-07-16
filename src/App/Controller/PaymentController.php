@@ -199,4 +199,25 @@ class PaymentController implements PaymentInterface
         }
     }
 
+    public static function showMpesaPayments(){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("SELECT t.* FROM payment_confirmations t WHERE t.approved=0");
+            if($stmt->execute() && $stmt->rowCount() > 0){
+                $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+                $db->closeConnection();
+                return $rows;
+            }else{
+               return [
+                   "error"=> "Internal Server Error Occurred"
+               ];
+            }
+        }catch (\PDOException $e){
+        return [
+            "error"=>$e->getMessage()
+        ];
+        }
+    }
+
 }

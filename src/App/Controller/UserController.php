@@ -420,4 +420,125 @@ class UserController implements UserInterface
         }
     }
 
+    /**
+     * @param array $data
+     * $data = array(
+            "phoneNumber"=> value,
+     *      "userId"=>value,
+     *
+     * )
+     * @return  array|bool
+     *
+     */
+    public static function createMpesaConfirmation(array $data){
+            $phoneNumber = $data['phoneNumber'];
+            $userId = $data['userId'];
+            $referredBy = $data['referredBy'];
+
+            $db = new DB();
+            $conn = $db->connect();
+            try{
+                $stmt = $conn->prepare("INSERT INTO payment_confirmations(phoneNumber, userId, referredBy)
+                                      VALUES(:phoneNumber, :userId, :referredBy)");
+                $stmt->bindParam(":phoneNumber", $phoneNumber);
+                $stmt->bindParam(":userId", $userId);
+                $stmt->bindParam(":referredBy", $referredBy);
+
+                if($stmt->execute()){
+                    $db->closeConnection();
+                    return true;
+                }else{
+                    return [
+                        "error"=>"Internal Server Error Occurred"
+                    ];
+                }
+            } catch (\PDOException $e){
+                return [
+                    "error"=>$e->getMessage()
+                ];
+            }
+    }
+    public static function updateMpesaConfirmation($phoneNumber, $mpesaCode){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("UPDATE payment_confirmations SET mpesaCode=:mpesaCode WHERE phoneNumber=:phoneNumber");
+            $stmt->bindParam(":phoneNumber", $phoneNumber);
+            $stmt->bindParam(":mpesaCode", $mpesaCode);
+            if($stmt->execute()){
+                $db->closeConnection();
+                return true;
+            }else{
+                return [
+                    "error"=>"Internal Server Error Occurred"
+                ];
+            }
+        }catch (\PDOException $e){
+            return [
+                'error' => $e->getMessage()
+            ];
+        }
+    }
+    public static function approveMpesaCode($id){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("UPDATE payment_confirmations SET approved=1 WHERE id=:id");
+            $stmt->bindParam(":id", $id);
+            if($stmt->execute()){
+                $db->closeConnection();
+                return true;
+            }else{
+                return [
+                    'error'=> "Internal Server Error Occurred"
+                ];
+            }
+        }catch (\PDOException $e){
+            return [
+                'error'=>$e->getMessage()
+            ];
+        }
+    }
+    public static function getUserByPhone($phoneNumber){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("SELECT t.* FROM users t WHERE t.phoneNumber=:phoneNumber");
+            $stmt->bindParam(":phoneNumber", $phoneNumber);
+            if($stmt->execute() && $stmt->rowCount() > 0){
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                return $row;
+            }else{
+                return [
+                    "error" => "Internal Server error occurred"
+                ];
+            }
+        }catch (\PDOException $e){
+            return [
+                "error"=>$e->getMessage()
+            ];
+        }
+    }
+
+    public static function getMpesaTxn($id){
+        $db = new DB();
+        $conn = $db->connect();
+        try{
+            $stmt = $conn->prepare("SELECT t.* FROM payment_confirmations t WHERE t.id=:id");
+            $stmt->bindParam(":id", $id);
+            if($stmt->execute() && $stmt->rowCount() > 0){
+                $row = $stmt->fetch(\PDO::FETCH_ASSOC);
+                return $row;
+            }else{
+                return [
+                    "error" => "Internal Server error occurred"
+                ];
+            }
+        }catch (\PDOException $e){
+            return [
+                "error"=>$e->getMessage()
+            ];
+        }
+    }
+
 }
