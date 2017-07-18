@@ -75,6 +75,7 @@ $counter=1;
         <!-- /.row -->
         <div class="row">
             <div class="col-lg-12">
+                <?php if(!isset($payments['error']) > 0){?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Recorded Payments
@@ -100,16 +101,16 @@ $counter=1;
                                     <tr class="odd gradeX">
 
                                         <td><?php echo $counter++ ?></td>
-                                        <td><?php echo $payment['mpesaCode'];?></td>
+                                        <td><?php echo $payment['mpesaCode']?></td>
 
                                         <td><?php echo UserController::getId($payment['userId'])['fullName'] ;?></td>
-                                        <td><?php echo $payment['paymentMethod'];?></td>
+<!--                                        <td>--><?php //echo $payment['paymentMethod'];?><!--</td>-->
                                         <td><?php echo $payment['phoneNumber'];?></td>
                                         <td><?php echo UserController::getId($payment['userId'])['email'];?></td>
                                         <td><?php echo $payment['txnDate'];?></td>
 
                                         <td>
-                                            <button  class="btn btn-xs btn-success" id="btnApprove" onclick="showConfirmModal('<?php $payment['id']?>', '<?php $payment['phoneNumber'] ?>')">Approve</button>
+                                            <button  class="btn btn-xs btn-success" id="btnApprove" onclick="showConfirmModal('<?php echo $payment['id']?>','<?php echo $payment['userId']?>', '<?php echo $payment['phoneNumber'] ?>')">Approve</button>
                                         </td>
 
 
@@ -120,6 +121,10 @@ $counter=1;
                         </div>
                     </div>
                 </div>
+                <?php }
+                else{
+                    echo "No Pending Payments ";
+                } ?>
             </div>
         </div>
     </div>
@@ -149,32 +154,36 @@ $counter=1;
 </div>
 <!--end-->
     <?php include_once 'footer.php'?>
+<!--<script src="../../public/assets/js/jquery.js"></script>-->
     <script>
         $(document).ready(function (e) {
-            e.preventDefault();
+            e.preventDefault;
 
         });
     </script>
 
     <script>
-        function showConfirmModal(id, phoneNumber) {
+        function showConfirmModal(id, userId, phoneNumber) {
             $('#confirm').modal('show');
             var url = 'approve_mpesa_endpoint.php';
             $('#btnConfirm').on('click', function (e) {
-                e.preventDefault();
+                console.log({id:id, phoneNumber:phoneNumber});
+                e.preventDefault;
                 $.ajax({
                     type: 'POST',
                     url: url,
-                    data: JSON.stringify({id:id}),
+                    data: JSON.stringify({id:id, phoneNumber:phoneNumber, userId: userId}),
+                    dataType: 'json',
+                    contentType: 'application/json; charset=utf-8;',
                     success: function (response) {
-
+                        console.log(response);
                         if (response.statusCode == 200) {
                             console.log(response);
                             $('#confirmFeedback').removeClass('alert alert-danger')
                                 .addClass('alert alert-success')
                                 .text(response.message);
                             setTimeout(function () {
-                                window.location.href = 'users.php';
+                                window.location.href = 'payment.php';
                             }, 1000);
                         }
                         if (response.statusCode == 500) {
@@ -185,6 +194,9 @@ $counter=1;
 
                         }
 
+                    },
+                    error: function (error) {
+                        console.log(error);
                     }
 
                 });

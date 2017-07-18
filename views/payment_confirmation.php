@@ -20,7 +20,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
         $updated = UserController::updateMpesaConfirmation($phoneNumber,$mpesaCode);
         if($updated === true){
-            $successMsg = "Transaction Recorded Successfully You will be notified via email One We Complete verifying your payment.";
+
+            //$successMsg = "Transaction Recorded Successfully You will be notified via email One We Complete verifying your payment.";
+            $successMsg = "VALUES {$mpesaCode} , {$phoneNumber}";
         }elseif(isset($updated['error'])){
             $errorMsg = $updated['error'];
         }
@@ -34,6 +36,26 @@ function cleanInput($data){
     return $data;
 }
 ?>
+
+<?php if($successMsg!= ''): ?>
+    <div class="row">
+        <div class="col col-md-6 col-md-offset-2">
+            <div class="alert alert-success">
+                <p><?php echo $successMsg ?></p>
+            </div>
+        </div>
+    </div>
+<?php endif;?>
+
+<?php if ($errorMsg !=''):?>
+    <div class="row">
+        <div class="col col-md-6 col-md-offset-2">
+            <div class="alert alert-danger">
+                <p><?php echo $errorMsg ?></p>
+            </div>
+        </div>
+    </div>
+<?php endif;?>
 
 <form action="payment_confirmation.php" method="post" class="form-group">
     <label for="phoneNumber">PhoneNumber</label>

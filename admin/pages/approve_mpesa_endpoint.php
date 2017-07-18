@@ -43,11 +43,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             )
         ));
 
-        $user = UserController::getId($data['userId']);
         global $vendorEmail;
         $mail = new SendEmail($user['email'], $vendorEmail);
         $mail->setSubject("Asili Africa Payment Approval");
-        $mail->setMessage("Your Payment Has been successfully processed. You can now access your account ");
+        $mail->setMessage("Your Payment Has been successfully processed. You can now access your account");
         $mail->setVendor("Asili Elearning");
         $mail->send();
 

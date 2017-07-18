@@ -463,8 +463,8 @@ class UserController implements UserInterface
         $conn = $db->connect();
         try{
             $stmt = $conn->prepare("UPDATE payment_confirmations SET mpesaCode=:mpesaCode WHERE phoneNumber=:phoneNumber");
-            $stmt->bindParam(":phoneNumber", $phoneNumber);
             $stmt->bindParam(":mpesaCode", $mpesaCode);
+            $stmt->bindParam(":phoneNumber", $phoneNumber);
             if($stmt->execute()){
                 $db->closeConnection();
                 return true;
