@@ -9,7 +9,7 @@
 
 <h1>Mpesa Payment Instructions Here</h1>
 <li>
-    include mpesa log here and explain steps taken to make mpesa payment
+    Include mpesa log here and explain steps taken to make mpesa payment
 </li>
 <p>Once done click Confirm Payments to Complete Your Sign Up Process</p>
 
